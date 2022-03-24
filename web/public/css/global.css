@@ -1,0 +1,21 @@
+:root {
+    --primary-color: #34CB79;
+    --title-color: #322153;
+    --text-color: #6C6C80;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    background: #ebf2f5;
+}
+
+body, input, button, textarea {
+    font: 600 18px Nunito, sans-serif;
+}

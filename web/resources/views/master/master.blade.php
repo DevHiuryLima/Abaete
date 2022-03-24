@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Abaeté</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="<?= asset('/images/favicon.png') ?>" sizes="200x200" type="image/png" />
+  <link rel="stylesheet" type="text/css" href="<?= asset('css/global.css') ?>">
+  <link rel="stylesheet" type="text/css" href="<?= asset('css/landing.css') ?>">
+  <link rel="stylesheet" type="text/css" href="<?= asset('css/mapa-terra.css') ?>">
+  <link rel="stylesheet" type="text/css" href="<?= asset('css/sidebar.css') ?>">
+  <link rel="stylesheet" type="text/css" href="<?= asset('css/criar-terra.css') ?>">
+  <link rel="icon" type="image/png" sizes="200x200" href="<?= asset('') ?>">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+  
+  @include('includes.header')
+  
+  @yield('content')
+
+  @include('includes.footer')
+
+</body>
+</html>
