@@ -46,9 +46,39 @@
     z-index: 5;
 }
 
-#page-map .criar-aldeia {
+#page-map .criar-admin {
     position: absolute;
     right: 40px;
+    bottom: 40px;
+    z-index: 10;
+    width: 64px;
+    height: 64px;
+    background: #34CB79;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.5s;
+}
+
+#page-map .criar-quiz {
+    position: absolute;
+    right: 115px;
+    bottom: 40px;
+    z-index: 10;
+    width: 64px;
+    height: 64px;
+    background: #34CB79;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.5s;
+}
+
+#page-map .criar-aldeia {
+    position: absolute;
+    right: 190px;
     bottom: 40px;
     z-index: 10;
 

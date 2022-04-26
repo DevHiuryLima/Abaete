@@ -1,0 +1,108 @@
+body {
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    /* background-color: #fff; */
+
+    /* background-image: url('../images/landing.png');
+    background-position: initial;
+    background-repeat: no-repeat;
+    background-size: 360px; */
+}
+
+#container-login {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #34CB79;
+    padding: 10px;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 1px 0 20px rgb(0 0 0 / 8%);
+    box-shadow: 0.4em 10px 1.4em #383838;   
+    max-width: 400px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#container-login > div.margem-abaixo { text-align: center; }
+
+#container-login > div > img {}
+
+#container-login > h1 {
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+#container-login > form > fieldset { border: none; }
+
+.margem-abaixo { margin-bottom: 10px; }
+
+.d-none { display: none; }
+
+#container-login > form > fieldset > .margem-abaixo  > input {
+    appearance: none;
+    border: none;
+    border-bottom: 1px solid #fff;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 14px;
+    height: 50px;
+    outline: none;
+    width: 100%;
+    padding-left: 10px;
+    background-color: transparent;
+    color: #fff;
+}
+
+#container-login > form > fieldset > .margem-abaixo  > input::placeholder { color: #fff; }
+
+#container-login > form > fieldset > div#container-senha { border-bottom: 1px solid #fff; border-radius: 3px; }
+
+#container-login > form > fieldset > div#container-senha > label {
+}
+
+#container-login > form > fieldset > div#container-senha > label > input {
+    padding-left: 10px;
+    appearance: none;
+    border: none;
+    font-family: inherit;
+    font-size: 14px;
+    height: 50px;
+    outline: none;
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+}
+
+#container-login > form > fieldset > div#container-senha > label > input::placeholder { color: #fff; }
+
+#container-login > form > fieldset > div#message {
+    display: flex;
+    align-items: center;
+    background: #ff4a4a;
+    color: #fff;
+    border: none;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+#container-login > form > fieldset > div > a {
+    margin-left: 50%;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+#container-login > form > fieldset > div > button {
+    width: 100%;
+    height: 50px;
+    appearance: none;
+    background-color: #facb4a;
+    border: none;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    font-family: inherit;
+}
