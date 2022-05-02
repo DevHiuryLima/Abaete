@@ -1,5 +1,5 @@
 @extends('master.master')
-
+@section('title', 'Login - Abaeté')
 @section('content')
 <div id="container-login">
     <div class="margem-abaixo">

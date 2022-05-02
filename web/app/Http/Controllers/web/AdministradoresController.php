@@ -41,7 +41,7 @@ class AdministradoresController extends Controller
             $administrador = new Administrador();
             $administrador->nome = $request->nome;
             $administrador->login = $request->login;
-            $administrador->senha = $request->senha;
+            $administrador->senha = base64_encode($request->senha);
             $status = $administrador->save();
 
             if($status == true){
@@ -82,7 +82,7 @@ class AdministradoresController extends Controller
 
                 $administrador->nome = $request->nome;
                 $administrador->login = $request->login;
-                $administrador->senha = $request->senha;
+                $administrador->senha = base64_encode($request->senha);
                 $status = $administrador->save();
 
                 if($status == true){

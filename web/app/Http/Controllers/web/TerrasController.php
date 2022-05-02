@@ -46,7 +46,7 @@ class TerrasController extends Controller
             $status = $terra->save();
 
 
-            // Cadastra cada imagens da terra.
+            // Cadastrar cada imagem da terra.
             for ($i=0; $i < count($request->file('images')); $i++) {
                 $imagens = new ImagensTerra();
                 $imagens->terra = $terra->idTerra;
@@ -103,6 +103,53 @@ class TerrasController extends Controller
         }
     }
 
+    public function editarTerra(Request $request)
+    {
+        if(session()->exists('idAdmin')) {
+            $terra = Terra::find($request->idTerra);
+
+            if ($terra != null) {
+                
+                $terra->nome = $request->nome;
+                $terra->populacao = $request->populacao . " Pessoas";
+                $terra->povos = $request->povos;
+                $terra->lingua = $request->lingua;
+                $terra->modalidade = $request->modalidade;
+                $terra->estado = $request->uf;
+                $terra->cidade = $request->city;
+                $terra->latitude = $request->latitude;
+                $terra->longitude = $request->longitude;
+                $terra->sobre = $request->sobre;
+                $status = $terra->save();
+
+
+                if ($request->images != null) {
+                    // Cadastrar cada imagem da terra.
+                    for ($i=0; $i < count($request->file('images')); $i++) {
+                        $imagens = new ImagensTerra();
+                        $imagens->terra = $terra->idTerra;
+                        $imagens->url = env('APP_URL') . "/storage/" . $request->file('images')[$i]->store("imagens-terras");
+                        $status = $imagens->save();
+                    }
+                }
+
+                if($status == true){
+                    echo "<script>window.alert('Cadastrado com sucesso!')</script>";
+                    return redirect()->to('/terras');
+                } else {
+                    $terra->delete();
+                    echo "<script>window.alert('Ocorreu um erro ao cadastrar terra! Por favor, tente novamente mais tarde.')</script>";
+                    echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
+                }
+            } else {
+                echo "<script>window.alert('Ocorreu um erro ao buscar Terra! Por favor, tente novamente mais tarde.')</script>";
+                echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
+            }
+        } else {
+            return redirect()->to('/login');
+        }
+    }
+
     public function removerTerra(Request $request)
     {
         if(session()->exists('idAdmin')) {
@@ -152,6 +199,7 @@ class TerrasController extends Controller
 
             $retirar = array(env('APP_URL'), "/storage/");
             $path = str_replace($retirar, '', $imagem->url);
+            // echo dd($path);
             Storage::delete($path);
 
             $status = $imagem->delete();

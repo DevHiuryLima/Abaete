@@ -1,5 +1,5 @@
 @extends('master.master')
-
+@section('title', 'Editar terra - Abaeté')
 @section('content')
 <div id="root">
     <div id="page-criar-aldeia">
@@ -7,7 +7,7 @@
             <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
             
             <footer>
-                <a href="{{ route('terra-listar', ['idTerra' => $terra->idTerra]) }}" title="Voltar">
+                <a href="{{ route('listar.terra', ['idTerra' => $terra->idTerra]) }}" title="Voltar">
                     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="rgba(0, 0, 0, 0.6)" height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="color: rgba(0, 0, 0, 0.6);">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
                         <polyline points="12 19 5 12 12 5"></polyline>
@@ -17,8 +17,9 @@
             </aside>
             
             <main>
-                <form class="criar-aldeia-form" action="{{ route('criar') }}" method="POST" enctype="multipart/form-data">
+                <form class="criar-aldeia-form" action="{{ route('editar.terra') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="idTerra" value="{{$terra->idTerra}}">
                     <fieldset>
                         <legend>Dados</legend>
                         <fieldset>
@@ -29,7 +30,11 @@
                             <div class="input-block field-group">
                                 <div class="field">
                                     <label for="populacao">População</label>
-                                    <input type="number" name="populacao" id="populacao" required="" value="{{$terra->populacao}}">
+                                    @php
+                                        $retirar = array(" Pessoas", " Pessoa");
+                                        $populacao = str_replace($retirar, '', $terra->populacao);
+                                    @endphp
+                                    <input type="number" name="populacao" id="populacao" required="" value="{{$populacao}}">
                                 </div>
                                 <div class="field">
                                     <label for="povos">Povos</label>
@@ -50,15 +55,16 @@
                         <div class="input-block field-group">
                             <div class="field">
                                 <label for="uf">Estado (UF)</label>
+                                <small style="color: #8FA7B3;">O estado cadastrado é: {{$terra->estado}}</small>
                                 <select name="uf" id="uf" required="">
                                     <option value="0" selected="">Selecione uma UF</option>
-
                                 </select>
                             </div>
                             <div class="field">
                                 <label for="city">Cidade</label>
+                                <small style="color: #8FA7B3;">O cidade cadastrada é: {{$terra->cidade}}</small>
                                 <select name="city" id="city" required="">
-                                    <option value="0" selected="">Selecione uma cidade</option>
+                                    <option value="" selected="">Selecione uma cidade</option>
                                 </select>
                             </div>
                         </div>
@@ -85,9 +91,9 @@
                                         <line x1="5" y1="12" x2="19" y2="12"></line>
                                     </svg>
                                 </label>
-                                @if( count($terra->imagensTerra) > 1 )
+                                @if( count($terra->imagensTerra) >= 1 )
                                         @foreach($terra->imagensTerra as $imagem)
-                                            <img src="{{$imagem->url}}" alt="{{$terra->nome}}" class="remover" data-imagem="{{$imagem->idImagem}}" style="cursor: pointer;">
+                                            <img src="{{$imagem->url}}" alt="{{$terra->nome}}" class="remover-imagem" data-imagem="{{$imagem->idImagem}}" title="Remover imagem" style="cursor: pointer;">
                                         @endforeach
                                 @endif
                             </div>
@@ -99,16 +105,39 @@
             </main>
         </div>
     </div>
+
+    <div class="modalBackground" style="display: none;">
+        <div class="modalContainer">
+            <div class="titleCloseBtn">
+                <button id="fecharBtn"> X </button>
+            </div>
+            <div class="title">
+                <h1>Você tem certeza que você deseja remover essa Imagem?</h1>
+            </div>
+            <div class="body">
+                <p><strong>Atenção!</strong> Não será possível recuperar o registro depois.</p>
+            </div>
+            <div class="footer">
+                @csrf
+                <input type="hidden" name="idImagem" id="idImagem">
+                <button id="link-remover">Continuar</button>
+                <button id="cancelBtn">Cancelar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="<?=asset('js/main.js')?>"></script>
 <script src="<?=asset('js/mapIcon.js')?>"></script>
+<script src="<?=asset('js/busca-estados-e-municipios.js')?>"></script>
 <script>
+    //Esse script está local pois nescessita pegar a latitude e longitude da terra para ser colocada no mapa.
+
     // A variavel 'map' recebe a classe leaflet (l) ponto map
     // passando a div do mapa para tudo que for criado ser dentro dela
     // coloando a posição e também o nivel de zoom
     var map = L.map(document.getElementById('map-container'), {
-        center: [<?=$terra->latitude?>,<?=$terra->longitude?>],
+        center: [ {{$terra->latitude}},{{$terra->longitude}} ],
         zoom: 9
     });
 
@@ -128,7 +157,7 @@
     var theMarker = {};
 
 
-    theMarker = L.marker([<?=$terra->latitude?>,<?=$terra->longitude?>], {icon: abaeteMapIcon, interactive: false}).addTo(map);
+    theMarker = L.marker([ {{$terra->latitude}}, {{$terra->longitude}} ], {icon: abaeteMapIcon, interactive: false}).addTo(map);
 
     function onMapClick(e) {
         // Adiciono a latitude e longitude em cada um dos input.
@@ -173,16 +202,52 @@
             visualizacaoImagens(this, 'div.images-container');
         });
     });
+</script>
+<script>
+    $('.input-block > .images-container > .remover-imagem').on('click', function() {
+        var id = $(this).attr('data-imagem');
+        $('#idImagem').val(id);
+        $('div.modalBackground').removeAttr('style');
+    });
+    
+    $('#fecharBtn').on('click', function() {
+        $('div.modalBackground').css('display', 'none');
+    });
 
-    $('img.remover').on('click', function() {
-        let id = $(this).attr('data-imagem');
-        let element = $(this);
+    $('#cancelBtn').on('click', function() {
+        $('div.modalBackground').css('display', 'none');
+    });
+</script>
+<script>
+    $('#link-remover').on('click', function(envent) {
+        event.preventDefault();
+        var id = $('#idImagem').val();
+        var token = $('input[name="_token"]').val();
+        
+        var json = {
+            idImagem: id,
+            _token: token,
+        };
 
-        jQuery.get(`${APP_URL}terra/remover/imagem/${id}`, function(data){
-            if (data.message == 'removido') {
-                console.log('entrou para remover');
+        $.ajax({
+            url: `{{ route('remover.imagem')}}`,
+            type: 'POST',
+            data: JSON.stringify(json),
+            dataType: 'json',
+            processData: false,
+            contentType: "application/json; charset=UTF-8",
+            success: function (resposta) {
+                $('div.modalBackground').css('display', 'none');
+                $(`img[data-imagem='${id}']`).remove();
+            }
+        })
+        .fail(function(resposta){
+            if ((resposta.status == 404) || (resposta.status == 422)) {
+                alert(resposta.responseJSON.message);
+            } else if (resposta.status == 500) {
+                alert('Ocorreu um erro interno!\n\n' + resposta.responseJSON.message);
             } else {
-                alert(data.message);
+                alert('Ocorreu um erro ao tentar remover!\n\n' + resposta.responseJSON.message);
             }
         });
     });

@@ -1,5 +1,5 @@
 @extends('master.master')
-
+@section('title', 'Criar terra - Abaeté')
 @section('content')
 <div id="root">
     <div id="page-criar-aldeia">
@@ -17,7 +17,7 @@
             </aside>
             
             <main>
-                <form class="criar-aldeia-form" action="{{ route('criar') }}" method="POST" enctype="multipart/form-data">
+                <form class="criar-aldeia-form" action="{{ route('criar.terra') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <fieldset>
                         <legend>Dados</legend>
@@ -29,7 +29,7 @@
                             <div class="input-block field-group">
                                 <div class="field">
                                     <label for="populacao">População</label>
-                                    <input type="number" name="populacao" id="populacao" required="" value="">
+                                    <input type="number" name="populacao" id="populacao" required="">
                                 </div>
                                 <div class="field">
                                     <label for="povos">Povos</label>
@@ -58,7 +58,7 @@
                             <div class="field">
                                 <label for="city">Cidade</label>
                                 <select name="city" id="city" required="">
-                                    <option value="0" selected="">Selecione uma cidade</option>
+                                    <option value="" selected="">Selecione uma cidade</option>
                                 </select>
                             </div>
                         </div>
@@ -99,5 +99,6 @@
 <script src="<?=asset('js/main.js')?>"></script>
 <script src="<?=asset('js/mapIcon.js')?>"></script>
 <script src="<?=asset('js/carregar-mapa.js')?>"></script>
-<script src="<?= asset("js/criar-terra.js")?>"></script>
+<script src="<?=asset("js/criar-terra.js")?>"></script>
+<script src="<?=asset("js/busca-estados-e-municipios.js")?>"></script>
 @endsection

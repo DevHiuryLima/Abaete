@@ -94,7 +94,7 @@ li {
 }
   
 #editar-admin:hover {
-background: #ffd666;
+    background: #ffd666;
 }
 
 #remover-admin {
@@ -109,5 +109,35 @@ background: #ffd666;
 }
   
 #remover-admin:hover {
-background: #ff6767;
+    background: #ff6767;
+}
+
+#editar-quiz {
+    padding: 2px;
+    width: 30px;
+    height: 30px;
+    background-color: #facb4a;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    margin: 2px;
+}
+  
+#editar-quiz:hover {
+    background: #ffd666;
+}
+
+#remover-quiz {
+    padding: 2px;
+    width: 30px;
+    height: 30px;
+    background-color: #ff4a4a;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    margin: 2px;
+}
+  
+#remover-quiz:hover {
+    background: #ff6767;
 }

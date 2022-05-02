@@ -4,14 +4,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Abaeté</title>
+  <title>@yield('title')</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="<?= asset('/images/favicon.png') ?>" sizes="200x200" type="image/png" />
   <link rel="stylesheet" type="text/css" href="<?= asset('css/global.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= asset('css/landing.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= asset('css/mapa-terra.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= asset('css/sidebar.css') ?>">
-  <link rel="stylesheet" type="text/css" href="<?= asset('css/criar-terra.css') ?>">
+  <link rel="stylesheet" type="text/css" href="<?= asset('css/form-criar.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= asset('css/listar-terra.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= asset('css/modal.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= asset('css/fazer-login.css') ?>">

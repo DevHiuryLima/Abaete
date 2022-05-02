@@ -1,5 +1,5 @@
 @extends('master.master')
-
+@section('title', 'Criar administrador - Abaeté')
 @section('content')
 <div id="root">
     <div id="page-criar-aldeia">
@@ -17,7 +17,7 @@
             </aside>
             
             <main>
-                <form class="criar-aldeia-form" action="" method="POST" enctype="multipart/form-data">
+                <form class="criar-aldeia-form" action="{{ route('criar.quiz') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <fieldset>
                         <legend>Dados</legend>
@@ -66,25 +66,25 @@
                             
                             <div class="input-block field" id="alternativas" style="display: none;">
                                 <label for="alternativa_a">Alternativa A)</label>
-                                <input type="text" name="alternativa_a" id="alternativa_a" required="">
+                                <input type="text" name="alternativa_a" id="alternativa_a">
 
                                 <label for="alternativa_b">Alternativa B)</label>
-                                <input type="text" name="alternativa_b" id="alternativa_b" required="">
+                                <input type="text" name="alternativa_b" id="alternativa_b">
 
                                 <label for="alternativa_c">Alternativa C)</label>
-                                <input type="text" name="alternativa_c" id="alternativa_c" required="">
+                                <input type="text" name="alternativa_c" id="alternativa_c">
                                 
                                 <br>
 
-                                <label for="alternativa_c">Marque qual a alternativa correta:</label>
-                                <label for="correta">
-                                    <input type="radio" name="correta" value="a">
+                                <label >Marque qual a alternativa correta:</label>
+                                <label>
+                                    <input type="radio" name="correta" value="A">
                                     <p class="correta">Alternativa A)</p>
 
-                                    <input type="radio" name="correta" value="b">
+                                    <input type="radio" name="correta" value="B">
                                     <p class="correta">Alternativa B)</p>
 
-                                    <input type="radio" name="correta" value="c">
+                                    <input type="radio" name="correta" value="C">
                                     <p class="correta">Alternativa C)</p>
                                 </label>
                             </div>

@@ -42,6 +42,7 @@
     outline: none;
     
     opacity: 0.6;
+    margin: 2px;
   }
   
   .aldeia-detalhes .images button.active {

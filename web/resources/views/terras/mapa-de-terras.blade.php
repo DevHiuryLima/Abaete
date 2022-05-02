@@ -1,5 +1,5 @@
 @extends('master.master')
-
+@section('title', 'Todas as terras - Abaeté')
 @section('content')
 <div id="root">
     <div id="page-map">
@@ -23,7 +23,7 @@
 
         </div>
         
-        <a class="criar-aldeia" href="{{ route('terra-criar') }}" title="Criar terra">
+        <a class="criar-aldeia" href="{{ route('redireciona.criar.terra') }}" title="Criar terra">
             <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="#FFF" height="32" width="32" xmlns="http://www.w3.org/2000/svg" style="color: rgb(255, 255, 255);">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>

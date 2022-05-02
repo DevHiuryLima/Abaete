@@ -24,16 +24,14 @@ Route::prefix('/')->group(function () {
 
 Route::get('/terras', 'web\TerrasController@index')->name('terras');
 Route::prefix('/terra')->group(function () {    
-    Route::get('/criar', 'web\TerrasController@redirecionaCriarTerra')->name('terra-criar');
-    Route::post('/criar', 'web\TerrasController@criarTerra')->name('criar');
+    Route::get('/criar', 'web\TerrasController@redirecionaCriarTerra')->name('redireciona.criar.terra');
+    Route::post('/criar', 'web\TerrasController@criarTerra')->name('criar.terra');
+    Route::get('/{idTerra}', 'web\TerrasController@redirecionaListarTerra')->name('listar.terra');  
+    Route::get('/editar/{idTerra}', 'web\TerrasController@redirecionaEditarTerra')->name('redireciona.editar.terra');
+    Route::post('/editar', 'web\TerrasController@editarTerra')->name('editar.terra');
+    Route::get('/remover/{idTerra}', 'web\TerrasController@removerTerra')->name('remover.terra');
 
-    Route::get('/{idTerra}', 'web\TerrasController@redirecionaListarTerra')->name('terra-listar');
-    
-    Route::get('/editar/{idTerra}', 'web\TerrasController@redirecionaEditarTerra')->name('terra-editar');
-    Route::get('/remover/imagem/{idImagem}', 'web\TerrasController@removerImagem')->name('remover-imagem');
-    Route::post('/editar', 'web\TerrasController@editarTerra')->name('editar');
-    
-    Route::get('/remover/{idTerra}', 'web\TerrasController@removerTerra')->name('remover');
+    Route::post('/remover/imagem', 'web\TerrasController@removerImagem')->name('remover.imagem');
 });
 
 Route::get('/administradores', 'web\AdministradoresController@index')->name('administradores');
@@ -42,20 +40,16 @@ Route::prefix('/administrador')->group(function () {
     Route::post('/criar', 'web\AdministradoresController@criarAdministrador')->name('criar');
     Route::get('/editar/{idAdmin}', 'web\AdministradoresController@redirecionaEditarAdministrador')->name('administrador-listar');
     Route::post('/editar', 'web\AdministradoresController@editarAdministrador')->name('editar');
-    Route::post('/remover', 'web\AdministradoresController@removerAdministrador')->name('remover');
-    
-    // Route::get('/remover/imagem/{idImagem}', 'web\AdministradoresController@removerImagem')->name('remover-imagem');
-    // Route::post('/editar', 'web\AdministradoresController@editarTerra')->name('editar');
-    
+    Route::post('/remover', 'web\AdministradoresController@removerAdministrador')->name('remover'); 
 });
 
 Route::get('/quizzes', 'web\QuizController@index')->name('quizzes');
 Route::prefix('/quiz')->group(function () {    
-    Route::get('/criar', 'web\QuizController@redirecionaCriarQuiz')->name('criar-quiz');
-    // Route::post('/criar', 'web\AdministradoresController@criarAdministrador')->name('criar');
-    // Route::get('/editar/{idAdmin}', 'web\AdministradoresController@redirecionaEditarAdministrador')->name('administrador-listar');
-    // Route::post('/editar', 'web\AdministradoresController@editarAdministrador')->name('editar');
-    // Route::post('/remover', 'web\AdministradoresController@removerAdministrador')->name('remover');
+    Route::get('/criar', 'web\QuizController@redirecionaCriarQuiz')->name('redireciona.criar.quiz');
+    Route::post('/criar', 'web\QuizController@criarQuiz')->name('criar.quiz');
+    Route::get('/editar/{idQuiz}', 'web\QuizController@redirecionaEditarQuiz')->name('redireciona.editar.quiz');
+    Route::post('/editar', 'web\QuizController@editarQuiz')->name('editar.quiz');
+    Route::post('/remover', 'web\QuizController@removerQuiz')->name('remover.quiz');
 });
 
 

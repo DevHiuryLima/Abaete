@@ -37,21 +37,42 @@ class QuizController extends Controller
         }
     }
 
-    public function criarAdministrador(Request $request)
+    public function criarQuiz(Request $request)
     {
         if(session()->exists('idAdmin')) {
-            $administrador = new Administrador();
-            $administrador->nome = $request->nome;
-            $administrador->login = $request->login;
-            $administrador->senha = $request->senha;
-            $status = $administrador->save();
+            $quiz = new Quiz();
+
+            switch ($request->tipo) {
+                case 'alternativas':
+                    $quiz->terra = $request->terra;
+                    $quiz->tipo = $request->tipo;
+                    $quiz->pergunta = $request->pergunta;
+                    $quiz->alternativa_a = $request->alternativa_a;
+                    $quiz->alternativa_b = $request->alternativa_b;
+                    $quiz->alternativa_c = $request->alternativa_c;
+                    $quiz->alternativa_correta = $request->correta;
+                    $quiz->pontos = $request->pontos;
+                    $status = $quiz->save();
+                    break;
+                case 'verdadeiro_ou_falso':
+                    $quiz->terra = $request->terra;
+                    $quiz->tipo = $request->tipo;
+                    $quiz->pergunta = $request->pergunta;
+                    $quiz->verdadeiro_ou_falso = $request->verdadeiro_ou_falso;
+                    $quiz->pontos = $request->pontos;
+                    $status = $quiz->save();
+                    break;
+                default:
+                    $status = false;
+                    break;
+            }
 
             if($status == true){
                 echo "<script>window.alert('Cadastrado com sucesso!')</script>";
-                return redirect()->to('/administradores');
+                return redirect()->to('/quizzes');
             } else {
                 $administrador->delete();
-                echo "<script>window.alert('Ocorreu um erro ao cadastrar Administrador! Por favor, tente novamente mais tarde.')</script>";
+                echo "<script>window.alert('Ocorreu um erro ao cadastrar Quiz! Por favor, tente novamente mais tarde.')</script>";
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
         } else {
@@ -59,43 +80,75 @@ class QuizController extends Controller
         }
     }
 
-    public function redirecionaEditarAdministrador(Request $request)
+    public function redirecionaEditarQuiz(Request $request)
     {
         if(session()->exists('idAdmin')) {
-            $administrador = Administrador::find($request->idAdmin);
-            
-            if ($administrador == null) {
-                echo "<script>window.alert('Ocorreu um erro ao buscar Administrador! Por favor, tente novamente mais tarde.')</script>";
+            $quiz = Quiz::find($request->idQuiz);
+            $terras = Terra::all();
+
+            if ($quiz == null) {
+                echo "<script>window.alert('Ocorreu um erro ao buscar Quiz! Por favor, tente novamente mais tarde.')</script>";
+                echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
+            }
+            if (!$terras->count()) {
+                echo "<script>window.alert('Ocorreu um erro ao buscar terras! Por favor verifique se há terras cadastradas, tente novamente mais tarde.')</script>";
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
             
-            return view('administradores.editar-administrador', compact('administrador'));
+            return view('quizzes.editar-quiz', compact('quiz', 'terras'));
         } else {
             return redirect()->to('/login');
         }
     }
 
-    public function editarAdministrador(Request $request)
+    public function editarQuiz(Request $request)
     {
         if(session()->exists('idAdmin')) {
-            $administrador = Administrador::find($request->idAdmin);
+            $quiz = Quiz::find($request->idQuiz);
 
-            if ($administrador != null) {
+            if ($quiz != null) {
 
-                $administrador->nome = $request->nome;
-                $administrador->login = $request->login;
-                $administrador->senha = $request->senha;
-                $status = $administrador->save();
+                switch ($request->tipo) {
+                    case 'alternativas':
+                        $quiz->terra = $request->terra;
+                        $quiz->tipo = $request->tipo;
+                        $quiz->pergunta = $request->pergunta;
+                        $quiz->alternativa_a = $request->alternativa_a;
+                        $quiz->alternativa_b = $request->alternativa_b;
+                        $quiz->alternativa_c = $request->alternativa_c;
+                        $quiz->alternativa_correta = $request->correta;
+                        $quiz->verdadeiro_ou_falso = null;
+                        $quiz->pontos = $request->pontos;
+                        $status = $quiz->save();
+                        break;
+                    case 'verdadeiro_ou_falso':
+                        $quiz->terra = $request->terra;
+                        $quiz->tipo = $request->tipo;
+                        $quiz->pergunta = $request->pergunta;
+
+                        $quiz->alternativa_a = null;
+                        $quiz->alternativa_b = null;
+                        $quiz->alternativa_c = null;
+                        $quiz->alternativa_correta = null;
+
+                        $quiz->verdadeiro_ou_falso = $request->verdadeiro_ou_falso;
+                        $quiz->pontos = $request->pontos;
+                        $status = $quiz->save();
+                        break;
+                    default:
+                        $status = false;
+                        break;
+                }
 
                 if($status == true){
                     echo "<script>window.alert('Cadastrado com sucesso!')</script>";
-                    return redirect()->to('/administradores');
+                    return redirect()->to('/quizzes');
                 } else {
-                    echo "<script>window.alert('Ocorreu um erro ao cadastrar Administrador! Por favor, tente novamente mais tarde.')</script>";
+                    echo "<script>window.alert('Ocorreu um erro ao cadastrar Quiz! Por favor, tente novamente mais tarde.')</script>";
                     echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
                 }
             } else {
-                echo "<script>window.alert('Ocorreu um erro ao buscar Administrador! Por favor, tente novamente mais tarde.')</script>";
+                echo "<script>window.alert('Ocorreu um erro ao buscar Quiz! Por favor, tente novamente mais tarde.')</script>";
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
 
@@ -104,13 +157,13 @@ class QuizController extends Controller
         }
     }
 
-    public function removerAdministrador(Request $request)
+    public function removerQuiz(Request $request)
     {
         if(session()->exists('idAdmin')) {
-            $administrador = Administrador::find($request->idAdmin);
+            $quiz = QUiz::find($request->idQuiz);
 
-            if ($administrador != null) {
-                $status = $administrador->delete();
+            if ($quiz != null) {
+                $status = $quiz->delete();
 
                 if($status == true){
                     return response()->json(200);
@@ -121,7 +174,7 @@ class QuizController extends Controller
                 }
             } else {
                 return response()->json([
-                    'message'   => 'Administrador não encontrado!',
+                    'message'   => 'Quiz não encontrado!',
                 ], 404);
             }
         } else {

@@ -1,5 +1,5 @@
 @extends('master.master')
-
+@section('title', 'Abaeté')
 @section('content')
 <div id="root">
     <div id="page-landing">

@@ -1,5 +1,5 @@
 @extends('master.master')
-
+@section('title', 'Editar administrador - Abaeté')
 @section('content')
 <div id="root">
     <div id="page-criar-aldeia">
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="field">
                                     <label for="senha">Senha</label>
-                                    <input type="password" name="senha" id="senha" required="" value="{{$administrador->senha}}">
+                                    <input type="password" name="senha" id="senha" required="" value="{{base64_decode($administrador->senha)}}">
                                 </div>
                             </div>
                         </fieldset>
