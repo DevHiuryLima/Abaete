@@ -31,9 +31,9 @@
                 @if ($administradores != null)
                     @foreach($administradores as $administrador)
                 <li class="table-row">
-                    <div class="col col-1" data-label="Administrador Id">{{ $administrador->idAdmin }}</div>
-                    <div class="col col-2" data-label="Administrador Nome">{{ $administrador->nome }}</div>
-                    <div class="col col-3" data-label="Administrador Login">{{ $administrador->login }}</div>
+                    <div class="col col-1" data-label="Administrador Id">{{$administrador->idAdmin}}</div>
+                    <div class="col col-2" data-label="Administrador Nome">{{$administrador->nome}}</div>
+                    <div class="col col-3" data-label="Administrador Login">{{$administrador->login}}</div>
                     <div class="col col-4" data-label="Ação" style="display: flex; align-items: center;">
                         <button id="editar-admin" title="Editar administrador">
                             <a href="{{ route('administrador-listar', ['idAdmin' => $administrador->idAdmin]) }}">
@@ -86,6 +86,8 @@
         </div>
     </div>
 </div>
+
+
 <script>
     $('.table-row > div > .remover-admin').on('click', function() {
         var id = $(this).attr('data-administrador');

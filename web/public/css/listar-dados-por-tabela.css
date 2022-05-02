@@ -12,13 +12,9 @@
     text-align: center;
     color: rgba(0, 0, 0, 0.6);
 }
-small {
-  font-size: 0.5em;
-}
+small { font-size: 0.5em; }
 
-ul {
-    color: rgba(0, 0, 0, 0.6);
-}
+ul { color: rgba(0, 0, 0, 0.6); }
 
 li {
     border-radius: 3px;
@@ -35,43 +31,26 @@ li {
     letter-spacing: 0.03em;
     color: #FFF;
 }
-.table-row {
-    background-color: #ffffff;
-    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
-}
-.col-1 {
-    flex-basis: 10%;
-}
-.col-2 {
-    flex-basis: 40%;
-}
-.col-3 {
-    flex-basis: 25%;
-}
-.col-4 {
-    flex-basis: 25%;
-}
+.table-row { background-color: #ffffff; box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1); }
+
+.col-1 { flex-basis: 10%; }
+
+.col-2 { flex-basis: 40%; }
+
+.col-3 { flex-basis: 25%; }
+
+.col-4 { flex-basis: 25%; }
 
 @media all and (max-width: 767px) {
-    .table-header {
-    display: none;
-    }
-    .table-row{
-    
-    }
+    .table-header { display: none; }
 
-    li {
-    display: block;
-    }
-    .col {
-    
-    flex-basis: 100%;
-    
-    }
-    .col {
-        display: flex;
-        padding: 10px 0;
-    }
+    .table-row{ }
+
+    li { display: block; }
+
+    .col { flex-basis: 100%; }
+
+    .col { display: flex; padding: 10px 0; }
 
     .col:before {
         color: #6C7A89;
@@ -93,9 +72,7 @@ li {
     margin: 2px;
 }
   
-#editar-admin:hover {
-    background: #ffd666;
-}
+#editar-admin:hover { background: #ffd666; }
 
 #remover-admin {
     padding: 2px;
@@ -108,9 +85,7 @@ li {
     margin: 2px;
 }
   
-#remover-admin:hover {
-    background: #ff6767;
-}
+#remover-admin:hover { background: #ff6767; }
 
 #editar-quiz {
     padding: 2px;
@@ -123,9 +98,7 @@ li {
     margin: 2px;
 }
   
-#editar-quiz:hover {
-    background: #ffd666;
-}
+#editar-quiz:hover { background: #ffd666; }
 
 #remover-quiz {
     padding: 2px;
@@ -138,6 +111,4 @@ li {
     margin: 2px;
 }
   
-#remover-quiz:hover {
-    background: #ff6767;
-}
+#remover-quiz:hover { background: #ff6767; }

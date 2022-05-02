@@ -26,10 +26,7 @@
     margin-top: 34px; /*64px */
 }
 
-#page-map aside p {
-    line-height: 28px;
-    margin-top: 24px;
-}
+#page-map aside p { line-height: 28px; margin-top: 24px; }
 
 #page-map aside footer {
     display: flex;
@@ -38,13 +35,9 @@
     line-height: 24px;
 }
 
-#page-map aside footer strong{
-    font-weight: 800;
-}
+#page-map aside footer strong{ font-weight: 800; }
 
-#page-map .leaflet-container {
-    z-index: 5;
-}
+#page-map .leaflet-container { z-index: 5; }
 
 #page-map .criar-admin {
     position: absolute;
@@ -76,7 +69,7 @@
     transition: background-color 0.5s;
 }
 
-#page-map .criar-aldeia {
+#page-map .criar-terra {
     position: absolute;
     right: 190px;
     bottom: 40px;
@@ -94,9 +87,7 @@
     transition: background-color 0.5s;
 }
 
-#page-map .criar-aldeia:hover {
-    background: #2FB86E;
-}
+#page-map .criar-terra:hover { background: #2FB86E; }
 
 #page-map .map-popup .leaflet-popup-content-wrapper {
     background: rgba(255, 255, 255, 0.8);
@@ -127,9 +118,7 @@
     align-items: center;
 }
   
-#page-map .map-popup .leaflet-popup-tip-container {
-    display: none;
-}
+#page-map .map-popup .leaflet-popup-tip-container { display: none; }
 
 #page-map footer a {
     width: 48px;
@@ -149,8 +138,5 @@
     align-items: center;
 }
 
-#page-map footer a:hover,
-#page-map footer button:hover {
-  background: #ffd666;
-}
+#page-map footer a:hover, #page-map footer button:hover { background: #ffd666; }
 

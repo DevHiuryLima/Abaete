@@ -5,7 +5,7 @@
     <div id="page-map">
         <aside style="padding-left: 45px; padding-right: 45px;">
             <header>
-                <img src="<?= asset('images/map-marker.svg') ?>" alt="Abaeté">
+                <img src="<?=asset('images/map-marker.svg')?>" alt="Abaeté">
                 <h2>Cadastre um quiz</h2>
                 <p>Após, os cadastrado irão aparecer na tabela ao lado.</p>
             </header>
@@ -34,7 +34,7 @@
                 @if ($quizzes != null)
                     @foreach($quizzes as $quiz)
                 <li class="table-row">
-                    <div class="col col-1" data-label="Terra relacionada">{{ $quiz->terra_relacionada->nome }}</div>
+                    <div class="col col-1" data-label="Terra relacionada">{{$quiz->terra_relacionada->nome}}</div>
                     <div class="col col-2" data-label="Tipo pergunta">
                         @switch($quiz->tipo)
                             @case('alternativas')
@@ -49,12 +49,12 @@
                                 Default case...
                         @endswitch
                     </div>
-                    <div class="col col-3" data-label="Pergunta">{{ $quiz->pergunta }}</div>
+                    <div class="col col-3" data-label="Pergunta">{{$quiz->pergunta}}</div>
                     <div class="col col-3" data-label="Toda Alternativas">
                         @if($quiz->tipo == 'alternativas')
-                        <p><b>A)</b> {{ $quiz->alternativa_a }}</p><br>
-                        <p><b>B)</b> {{ $quiz->alternativa_b }}</p><br>
-                        <p><b>C)</b> {{ $quiz->alternativa_c }}</p>
+                        <p><b>A)</b> {{$quiz->alternativa_a}}</p><br>
+                        <p><b>B)</b> {{$quiz->alternativa_b}}</p><br>
+                        <p><b>C)</b> {{$quiz->alternativa_c}}</p>
                         @endif
                     </div>
                     <div class="col col-3" data-label="Resposta">
@@ -77,7 +77,7 @@
                             Default case...
                     @endswitch
                     </div>
-                    <div class="col col-3" data-label="Pontos">{{ $quiz->pontos }}</div>
+                    <div class="col col-3" data-label="Pontos">{{$quiz->pontos}}</div>
                     <div class="col col-4" data-label="Ação" style="display: flex; align-items: center;">
                         <button id="editar-quiz" title="Editar quiz">
                             <a href="{{ route('redireciona.editar.quiz', ['idQuiz' => $quiz->idQuiz]) }}">
@@ -130,6 +130,8 @@
         </div>
     </div>
 </div>
+
+
 <script>
     $('.table-row > div > .remover-quiz').on('click', function() {
         var id = $(this).attr('data-quiz');

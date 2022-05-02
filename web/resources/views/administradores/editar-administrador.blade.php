@@ -2,7 +2,7 @@
 @section('title', 'Editar administrador - Abaeté')
 @section('content')
 <div id="root">
-    <div id="page-criar-aldeia">
+    <div id="page-form">
         <aside class="app-sidebar">
             <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
             
@@ -17,7 +17,7 @@
             </aside>
             
             <main>
-                <form class="criar-aldeia-form" action="{{ route('editar') }}" method="POST" enctype="multipart/form-data">
+                <form class="form-create-and-update" action="{{ route('editar') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="idAdmin" value="{{$administrador->idAdmin}}">
                     
@@ -47,6 +47,10 @@
     </div>
 </div>
 
-<script src="<?=asset('js/main.js')?>"></script>
+<script>
+    const APP_URL = `{{env('APP_URL')}}`;
+
+    const API_URL = `{{env('APP_URL')}}` + `/api`;
+</script>
 <script src="<?= asset("js/criar-terra.js")?>"></script>
 @endsection

@@ -2,7 +2,7 @@
 @section('title', 'Criar terra - Abaeté')
 @section('content')
 <div id="root">
-    <div id="page-criar-aldeia">
+    <div id="page-form">
         <aside class="app-sidebar">
             <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
             
@@ -17,7 +17,7 @@
             </aside>
             
             <main>
-                <form class="criar-aldeia-form" action="{{ route('criar.terra') }}" method="POST" enctype="multipart/form-data">
+                <form class="form-create-and-update" action="{{ route('criar.terra') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <fieldset>
                         <legend>Dados</legend>
@@ -96,9 +96,13 @@
     </div>
 </div>
 
-<script src="<?=asset('js/main.js')?>"></script>
+<script>
+    const APP_URL = `{{env('APP_URL')}}`;
+
+    const API_URL = `{{env('APP_URL')}}` + `/api`;
+</script>
 <script src="<?=asset('js/mapIcon.js')?>"></script>
 <script src="<?=asset('js/carregar-mapa.js')?>"></script>
-<script src="<?=asset("js/criar-terra.js")?>"></script>
-<script src="<?=asset("js/busca-estados-e-municipios.js")?>"></script>
+<script src="<?=asset('js/interacoes-no-form-de-terra.js')?>"></script>
+<script src="<?=asset('js/busca-estados-e-municipios.js')?>"></script>
 @endsection

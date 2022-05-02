@@ -1,4 +1,4 @@
-const mapMarkerImg = APP_URL + "images/map-marker.svg";
+const mapMarkerImg = APP_URL + '/images/map-marker.svg';
 
 const abaeteMapIcon = L.icon({
     iconUrl: mapMarkerImg,

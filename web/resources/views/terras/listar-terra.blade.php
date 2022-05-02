@@ -2,7 +2,7 @@
 @section('title', $terra->nome  . ' - Abaeté')
 @section('content')
 <div id="root">
-    <div id="page-aldeia">
+    <div id="page-list">
         <aside class="app-sidebar">
             <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
             
@@ -17,7 +17,7 @@
         </aside>
                 
         <main>
-            <div class="aldeia-detalhes">
+            <div class="detalhes">
                 @if( count($terra->imagensTerra) > 1 )
                     <img src="{{$terra->imagensTerra[0]->url}}" alt="{{$terra->nome}} imagem-0">
 
@@ -43,56 +43,54 @@
                         @endforeach
                     </div>
                 @endif
-                <div class="aldeia-detalhes-conteudo">
+                <div class="detalhes-conteudo">
                     <div class="field-group">
                         <div class="field">
                             <h3>Nome</h3>
                             <hr class="row">
-                            <p>{{ $terra->nome }}</p>
+                            <p>{{$terra->nome}}</p>
                         </div>
                         <div class="field">
                             <h3>População</h3>
                             <hr>
-                            <p>{{ $terra->populacao }}</p>
+                            <p>{{$terra->populacao}}</p>
                         </div>
                     </div>
                     <div class="field-group">
                         <div class="field">
                             <h3>Povos</h3>
                             <hr>
-                            <p>{{ $terra->povos }}</p>
+                            <p>{{$terra->povos}}</p>
                         </div>
                         <div class="field">
                             <h3>Língua</h3>
                             <hr>
-                            <p>{{ $terra->lingua }}</p>
+                            <p>{{$terra->lingua}}</p>
                         </div>
                     </div>
                     <div class="field-group">
                         <div class="field">
                             <h3>Modalidade</h3>
                             <hr>
-                            <p>{{ $terra->modalidade }}</p>
+                            <p>{{$terra->modalidade}}</p>
                         </div>
                         <div class="field">
                             <h3>Estado</h3>
                             <hr>
-                            <p>{{ $terra->estado }}</p>
+                            <p>{{$terra->estado}}</p>
                         </div>
                     </div>
                     <div class="field-group">
                         <div class="field">
                             <h3>Cidade</h3>
                             <hr>
-                            <p>{{ $terra->cidade }}</p>
+                            <p>{{$terra->cidade}}</p>
                         </div>
-                        <div class="field">
-
-                        </div>
+                        <div class="field"></div>
                     </div>
                     <h3>Sobre</h3>
                     <hr>
-                    <p>{{ $terra->sobre }}</p>
+                    <p>{{$terra->sobre}}</p>
                     <div class="map-container">
                         <div id="map-container" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="width: 100%; height: 280px; position: relative;">
                         
@@ -102,14 +100,14 @@
                         </footer>
                     </div>
                     <hr>
-                    <button type="button" id="edit" class="contact-button">
+                    <button type="button" id="edit" class="action-button">
                         <a class="link" href="{{ route('redireciona.editar.terra', ['idTerra' => $terra->idTerra]) }}">
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 576 512" color="#FFF" height="20" width="20" xmlns="http://www.w3.org/2000/svg" style="color: rgb(255, 255, 255);">
                                 <path d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path>
                             </svg>Editar essa terra
                         </a>
                     </button>
-                    <button type="button" id="delete" class="contact-button">Remover essa terra</button>
+                    <button type="button" id="delete" class="action-button">Remover essa terra</button>
                 </div>
             </div>
         </main>
@@ -134,7 +132,11 @@
     </div>
 </div>
 
-<script src="<?=asset('js/main.js')?>"></script>
+<script>
+    const APP_URL = `{{env('APP_URL')}}`;
+
+    const API_URL = `{{env('APP_URL')}}` + `/api`;
+</script>
 <script src="<?=asset('js/mapIcon.js')?>"></script>
 <script>
     // A variavel 'map' recebe a classe leaflet (l) ponto map
@@ -177,8 +179,8 @@
 
 
         // Troca a url e o atributo 'alt' na imagem maior
-        $('.aldeia-detalhes > img').attr('src', urlImagem);
-        $('.aldeia-detalhes > img').attr('alt', alt);
+        $('.detalhes > img').attr('src', urlImagem);
+        $('.detalhes > img').attr('alt', alt);
 
         // Declara a class 'active' para o button clicado.
         $(this).attr('class', 'active');

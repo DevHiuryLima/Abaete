@@ -2,7 +2,7 @@
 @section('title', 'Criar administrador - Abaeté')
 @section('content')
 <div id="root">
-    <div id="page-criar-aldeia">
+    <div id="page-form">
         <aside class="app-sidebar">
             <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
             
@@ -17,7 +17,7 @@
             </aside>
             
             <main>
-                <form class="criar-aldeia-form" action="{{ route('criar.quiz') }}" method="POST" enctype="multipart/form-data">
+                <form class="form-create-and-update" action="{{ route('criar.quiz') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <fieldset>
                         <legend>Dados</legend>
@@ -93,20 +93,6 @@
                                 <label for="pontos">Quantos pontos vale essa pergunta?</label>
                                 <input type="number" name="pontos" id="pontos" required="">
                             </div>
-
-
-
-
-                            <!-- <div class="input-block field-group">
-                                <div class="field">
-                                    <label for="login">Login</label>
-                                    <input type="text" name="login" id="login" required="">
-                                </div>
-                                <div class="field">
-                                    <label for="senha">Senha</label>
-                                    <input type="password" name="senha" id="senha" required="">
-                                </div>
-                            </div> -->
                         </fieldset>
 
                     </fieldset>
@@ -117,6 +103,10 @@
     </div>
 </div>
 
-<script src="<?=asset('js/main.js')?>"></script>
+<script>
+    const APP_URL = `{{env('APP_URL')}}`;
+
+    const API_URL = `{{env('APP_URL')}}` + `/api`;
+</script>
 <script src="<?= asset("js/criar-quiz.js")?>"></script>
 @endsection

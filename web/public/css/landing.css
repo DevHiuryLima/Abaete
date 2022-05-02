@@ -29,21 +29,11 @@
     background-size: contain; 
 }
 
-#page-landing .content-wrapper main {
-    max-width: 350px;
-}
+#page-landing .content-wrapper main { max-width: 350px; }
 
-#page-landing .content-wrapper main h1 {
-    font-size:  76px;
-    font-weight: 900;
-    line-height: 70px;
-}
+#page-landing .content-wrapper main h1 { font-size:  76px; font-weight: 900; line-height: 70px; }
 
-#page-landing .content-wrapper main p {
-    margin-top: 40px;
-    font-size: 24px;
-    line-height: 34px;
-}
+#page-landing .content-wrapper main p { margin-top: 40px; font-size: 24px; line-height: 34px; }
 
 .content-wrapper .location {
     position: absolute;
@@ -59,9 +49,7 @@
     text-align: right;
 }
 
-.content-wrapper .location strong {
-    font-weight: 800;
-}
+.content-wrapper .location strong { font-weight: 800; }
 
 .content-wrapper .enter-app {
     position: absolute;

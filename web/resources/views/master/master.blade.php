@@ -9,13 +9,13 @@
   <link rel="shortcut icon" href="<?= asset('/images/favicon.png') ?>" sizes="200x200" type="image/png" />
   <link rel="stylesheet" type="text/css" href="<?= asset('css/global.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= asset('css/landing.css') ?>">
-  <link rel="stylesheet" type="text/css" href="<?= asset('css/mapa-terra.css') ?>">
+  <link rel="stylesheet" type="text/css" href="<?= asset('css/mapa-de-terras.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= asset('css/sidebar.css') ?>">
-  <link rel="stylesheet" type="text/css" href="<?= asset('css/form-criar.css') ?>">
+  <link rel="stylesheet" type="text/css" href="<?= asset('css/form.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= asset('css/listar-terra.css') ?>">
-  <link rel="stylesheet" type="text/css" href="<?= asset('css/modal.css') ?>">
+  <link rel="stylesheet" type="text/css" href="<?= asset('css/modal-de-remocao.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= asset('css/fazer-login.css') ?>">
-  <link rel="stylesheet" type="text/css" href="<?= asset('css/listar-administradores.css') ?>">
+  <link rel="stylesheet" type="text/css" href="<?= asset('css/listar-dados-por-tabela.css') ?>">
   <link rel="icon" type="image/png" sizes="200x200" href="<?= asset('') ?>">
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

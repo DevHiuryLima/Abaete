@@ -109,7 +109,7 @@ class TerrasController extends Controller
             $terra = Terra::find($request->idTerra);
 
             if ($terra != null) {
-                
+
                 $terra->nome = $request->nome;
                 $terra->populacao = $request->populacao . " Pessoas";
                 $terra->povos = $request->povos;

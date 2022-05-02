@@ -23,7 +23,7 @@
 
         </div>
         
-        <a class="criar-aldeia" href="{{ route('redireciona.criar.terra') }}" title="Criar terra">
+        <a class="criar-terra" href="{{ route('redireciona.criar.terra') }}" title="Criar terra">
             <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="#FFF" height="32" width="32" xmlns="http://www.w3.org/2000/svg" style="color: rgb(255, 255, 255);">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -45,8 +45,13 @@
 
     </div>
 </div>
-<script src="<?=asset('js/main.js')?>"></script>
+
+<script>
+    const APP_URL = `{{env('APP_URL')}}`;
+
+    const API_URL = `{{env('APP_URL')}}` + `/api`;
+</script>
 <script src="<?=asset('js/mapIcon.js')?>"></script>
 <script src="<?=asset('js/carregar-mapa.js')?>"></script>
-<script src="<?=asset('js/mapa-de-terras.js')?>"></script>
+<script src="<?=asset('js/carregar-terras-no-mapa.js')?>"></script>
 @endsection

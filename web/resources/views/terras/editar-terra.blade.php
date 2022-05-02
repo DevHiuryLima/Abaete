@@ -2,7 +2,7 @@
 @section('title', 'Editar terra - Abaeté')
 @section('content')
 <div id="root">
-    <div id="page-criar-aldeia">
+    <div id="page-form">
         <aside class="app-sidebar">
             <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
             
@@ -17,7 +17,7 @@
             </aside>
             
             <main>
-                <form class="criar-aldeia-form" action="{{ route('editar.terra') }}" method="POST" enctype="multipart/form-data">
+                <form class="form-create-and-update" action="{{ route('editar.terra') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="idTerra" value="{{$terra->idTerra}}">
                     <fieldset>
@@ -57,7 +57,7 @@
                                 <label for="uf">Estado (UF)</label>
                                 <small style="color: #8FA7B3;">O estado cadastrado é: {{$terra->estado}}</small>
                                 <select name="uf" id="uf" required="">
-                                    <option value="0" selected="">Selecione uma UF</option>
+                                    <option value="" selected="">Selecione uma UF</option>
                                 </select>
                             </div>
                             <div class="field">
@@ -97,7 +97,7 @@
                                         @endforeach
                                 @endif
                             </div>
-                            <input type="file" id="images" name="images[]" multiple accept="image/*" required="">
+                            <input type="file" id="images" name="images[]" multiple accept="image/*">
                         </div>
                     </fieldset>
                     <button class="confirm-button" type="submit">Confirmar</button>
@@ -127,7 +127,11 @@
     </div>
 </div>
 
-<script src="<?=asset('js/main.js')?>"></script>
+<script>
+    const APP_URL = `{{env('APP_URL')}}`;
+
+    const API_URL = `{{env('APP_URL')}}` + `/api`;
+</script>
 <script src="<?=asset('js/mapIcon.js')?>"></script>
 <script src="<?=asset('js/busca-estados-e-municipios.js')?>"></script>
 <script>

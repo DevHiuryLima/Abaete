@@ -1,12 +1,8 @@
-#page-criar-aldeia {
-  display: flex;
-}
+#page-form { display: flex; }
   
-#page-criar-aldeia main {
-  flex: 1;
-}
+#page-form main { flex: 1; }
   
-form.criar-aldeia-form {
+form.form-create-and-update {
   width: 700px;
   margin: 64px auto;
 
@@ -15,25 +11,16 @@ form.criar-aldeia-form {
   border-radius: 20px;
 
   padding: 64px 80px;
-
   overflow: hidden;
 }
   
-form.criar-aldeia-form .leaflet-container {
-  margin-bottom: 40px;
-  border: 1px solid #D3E2E5;
-  border-radius: 20px;
-}
+form.form-create-and-update .leaflet-container { margin-bottom: 40px; border: 1px solid #D3E2E5; border-radius: 20px; }
   
-form.criar-aldeia-form fieldset {
-  border: 0;
-}
+form.form-create-and-update fieldset { border: 0; }
 
-form.criar-aldeia-form fieldset + fieldset {
-  margin-top: 80px;
-}
+form.form-create-and-update fieldset + fieldset { margin-top: 80px; }
 
-form.criar-aldeia-form fieldset legend {
+form.form-create-and-update fieldset legend {
   width: 100%;
 
   font-size: 32px;
@@ -46,11 +33,9 @@ form.criar-aldeia-form fieldset legend {
   padding-bottom: 24px;
 }
 
-#page-criar-aldeia form .field-group {
-  flex: 1;
-  display: flex;
-}
-#page-criar-aldeia form .field {
+#page-form form .field-group { flex: 1; display: flex; }
+
+#page-form form .field {
   flex: 1;
 
   display: flex;
@@ -59,26 +44,24 @@ form.criar-aldeia-form fieldset legend {
   margin-right: 24px;
 }
   
-form.criar-aldeia-form .input-block + .input-block {
-  margin-top: 24px;
-}
+form.form-create-and-update .input-block + .input-block { margin-top: 24px; }
 
-form.criar-aldeia-form .input-block label {
+form.form-create-and-update .input-block label {
   display: flex;
   color: #8FA7B3;
   margin-bottom: 8px;
   line-height: 24px;
 }
 
-form.criar-aldeia-form .input-block label span {
+form.form-create-and-update .input-block label span {
   font-size: 14px;
   color: #8FA7B3;
   margin-left: 24px;
   line-height: 24px;
 }
   
-form.criar-aldeia-form .input-block input,
-form.criar-aldeia-form .input-block textarea {
+form.form-create-and-update .input-block input,
+form.form-create-and-update .input-block textarea {
   width: 100%;
   background: #F5F8FA;
   border: 1px solid #D3E2E5;
@@ -87,12 +70,9 @@ form.criar-aldeia-form .input-block textarea {
   color: #5C8599;
 }
 
-form.criar-aldeia-form .input-block input {
-  height: 64px;
-  padding: 0 16px;
-}
+form.form-create-and-update .input-block input { height: 64px; padding: 0 16px; }
 
-form.criar-aldeia-form .input-block select {
+form.form-create-and-update .input-block select {
   width: 100%;
   height: 64px;
   padding: 16px 24px;
@@ -109,7 +89,7 @@ form.criar-aldeia-form .input-block select {
   font-size: 16px;
 }
 
-form.criar-aldeia-form .input-block textarea {
+form.form-create-and-update .input-block textarea {
   min-height: 120px;
   max-height: 240px;
   resize: vertical;
@@ -117,20 +97,20 @@ form.criar-aldeia-form .input-block textarea {
   line-height: 28px;
 }
 
-form.criar-aldeia-form .input-block .images-container {
+form.form-create-and-update .input-block .images-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 16px;
 }
   
-form.criar-aldeia-form .input-block .images-container img {
+form.form-create-and-update .input-block .images-container img {
   width: 100%;
   height: 96px;
   object-fit: cover;
   border-radius: 20px;
 }
 
-form.criar-aldeia-form .input-block .images-container .new-image {
+form.form-create-and-update .input-block .images-container .new-image {
   height: 96px;
   background: #F5F8FA;
   border: 1px dashed #96D2F0;
@@ -142,16 +122,11 @@ form.criar-aldeia-form .input-block .images-container .new-image {
   align-items: center;
 }
 
-form.criar-aldeia-form .input-block input[type=file] {
-  display: none;
-}
+form.form-create-and-update .input-block input[type=file] { display: none; }
 
-form.criar-aldeia-form .input-block .button-select {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
+form.form-create-and-update .input-block .button-select { display: grid; grid-template-columns: 1fr 1fr; }
   
-form.criar-aldeia-form .input-block .button-select button {
+form.form-create-and-update .input-block .button-select button {
   height: 64px;
   background: #F5F8FA;
   border: 1px solid #D3E2E5;
@@ -159,22 +134,17 @@ form.criar-aldeia-form .input-block .button-select button {
   cursor: pointer;
 }
 
-form.criar-aldeia-form .input-block .button-select button.active {
+form.form-create-and-update .input-block .button-select button.active {
   background: #EDFFF6;
   border: 1px solid #A1E9C5;
   color: #37C77F;
 }
 
-form.criar-aldeia-form .input-block .button-select button:first-child {
-  border-radius: 20px 0px 0px 20px;
-}
+form.form-create-and-update .input-block .button-select button:first-child { border-radius: 20px 0px 0px 20px; }
 
-form.criar-aldeia-form .input-block .button-select button:last-child {
-  border-radius: 0 20px 20px 0;
-  border-left: 0;
-}
-  
-form.criar-aldeia-form button.confirm-button {
+form.form-create-and-update .input-block .button-select button:last-child { border-radius: 0 20px 20px 0; border-left: 0; }
+
+form.form-create-and-update button.confirm-button {
   margin-top: 64px;
 
   width: 100%;
@@ -193,13 +163,9 @@ form.criar-aldeia-form button.confirm-button {
   transition: background-color 0.2s;
 }
 
-form.criar-aldeia-form button.confirm-button svg {
-  margin-right: 16px;
-}
+form.form-create-and-update button.confirm-button svg { margin-right: 16px; }
 
-form.criar-aldeia-form button.confirm-button:hover {
-  background: #2FB86E;
-}
+form.form-create-and-update button.confirm-button:hover { background: #2FB86E; }
 
 /* ------------------------------------------------------- Criar quiz ------------------------------------------------------- */
 
@@ -215,13 +181,9 @@ form > fieldset > fieldset > #verdadeiro_ou_falso > label > input[type=radio] {
   color: #5C8599;
 }
 
-.verdadeiro {
-  color: #34CB79;
-}
+.verdadeiro { color: #34CB79; }
 
-.falso {
-  color: #ff4a4a;
-}
+.falso { color: #ff4a4a; }
 
 form > fieldset > fieldset > #alternativas > label > input[type=radio] {
   height: 15px;
