@@ -13,37 +13,36 @@
                         <polyline points="12 19 5 12 12 5"></polyline>
                     </svg>
                 </a>
-                </footer>
-            </aside>
+            </footer>
+        </aside>
             
-            <main>
-                <form class="form-create-and-update" action="{{ route('editar') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="idAdmin" value="{{$administrador->idAdmin}}">
-                    
+        <main>
+            <form class="form-create-and-update" action="{{ route('editar') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="idAdmin" value="{{$administrador->idAdmin}}">
+                
+                <fieldset>
+                    <legend>Dados</legend>
                     <fieldset>
-                        <legend>Dados</legend>
-                        <fieldset>
-                            <div class="input-block field">
-                                <label for="nome">Nome</label>
-                                <input type="text" name="nome" id="name" required="" value="{{$administrador->nome}}">
+                        <div class="input-block field">
+                            <label for="nome">Nome</label>
+                            <input type="text" name="nome" id="nome" value="{{$administrador->nome}}" required="">
+                        </div>
+                        <div class="input-block field-group">
+                            <div class="field">
+                                <label for="login">Login</label>
+                                <input type="text" name="login" id="login" value="{{$administrador->login}}" required="">
                             </div>
-                            <div class="input-block field-group">
-                                <div class="field">
-                                    <label for="login">Login</label>
-                                    <input type="text" name="login" id="login" required="" value="{{$administrador->login}}">
-                                </div>
-                                <div class="field">
-                                    <label for="senha">Senha</label>
-                                    <input type="password" name="senha" id="senha" required="" value="{{base64_decode($administrador->senha)}}">
-                                </div>
+                            <div class="field">
+                                <label for="senha">Senha</label>
+                                <input type="password" name="senha" id="senha" value="{{base64_decode($administrador->senha)}}" required="">
                             </div>
-                        </fieldset>
+                        </div>
                     </fieldset>
-                    <button class="confirm-button" type="submit">Confirmar</button>
-                </form>
-            </main>
-        </div>
+                </fieldset>
+                <button class="confirm-button" type="submit">Confirmar</button>
+            </form>
+        </main>
     </div>
 </div>
 
@@ -52,5 +51,5 @@
 
     const API_URL = `{{env('APP_URL')}}` + `/api`;
 </script>
-<script src="<?= asset("js/criar-terra.js")?>"></script>
+<script src="<?=asset("js/criar-terra.js")?>"></script>
 @endsection

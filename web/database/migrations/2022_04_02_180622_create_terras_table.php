@@ -21,10 +21,9 @@ class CreateTerrasTable extends Migration
             $table->string('lingua');
             $table->string('modalidade');
             $table->text('sobre');
-            $table->decimal('latitude', 10, 2);
-            $table->decimal('longitude', 10, 2);
+            $table->decimal('latitude', 10, 8);
+            $table->decimal('longitude', 10, 8);
             $table->string('estado');
-            $table->string('cidade');
             $table->timestamps();
         });
     }

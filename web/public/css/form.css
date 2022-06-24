@@ -84,7 +84,7 @@ form.form-create-and-update .input-block select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  flex: 1;
+  /* flex: 1; */
   border-radius: 20px;
   font-size: 16px;
 }

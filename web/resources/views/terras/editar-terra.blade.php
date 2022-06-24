@@ -13,97 +13,102 @@
                         <polyline points="12 19 5 12 12 5"></polyline>
                     </svg>
                 </a>
-                </footer>
-            </aside>
+            </footer>
+        </aside>
             
-            <main>
-                <form class="form-create-and-update" action="{{ route('editar.terra') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="idTerra" value="{{$terra->idTerra}}">
+        <main>
+            <form class="form-create-and-update" action="{{ route('editar.terra') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="idTerra" value="{{$terra->idTerra}}">
+                <fieldset>
+                    <legend>Dados</legend>
                     <fieldset>
-                        <legend>Dados</legend>
-                        <fieldset>
-                            <div class="input-block field">
-                                <label for="nome">Nome</label>
-                                <input type="text" name="nome" id="name" required="" value="{{$terra->nome}}">
-                            </div>
-                            <div class="input-block field-group">
-                                <div class="field">
-                                    <label for="populacao">População</label>
-                                    @php
-                                        $retirar = array(" Pessoas", " Pessoa");
-                                        $populacao = str_replace($retirar, '', $terra->populacao);
-                                    @endphp
-                                    <input type="number" name="populacao" id="populacao" required="" value="{{$populacao}}">
-                                </div>
-                                <div class="field">
-                                    <label for="povos">Povos</label>
-                                    <input type="text" name="povos" id="povos" required="" value="{{$terra->povos}}">
-                                </div>
-                            </div>
-                        </fieldset>
-                        <div class="input-block field-group">
-                            <div class="field">
-                                <label for="lingua">Língua</label>
-                                <input type="text" name="lingua" id="lingua" required="" value="{{$terra->lingua}}">
-                            </div>
-                            <div class="field">
-                                <label for="modalidade">Modalidade</label>
-                                <input type="text" name="modalidade" id="modalidade" required="" value="{{$terra->modalidade}}">
-                            </div>
+                        <div class="input-block field">
+                            <label for="nome">Nome</label>
+                            <input type="text" name="nome" id="name" value="{{$terra->nome}}" required="">
                         </div>
                         <div class="input-block field-group">
                             <div class="field">
-                                <label for="uf">Estado (UF)</label>
-                                <small style="color: #8FA7B3;">O estado cadastrado é: {{$terra->estado}}</small>
-                                <select name="uf" id="uf" required="">
-                                    <option value="" selected="">Selecione uma UF</option>
-                                </select>
+                                <label for="populacao">População</label>
+                                @php
+                                    $retirar = array(" Pessoas", " Pessoa");
+                                    $populacao = str_replace($retirar, '', $terra->populacao);
+                                @endphp
+                                <input type="number" name="populacao" id="populacao" value="{{$populacao}}" required="">
                             </div>
                             <div class="field">
-                                <label for="city">Cidade</label>
-                                <small style="color: #8FA7B3;">O cidade cadastrada é: {{$terra->cidade}}</small>
-                                <select name="city" id="city" required="">
-                                    <option value="" selected="">Selecione uma cidade</option>
-                                </select>
+                                <label for="povos">Povos</label>
+                                <input type="text" name="povos" id="povos" value="{{$terra->povos}}" required="">
                             </div>
-                        </div>
-
-                        <div id="map-container" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="width: 100%; height: 280px; position: relative;">
-                            
-                        </div>
-
-                        <input type="hidden" name="longitude" id="longitude" value="{{$terra->modalidade}}">
-                        <input type="hidden" name="latitude" id="latitude" value="{{$terra->modalidade}}">
-                        
-                        <div class="input-block">
-                            <label for="sobre">Sobre<span>Máximo de 3000 caracteres</span></label>
-                            <textarea id="sobre" name="sobre" maxlength="3000" required="">{{$terra->sobre}}</textarea>
-                        </div>
-                        
-                        <div class="input-block">
-                            <label for="images">Fotos</label>
-                            <div class="images-container">
-                                <!-- Aqui acima do label vai as imagens... -->
-                                <label for="images" class="new-image">
-                                    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="#15b6d6" height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="color: rgb(21, 182, 214);">
-                                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    </svg>
-                                </label>
-                                @if( count($terra->imagensTerra) >= 1 )
-                                        @foreach($terra->imagensTerra as $imagem)
-                                            <img src="{{$imagem->url}}" alt="{{$terra->nome}}" class="remover-imagem" data-imagem="{{$imagem->idImagem}}" title="Remover imagem" style="cursor: pointer;">
-                                        @endforeach
-                                @endif
-                            </div>
-                            <input type="file" id="images" name="images[]" multiple accept="image/*">
                         </div>
                     </fieldset>
-                    <button class="confirm-button" type="submit">Confirmar</button>
-                </form>
-            </main>
-        </div>
+                    <div class="input-block field-group">
+                        <div class="field">
+                            <label for="lingua">Língua</label>
+                            <input type="text" name="lingua" id="lingua" value="{{$terra->lingua}}" required="">
+                        </div>
+                        <div class="field">
+                            <label for="modalidade">Modalidade</label>
+                            <input type="text" name="modalidade" id="modalidade" value="{{$terra->modalidade}}" required="">
+                        </div>
+                    </div>
+                    <div class="input-block field-group">
+                        <div class="field">
+                            <label for="uf">Estado (UF)</label>
+                            <small style="color: #8FA7B3;">O estado cadastrado é: {{$terra->estado}}</small>
+                            <select name="uf" id="uf" required="">
+                                <option value="" selected="">Selecione uma UF</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="citys">Cidade</label>
+                            <small style="color: #8FA7B3;">
+                                Aperte e segure a tecla ctrl para selecionar mais de uma cidade.
+                                As cidades cadastrada são: 
+                                @foreach($terra->cidades as $cidade)
+                                    - {{$cidade->cidade}}.
+                                @endforeach
+                            </small>
+                            <select name="citys[]" id="citys" multiple required="">
+                                <option value="" selected="">Selecione uma cidade</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="map-container" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="width: 100%; height: 280px; position: relative;">
+                        
+                    </div>
+
+                    <input type="hidden" name="latitude" id="latitude" value="{{$terra->latitude}}">
+                    <input type="hidden" name="longitude" id="longitude" value="{{$terra->longitude}}">
+                    
+                    <div class="input-block">
+                        <label for="sobre">Sobre<span>Máximo de 3000 caracteres</span></label>
+                        <textarea id="sobre" name="sobre" maxlength="3000" required="">{{$terra->sobre}}</textarea>
+                    </div>
+                    
+                    <div class="input-block">
+                        <label for="images">Fotos</label>
+                        <div class="images-container">
+                            <!-- Aqui acima do label vai as imagens... -->
+                            <label for="images" class="new-image">
+                                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="#15b6d6" height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="color: rgb(21, 182, 214);">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </label>
+                            @if( count($terra->imagensTerra) >= 1 )
+                                    @foreach($terra->imagensTerra as $imagem)
+                                        <img src="{{$imagem->url}}" alt="{{$terra->nome}}" class="remover-imagem" data-imagem="{{$imagem->idImagem}}" title="Remover imagem" style="cursor: pointer;">
+                                    @endforeach
+                            @endif
+                        </div>
+                        <input type="file" id="images" name="images[]" multiple accept="image/*">
+                    </div>
+                </fieldset>
+                <button class="confirm-button" type="submit">Confirmar</button>
+            </form>
+        </main>
     </div>
 
     <div class="modalBackground" style="display: none;">
@@ -126,6 +131,7 @@
         </div>
     </div>
 </div>
+
 
 <script>
     const APP_URL = `{{env('APP_URL')}}`;
@@ -152,7 +158,7 @@
     baseMap.addTo(map);
 
 
-        // Cria o marcador no mapa.
+    // Cria o marcador no mapa.
     // Constantes que vai receber os input:hidden
     const inputLongitude = document.getElementById('longitude');
     const inputLatitude = document.getElementById('latitude');

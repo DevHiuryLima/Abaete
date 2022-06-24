@@ -5,7 +5,7 @@
     <div id="page-map">
         <aside>
             <header>
-                <img src="<?= asset('images/map-marker.svg') ?>" alt="Abaeté">
+                <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
                 <h2>Cadastre uma terra indígena</h2>
                 <p>Após o cadastrado, as terras irão aparecer no mapa ao lado.</p>
             </header>
@@ -42,14 +42,12 @@
                 </g>
             </svg>
         </a>
-
     </div>
 </div>
 
 <script>
     const APP_URL = `{{env('APP_URL')}}`;
-
-    const API_URL = `{{env('APP_URL')}}` + `/api`;
+    const API_URL = `{{env('APP_URL')}}` + `/api`;  
 </script>
 <script src="<?=asset('js/mapIcon.js')?>"></script>
 <script src="<?=asset('js/carregar-mapa.js')?>"></script>

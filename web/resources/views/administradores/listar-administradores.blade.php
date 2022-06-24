@@ -5,7 +5,7 @@
     <div id="page-map">
         <aside style="padding-left: 45px; padding-right: 45px;">
             <header>
-                <img src="<?= asset('images/map-marker.svg') ?>" alt="Abaeté">
+                <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
                 <h2>Cadastre um administrador</h2>
                 <p>Após, os cadastrado irão aparecer na tabela ao lado.</p>
             </header>
@@ -42,6 +42,7 @@
                                 </svg>
                             </a>
                         </button>
+                        @if($administrador->idAdmin != 1)
                         <button id="remover-admin" class="remover-admin" title="Remover administrador" data-administrador="{{$administrador->idAdmin}}">
                             <svg id="Icons" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <defs>
@@ -50,6 +51,7 @@
                                 <path class="cls-1" d="M22,4H16V3a3,3,0,0,0-3-3H11A3,3,0,0,0,8,3V4H2A1,1,0,0,0,2,6H4V20a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V6h2a1,1,0,0,0,0-2ZM10,3a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V4H10ZM9,18a1,1,0,0,1-2,0V10a1,1,0,0,1,2,0Zm4,0a1,1,0,0,1-2,0V10a1,1,0,0,1,2,0Zm4,0a1,1,0,0,1-2,0V10a1,1,0,0,1,2,0Z"/>
                             </svg>
                         </button>
+                        @endif
                     </div>
                 </li>
                     @endforeach

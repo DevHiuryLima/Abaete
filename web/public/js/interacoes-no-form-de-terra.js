@@ -10,7 +10,6 @@ function onMapClick(e) {
     inputLatitude.value = e.latlng.lat;
     inputLongitude.value = e.latlng.lng;
 
-
     // Se o usuario já tive clicado no map. É removido o marcador antigo
     if (theMarker != undefined) {
         map.removeLayer(theMarker);

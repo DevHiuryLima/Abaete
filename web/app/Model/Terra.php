@@ -21,8 +21,12 @@ class Terra extends Model
         'latitude',
         'longitude',
         'estado',
-        'cidade',
     ];
+
+    public function cidades()
+    {
+        return $this->hasMany(CidadeTerra::class,'terra','idTerra');
+    }
 
     public function imagensTerra()
     {

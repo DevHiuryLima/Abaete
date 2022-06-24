@@ -51,6 +51,10 @@
   margin-bottom: 24px;
   margin-right: 24px;
 }
+
+.justificar-texto {
+  text-align: justify;
+}
   
 .detalhes .detalhes-conteudo h1 {
   color: #4D6F80;

@@ -3,8 +3,9 @@
 @section('content')
 <div id="container-login">
     <div class="margem-abaixo">
-        <img src="<?= asset('images/map-marker.svg') ?>" alt="Abaeté">
+        <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
     </div>
+
     <h1>Área Restrita</h1>
     <form name="formLoginAdministrador">
         @csrf

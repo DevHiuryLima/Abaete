@@ -18,8 +18,8 @@
                 
         <main>
             <div class="detalhes">
-                @if( count($terra->imagensTerra) > 1 )
-                    <img src="{{$terra->imagensTerra[0]->url}}" alt="{{$terra->nome}} imagem-0">
+                @if( count($terra->imagensTerra) > 0 )
+                    <img src="{{$terra->imagensTerra[0]->url}}" alt="{{$terra->nome}}">
 
                     <div class="images">
                         @php 
@@ -29,11 +29,11 @@
                         @foreach($terra->imagensTerra as $imagem)
                             @if($i == 0)
                             <button class="active" type="button">
-                                <img src="{{$imagem->url}}" alt="{{$terra->nome}} imagem-{{$i}}">
+                                <img src="{{$imagem->url}}" alt="{{$terra->nome}}">
                             </button>
                             @else
                             <button class="" type="button">
-                                <img src="{{$imagem->url}}" alt="{{$terra->nome}} imagem-{{$i}}">
+                                <img src="{{$imagem->url}}" alt="{{$terra->nome}}">
                             </button>
                             @endif
 
@@ -84,13 +84,17 @@
                         <div class="field">
                             <h3>Cidade</h3>
                             <hr>
-                            <p>{{$terra->cidade}}</p>
+                            <p>
+                                @foreach($terra->cidades as $cidade)
+                                    - {{$cidade->cidade}}.<br>
+                                @endforeach
+                            </p>
                         </div>
                         <div class="field"></div>
                     </div>
                     <h3>Sobre</h3>
                     <hr>
-                    <p>{{$terra->sobre}}</p>
+                    <p class="justificar-texto">{{$terra->sobre}}</p>
                     <div class="map-container">
                         <div id="map-container" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="width: 100%; height: 280px; position: relative;">
                         

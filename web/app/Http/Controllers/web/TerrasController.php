@@ -4,6 +4,7 @@ namespace App\Http\Controllers\web;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Model\CidadeTerra;
 use App\Model\ImagensTerra;
 use App\Model\Terra;
 use App\Http\Controllers\Controller;
@@ -39,12 +40,18 @@ class TerrasController extends Controller
             $terra->lingua = $request->lingua;
             $terra->modalidade = $request->modalidade;
             $terra->estado = $request->uf;
-            $terra->cidade = $request->city;
             $terra->latitude = $request->latitude;
             $terra->longitude = $request->longitude;
             $terra->sobre = $request->sobre;
             $status = $terra->save();
 
+            // Cadastrar cada cidade da terra.
+            foreach ($request->citys as $city) {
+                $cidade = new CidadeTerra();
+                $cidade->terra = $terra->idTerra;
+                $cidade->cidade = $city;
+                $status = $cidade->save();
+            }
 
             // Cadastrar cada imagem da terra.
             for ($i=0; $i < count($request->file('images')); $i++) {
@@ -71,6 +78,7 @@ class TerrasController extends Controller
     {
         if(session()->exists('idAdmin')) {
             $terra = Terra::where('idTerra', '=', $request->idTerra)
+            ->with('cidades')
             ->with('imagensTerra')
             ->first();
             
@@ -81,7 +89,7 @@ class TerrasController extends Controller
             
             return view('terras.listar-terra', compact('terra'));
         } else {
-            return redirect()->to('/sistema');
+            return redirect()->to('/login');
         }
     }
 
@@ -89,6 +97,7 @@ class TerrasController extends Controller
     {
         if(session()->exists('idAdmin')) {
             $terra = Terra::where('idTerra', '=', $request->idTerra)
+            ->with('cidades')
             ->with('imagensTerra')
             ->first();
             
@@ -116,11 +125,24 @@ class TerrasController extends Controller
                 $terra->lingua = $request->lingua;
                 $terra->modalidade = $request->modalidade;
                 $terra->estado = $request->uf;
-                $terra->cidade = $request->city;
                 $terra->latitude = $request->latitude;
                 $terra->longitude = $request->longitude;
                 $terra->sobre = $request->sobre;
                 $status = $terra->save();
+
+                //Removendo as cidade antigas para adicionar novas.
+                $cidades = CidadeTerra::where('terra', '=', $terra->idTerra)->get();
+                foreach ($cidades as $cidade) {
+                    $status = $cidade->delete();
+                }
+
+                // Cadastrar cada cidade da terra.
+                foreach ($request->citys as $city) {
+                    $cidade = new CidadeTerra();
+                    $cidade->terra = $terra->idTerra;
+                    $cidade->cidade = $city;
+                    $status = $cidade->save();
+                }
 
 
                 if ($request->images != null) {
@@ -199,7 +221,6 @@ class TerrasController extends Controller
 
             $retirar = array(env('APP_URL'), "/storage/");
             $path = str_replace($retirar, '', $imagem->url);
-            // echo dd($path);
             Storage::delete($path);
 
             $status = $imagem->delete();

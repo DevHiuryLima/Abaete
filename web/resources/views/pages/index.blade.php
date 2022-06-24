@@ -4,7 +4,7 @@
 <div id="root">
     <div id="page-landing">
         <div class="content-wrapper">
-            <img src="<?= asset('/images/logo.svg')?>" alt="Logo sistema">
+            <img src="{{ asset('/images/logo.svg') }}" alt="Logo sistema">
             <main>
                 <h1>Descubra mais sobre os nativos brasileiros</h1>
                 <p>Aprenda sobre quem são, onde vivem e muito mais sobre sua cultura e história.</p>

@@ -19,12 +19,12 @@ class TerrasController extends Controller
      */
     public function index()
     {
-        $terras = Terra::with('imagensTerra')->get();
+        $terras = Terra::with('cidades')->with('imagensTerra')->get();
 
         if(!$terras->count()) {
             return response()->json([
                 'message'   => 'Terras não encontrada!',
-            ], 400);
+            ], 404);
         }
 
         return response()->json($terras, 200);
@@ -49,7 +49,19 @@ class TerrasController extends Controller
      */
     public function show($id)
     {
-        //
+        $terra = Terra::where('idTerra', '=', $id)
+        ->with('cidades')
+        ->with('imagensTerra')
+        ->first();
+
+        if(!$terra) {
+            return response()->json([
+                'message'   => 'Terra não encontrada!',
+                // 'error'   => $th->getMessage(),
+            ], 404);
+        }
+        
+        return response()->json($terra, 200);
     }
 
     /**

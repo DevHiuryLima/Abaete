@@ -5,7 +5,7 @@
     <div id="page-map">
         <aside style="padding-left: 45px; padding-right: 45px;">
             <header>
-                <img src="<?=asset('images/map-marker.svg')?>" alt="Abaeté">
+                <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
                 <h2>Cadastre um quiz</h2>
                 <p>Após, os cadastrado irão aparecer na tabela ao lado.</p>
             </header>
