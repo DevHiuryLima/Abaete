@@ -19,6 +19,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::group(['namespace' => 'API', 'as' => 'api.' ], function(){
-    
     Route::apiResource('/terras', 'TerrasController');
+    Route::apiResource('/usuarios', 'UsuarioController');
 });
