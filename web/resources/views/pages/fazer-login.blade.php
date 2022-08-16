@@ -24,7 +24,7 @@
             <div id="message"class="d-none margem-abaixo"></div>
 
             <div class="margem-abaixo">
-                <a href="#" >Esqueceu a senha?</a>
+                {{-- <a href="#" >Esqueceu a senha?</a> --}}
             </div>
             <div class="margem-abaixo">
                 <button>Login</button>

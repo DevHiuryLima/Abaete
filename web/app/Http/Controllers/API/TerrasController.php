@@ -5,8 +5,8 @@ namespace App\Http\Controllers\API;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Exception;
-use App\Model\ImagensTerra;
-use App\Model\Terra;
+use App\Models\ImagensTerra;
+use App\Models\Terra;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

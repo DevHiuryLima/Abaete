@@ -4,8 +4,8 @@ namespace App\Http\Controllers\web;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Model\Terra;
-use App\Model\Quiz;
+use App\Models\Terra;
+use App\Models\Quiz;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

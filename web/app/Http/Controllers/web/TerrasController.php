@@ -4,9 +4,9 @@ namespace App\Http\Controllers\web;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Model\CidadeTerra;
-use App\Model\ImagensTerra;
-use App\Model\Terra;
+use App\Models\CidadeTerra;
+use App\Models\ImagensTerra;
+use App\Models\Terra;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
