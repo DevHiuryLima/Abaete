@@ -1,11 +1,11 @@
-@extends('master.master')
+@extends('layouts.main')
 @section('title', 'Criar administrador - Abaeté')
 @section('content')
 <div id="root">
     <div id="page-form">
         <aside class="app-sidebar">
             <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
-            
+
             <footer>
                 <a href="{{ route('quizzes') }}" title="Voltar">
                     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="rgba(0, 0, 0, 0.6)" height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="color: rgba(0, 0, 0, 0.6);">
@@ -15,7 +15,7 @@
                 </a>
             </footer>
         </aside>
-            
+
         <main>
             <form class="form-create-and-update" action="{{ route('criar.quiz') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -52,7 +52,7 @@
 
                         <div class="input-block field" id="verdadeiro_ou_falso" style="display: none;">
                             <label for="">Marque se é</label>
-                            
+
                             <label for="verdadeiro">
                                 <input type="radio" id="verdadeiro" name="verdadeiro_ou_falso" value="1">
                                 <p class="verdadeiro">Verdadeiro</p>
@@ -63,7 +63,7 @@
                                 <p class="falso">Falso</p>
                             </label>
                         </div>
-                        
+
                         <div class="input-block field" id="alternativas" style="display: none;">
                             <label for="alternativa_a">Alternativa A)</label>
                             <input type="text" name="alternativa_a" id="alternativa_a">
@@ -73,7 +73,7 @@
 
                             <label for="alternativa_c">Alternativa C)</label>
                             <input type="text" name="alternativa_c" id="alternativa_c">
-                            
+
                             <br>
 
                             <label >Marque qual a alternativa correta:</label>

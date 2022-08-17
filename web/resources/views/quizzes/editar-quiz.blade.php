@@ -1,11 +1,11 @@
-@extends('master.master')
+@extends('layouts.main')
 @section('title', 'Editar quiz - Abaeté')
 @section('content')
 <div id="root">
     <div id="page-form">
         <aside class="app-sidebar">
             <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
-            
+
             <footer>
                 <a href="{{ route('quizzes') }}" title="Voltar">
                     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="rgba(0, 0, 0, 0.6)" height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="color: rgba(0, 0, 0, 0.6);">
@@ -15,7 +15,7 @@
                 </a>
             </footer>
         </aside>
-            
+
         <main>
             <form class="form-create-and-update" action="{{ route('editar.quiz') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -42,7 +42,7 @@
                         </div>
                         <div class="field">
                             <label for="tipo">Tipo</label>
-                            <small style="color: #8FA7B3;">O tipo cadastrado é: 
+                            <small style="color: #8FA7B3;">O tipo cadastrado é:
                                 @if($quiz->tipo == 'alternativas')
                                     Alternativas.
                                 @else
@@ -64,7 +64,7 @@
 
                         <div class="input-block field" id="verdadeiro_ou_falso" style="display: none;">
                             <label for="">Marque se é</label>
-                            
+
                             @switch($quiz->verdadeiro_ou_falso)
                                 @case('1')
                                 <label for="verdadeiro">
@@ -77,7 +77,7 @@
                                     <p class="falso">Falso</p>
                                 </label>
                                 @break
-                            
+
                                 @case('0')
                                 <label for="verdadeiro">
                                     <input type="radio" id="verdadeiro" name="verdadeiro_ou_falso" value="1">
@@ -89,7 +89,7 @@
                                     <p class="falso">Falso</p>
                                 </label>
                                 @break
-                            
+
                                 @default
                                 <label for="verdadeiro">
                                     <input type="radio" id="verdadeiro" name="verdadeiro_ou_falso" value="1">
@@ -102,7 +102,7 @@
                                 </label>
                             @endswitch
                         </div>
-                        
+
                         <div class="input-block field" id="alternativas" style="display: none;">
                             <label for="alternativa_a">Alternativa A)</label>
                             <input type="text" name="alternativa_a" id="alternativa_a" value="{{$quiz->alternativa_a}}">
@@ -112,7 +112,7 @@
 
                             <label for="alternativa_c">Alternativa C)</label>
                             <input type="text" name="alternativa_c" id="alternativa_c" value="{{$quiz->alternativa_c}}">
-                            
+
                             <br>
 
                             <label >Marque qual a alternativa correta:</label>
@@ -147,7 +147,7 @@
 
                                     <input type="radio" name="correta" value="C" checked>
                                     <p class="correta">Alternativa C)</p>
-                                        @break 
+                                        @break
                                     @default
                                     <input type="radio" name="correta" value="A">
                                     <p class="correta">Alternativa A)</p>

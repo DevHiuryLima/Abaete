@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('layouts.main')
 @section('title', 'Todos quizzes - Abaeté')
 @section('content')
 <div id="root">
@@ -40,11 +40,11 @@
                             @case('alternativas')
                                 Alternativas
                                 @break
-                        
+
                             @case('verdadeiro_ou_falso')
                                 Verdadeiro ou Falso
                                 @break
-                        
+
                             @default
                                 Default case...
                         @endswitch
@@ -62,7 +62,7 @@
                         @case('alternativas')
                             {{$quiz->alternativa_correta}}
                             @break
-                    
+
                         @case('verdadeiro_ou_falso')
 
                             @if($quiz->verdadeiro_ou_falso)
@@ -72,7 +72,7 @@
                             @endif
 
                             @break
-                    
+
                         @default
                             Default case...
                     @endswitch
@@ -100,7 +100,7 @@
                 @endif
             </ul>
         </div>
-        
+
 
         <a class="criar-admin" href="{{ route('redireciona.criar.quiz') }}" title="Criar quiz">
             <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="#FFF" height="32" width="32" xmlns="http://www.w3.org/2000/svg" style="color: rgb(255, 255, 255);">
@@ -119,7 +119,7 @@
                 <h1>Você tem certeza que você deseja remover esse Quiz?</h1>
             </div>
             <div class="body">
-                <p><strong>Atenção!</strong> Não será possível recuperar os registro depois.</p>
+                <p><strong>Atenção!</strong> Não será possível recuperar os registros depois.</p>
             </div>
             <div class="footer">
                 @csrf
@@ -138,7 +138,7 @@
         $('#idQuiz').val(id);
         $('div.modalBackground').removeAttr('style');
     });
-    
+
     $('#fecharBtn').on('click', function() {
         $('div.modalBackground').css('display', 'none');
     });
@@ -152,7 +152,7 @@
         event.preventDefault();
         var id = $('#idQuiz').val();
         var token = $('input[name="_token"]').val();
-        
+
         var json = {
             idQuiz: id,
             _token: token,

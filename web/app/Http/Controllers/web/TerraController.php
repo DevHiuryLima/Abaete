@@ -10,7 +10,7 @@ use App\Models\Terra;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TerrasController extends Controller
+class TerraController extends Controller
 {
     public function index(Request $request)
     {
@@ -78,15 +78,15 @@ class TerrasController extends Controller
     {
         if(session()->exists('idAdmin')) {
             $terra = Terra::where('idTerra', '=', $request->idTerra)
-            ->with('cidades')
-            ->with('imagensTerra')
-            ->first();
-            
+                ->with('cidades')
+                ->with('imagensTerra')
+                ->first();
+
             if ($terra == null) {
                 echo "<script>window.alert('Ocorreu um erro ao buscar terra! Por favor, tente novamente mais tarde.')</script>";
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
-            
+
             return view('terras.listar-terra', compact('terra'));
         } else {
             return redirect()->to('/login');
@@ -97,10 +97,10 @@ class TerrasController extends Controller
     {
         if(session()->exists('idAdmin')) {
             $terra = Terra::where('idTerra', '=', $request->idTerra)
-            ->with('cidades')
-            ->with('imagensTerra')
-            ->first();
-            
+                ->with('cidades')
+                ->with('imagensTerra')
+                ->first();
+
             if ($terra == null) {
                 echo "<script>window.alert('Ocorreu um erro ao buscar terra! Por favor, tente novamente mais tarde.')</script>";
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";

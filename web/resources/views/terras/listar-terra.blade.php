@@ -1,11 +1,11 @@
-@extends('master.master')
+@extends('layouts.main')
 @section('title', $terra->nome  . ' - Abaeté')
 @section('content')
 <div id="root">
     <div id="page-list">
         <aside class="app-sidebar">
             <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
-            
+
             <footer>
                 <a href="{{ route('terras') }}" title="Voltar">
                     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="rgba(0, 0, 0, 0.6)" height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="color: rgba(0, 0, 0, 0.6);">
@@ -15,14 +15,14 @@
                 </a>
             </footer>
         </aside>
-                
+
         <main>
             <div class="detalhes">
                 @if( count($terra->imagensTerra) > 0 )
                     <img src="{{$terra->imagensTerra[0]->url}}" alt="{{$terra->nome}}">
 
                     <div class="images">
-                        @php 
+                        @php
                             $i = 0;
                         @endphp
 
@@ -37,7 +37,7 @@
                             </button>
                             @endif
 
-                            @php 
+                            @php
                                 $i++;
                             @endphp
                         @endforeach
@@ -97,7 +97,7 @@
                     <p class="justificar-texto">{{$terra->sobre}}</p>
                     <div class="map-container">
                         <div id="map-container" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="width: 100%; height: 280px; position: relative;">
-                        
+
                         </div>
                         <footer>
                             <a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/dir/?api=1&amp;destination={{$terra->latitude}},{{$terra->longitude}}">Ver rotas no Google Maps</a>
@@ -126,7 +126,7 @@
                 <h1>Você tem certeza que você deseja remover essa Terra?</h1>
             </div>
             <div class="body">
-                <p><strong>Atenção!</strong> Não será possível recuperar os registro depois.</p>
+                <p><strong>Atenção!</strong> Não será possível recuperar os registros depois.</p>
             </div>
             <div class="footer">
                 <button><a href="{{ route('remover.terra', ['idTerra' => $terra->idTerra]) }}">Continuar</a></button>

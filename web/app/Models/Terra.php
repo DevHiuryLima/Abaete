@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +9,7 @@ class Terra extends Model
     protected $table = 'terras';
     protected $primaryKey = 'idTerra';
     public $timestamps = true;
-    
+
     protected $fillable = [
         'idTerra',
         'nome',

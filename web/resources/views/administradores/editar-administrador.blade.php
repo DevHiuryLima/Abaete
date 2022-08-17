@@ -1,11 +1,11 @@
-@extends('master.master')
+@extends('layouts.main')
 @section('title', 'Editar administrador - Abaeté')
 @section('content')
 <div id="root">
     <div id="page-form">
         <aside class="app-sidebar">
             <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
-            
+
             <footer>
                 <a href="{{ route('administradores') }}" title="Voltar">
                     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="rgba(0, 0, 0, 0.6)" height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="color: rgba(0, 0, 0, 0.6);">
@@ -15,12 +15,12 @@
                 </a>
             </footer>
         </aside>
-            
+
         <main>
             <form class="form-create-and-update" action="{{ route('editar') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="idAdmin" value="{{$administrador->idAdmin}}">
-                
+
                 <fieldset>
                     <legend>Dados</legend>
                     <fieldset>

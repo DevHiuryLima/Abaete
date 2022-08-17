@@ -8,7 +8,7 @@ use App\Models\Administrador;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdministradoresController extends Controller
+class AdministradorController extends Controller
 {
     public function index(Request $request)
     {
@@ -61,12 +61,12 @@ class AdministradoresController extends Controller
     {
         if(session()->exists('idAdmin')) {
             $administrador = Administrador::find($request->idAdmin);
-            
+
             if ($administrador == null) {
                 echo "<script>window.alert('Ocorreu um erro ao buscar Administrador! Por favor, tente novamente mais tarde.')</script>";
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
-            
+
             return view('administradores.editar-administrador', compact('administrador'));
         } else {
             return redirect()->to('/login');

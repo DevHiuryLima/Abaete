@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('layouts.main')
 @section('title', 'Todos administradores - Abaeté')
 @section('content')
 <div id="root">
@@ -58,7 +58,7 @@
                 @endif
             </ul>
         </div>
-        
+
 
         <a class="criar-admin" href="{{ route('administrador-criar') }}" title="Criar administrador">
             <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="#FFF" height="32" width="32" xmlns="http://www.w3.org/2000/svg" style="color: rgb(255, 255, 255);">
@@ -77,7 +77,7 @@
                 <h1>Você tem certeza que você deseja remover esse Administrador?</h1>
             </div>
             <div class="body">
-                <p><strong>Atenção!</strong> Não será possível recuperar os registro depois.</p>
+                <p><strong>Atenção!</strong> Não será possível recuperar os registros depois.</p>
             </div>
             <div class="footer">
                 @csrf
@@ -96,7 +96,7 @@
         $('#idAdmin').val(id);
         $('div.modalBackground').removeAttr('style');
     });
-    
+
     $('#fecharBtn').on('click', function() {
         $('div.modalBackground').css('display', 'none');
     });
@@ -110,7 +110,7 @@
         event.preventDefault();
         var id = $('#idAdmin').val();
         var token = $('input[name="_token"]').val();
-        
+
         var json = {
             idAdmin: id,
             _token: token,

@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('layouts.main')
 @section('title', 'Abaeté')
 @section('content')
 <div id="root">

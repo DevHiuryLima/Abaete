@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('layouts.main')
 @section('title', 'Todas as terras - Abaeté')
 @section('content')
 <div id="root">
@@ -18,11 +18,11 @@
                 </a>
             </footer>
         </aside>
-        
+
         <div id="map-container" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="width: 100%; height: 100%; position: relative;">
 
         </div>
-        
+
         <a class="criar-terra" href="{{ route('redireciona.criar.terra') }}" title="Criar terra">
             <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="#FFF" height="32" width="32" xmlns="http://www.w3.org/2000/svg" style="color: rgb(255, 255, 255);">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -47,7 +47,7 @@
 
 <script>
     const APP_URL = `{{env('APP_URL')}}`;
-    const API_URL = `{{env('APP_URL')}}` + `/api`;  
+    const API_URL = `{{env('APP_URL')}}` + `/api`;
 </script>
 <script src="<?=asset('js/mapIcon.js')?>"></script>
 <script src="<?=asset('js/carregar-mapa.js')?>"></script>

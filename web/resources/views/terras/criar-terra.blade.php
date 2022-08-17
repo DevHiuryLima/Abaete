@@ -1,11 +1,11 @@
-@extends('master.master')
+@extends('layouts.main')
 @section('title', 'Criar terra - Abaeté')
 @section('content')
 <div id="root">
     <div id="page-form">
         <aside class="app-sidebar">
             <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
-            
+
             <footer>
                 <a href="{{ route('terras') }}" title="Voltar">
                     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="rgba(0, 0, 0, 0.6)" height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="color: rgba(0, 0, 0, 0.6);">
@@ -15,7 +15,7 @@
                 </a>
             </footer>
         </aside>
-            
+
         <main>
             <form class="form-create-and-update" action="{{ route('criar.terra') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -63,17 +63,17 @@
                     </div>
 
                     <div id="map-container" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="width: 100%; height: 280px; position: relative;">
-                        
+
                     </div>
 
                     <input type="hidden" name="longitude" id="longitude">
                     <input type="hidden" name="latitude" id="latitude">
-                    
+
                     <div class="input-block">
                         <label for="sobre">Sobre<span>Máximo de 3000 caracteres</span></label>
                         <textarea id="sobre" name="sobre" maxlength="3000" required=""></textarea>
                     </div>
-                    
+
                     <div class="input-block">
                         <label for="images">Fotos</label>
                         <div class="images-container">

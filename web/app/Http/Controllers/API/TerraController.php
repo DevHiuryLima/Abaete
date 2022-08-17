@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Exception;
@@ -10,7 +11,7 @@ use App\Models\Terra;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TerrasController extends Controller
+class TerraController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -50,9 +51,9 @@ class TerrasController extends Controller
     public function show($id)
     {
         $terra = Terra::where('idTerra', '=', $id)
-        ->with('cidades')
-        ->with('imagensTerra')
-        ->first();
+            ->with('cidades')
+            ->with('imagensTerra')
+            ->first();
 
         if(!$terra) {
             return response()->json([
@@ -60,7 +61,7 @@ class TerrasController extends Controller
                 // 'error'   => $th->getMessage(),
             ], 404);
         }
-        
+
         return response()->json($terra, 200);
     }
 
