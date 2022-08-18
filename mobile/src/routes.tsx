@@ -9,7 +9,8 @@ import Home from './pages/Home/Home';
 import Header from './components/Header';
 import MapaDeTerras from './pages/Terras/MapaDeTerras';
 import ListarTerra from './pages/Terras/ListarTerra';
-import CriarUsuario from './pages/Quizzes/CriarUsuario';
+import CriarConta from './pages/Quizzes/CriarConta';
+import Login from './pages/Quizzes/Login';
 // import Quiz from './pages/Quizzes/Quiz';
 
 export default function Routes() {
@@ -17,10 +18,12 @@ export default function Routes() {
     <NavigationContainer>
       <Navigator screenOptions={{ headerShown: false, headerStyle: { backgroundColor: '#f2f3f5', } }}>
         <Screen name='Home' component={Home}/>
+
         <Screen 
           name='MapaDeTerras' 
           component={MapaDeTerras}
         />
+
         <Screen 
           name='ListarTerra' 
           component={ListarTerra}
@@ -29,12 +32,22 @@ export default function Routes() {
             header: () => <Header title='Terra índigena' />
           }}
         />
-                <Screen 
-          name='CriarUsuario' 
-          component={CriarUsuario}
+
+        <Screen 
+          name='Login' 
+          component={Login}
           options={{
             headerShown: true,
-            header: () => <Header title='Criar Usuário' />
+            header: () => <Header title='Login' />
+          }}
+        />
+        
+        <Screen 
+          name='CriarConta' 
+          component={CriarConta}
+          options={{
+            headerShown: true,
+            header: () => <Header title='Criar conta' />
           }}
         />
 

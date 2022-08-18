@@ -53,7 +53,7 @@ export default function MapaDeTerras() {
   }
 
   function handleNavigateQuiz() {
-    navigation.navigate('CriarUsuario');
+    navigation.navigate('Login');
   }
 
   return (

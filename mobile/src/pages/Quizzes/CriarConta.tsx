@@ -10,7 +10,10 @@ import api from '../../services/api';
 
 export default function CriarUsuario() {
   const [name, setName] = useState('');
-  const [image, setImage] = useState('')
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [image, setImage] = useState('');
+  const navigation = useNavigation();
 
   async function handleCreateUser() {
     const data = new FormData();
@@ -23,6 +26,10 @@ export default function CriarUsuario() {
     //Salva o data no asyncStorage
 
     alert("Usuario criado");
+  }
+
+  function handleLogin() {
+    navigation.navigate('Login');
   }
 
   async function handleSelectImages() {
@@ -73,11 +80,29 @@ export default function CriarUsuario() {
           style={styles.input}
           value={name}
           onChangeText={setName}
-          placeholder="Nome"
+       />
+       
+       <Text style={styles.label}>Email*</Text>
+       <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={setEmail}
+       />
+       
+       <Text style={styles.label}>Senha*</Text>
+       <TextInput
+          style={styles.input}
+          value={senha}
+          onChangeText={setSenha}
+          secureTextEntry={true}
        />
 
       <TouchableOpacity style={styles.nextButton} onPress={handleCreateUser}>
-        <Text style={styles.nextButtonText}>Salvar</Text>
+        <Text style={styles.nextButtonText}>Cadastrar</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+        <Text style={styles.loginButtonText}>Fazer login</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -161,5 +186,22 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito_800ExtraBold',
     fontSize: 16,
     color: '#FFF',
+  },
+
+  loginButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 56,
+    marginTop: 8,
+  },
+
+  loginButtonText: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'Nunito_800ExtraBold',
+    fontSize: 16,
+    color: '#8fa7b3',
   }
+
+  
 })
