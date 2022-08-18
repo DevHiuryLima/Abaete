@@ -8,7 +8,7 @@ class CidadeTerra extends Model
 {
     protected $table = 'cidades_da_terra';
     protected $primaryKey = 'idCidadeTerra';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'idCidadeTerra',
