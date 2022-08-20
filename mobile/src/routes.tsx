@@ -11,7 +11,7 @@ import MapaDeTerras from './pages/Terras/MapaDeTerras';
 import ListarTerra from './pages/Terras/ListarTerra';
 import CriarConta from './pages/Quizzes/CriarConta';
 import Login from './pages/Quizzes/Login';
-// import Quiz from './pages/Quizzes/Quiz';
+import Quiz from './pages/Quizzes/Quiz';
 
 export default function Routes() {
   return (
@@ -50,15 +50,15 @@ export default function Routes() {
             header: () => <Header title='Criar conta' />
           }}
         />
-
-        {/* <Screen 
+        
+        <Screen 
           name='Quiz' 
           component={Quiz}
           options={{
             headerShown: true,
             header: () => <Header title='Quiz' />
           }}
-        /> */}
+        />
       </Navigator>
     </NavigationContainer>
   );

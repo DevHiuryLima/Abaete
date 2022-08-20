@@ -17,6 +17,7 @@ class CreateCidadesDaTerraTable extends Migration
             $table->id('idCidadeTerra');
             $table->unsignedBigInteger('terra');
             $table->string('cidade');
+            $table->timestamps();
 
             $table->foreign('terra')->references('idTerra')->on('terras')->onDelete('cascade');
         });

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Usuario;
@@ -38,6 +40,18 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'nome' => 'required',
+            'imagem' => 'required',
+            'email' => 'required|email',
+            'senha' => 'required',
+            // 'senha' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+        ]);
+
+        if ($validator->stopOnFirstFailure()->fails()) {
+            return response()->json($validator->messages(), 400);
+        }
+
         $usuarios = DB::table('usuarios')->where([
             ['email', '=', $request->email],
             ['senha', '=', base64_encode($request->senha)],
@@ -45,16 +59,16 @@ class UsuarioController extends Controller
 
         if (!$usuarios->count()){
             try {
-                $usuarios = new Usuario();
+                $usuario = new Usuario();
 
-                $usuarios->nome = $request->nome;
+                $usuario->nome = $request->nome;
                 $usuario->imagem = env('APP_URL') . "/storage/" . $request->file('imagem')->store("imagens-usuarios");
-                $usuarios->email = $request->email;
-                $usuarios->senha = base64_encode($request->senha);
-                $status = $usuarios->save();
+                $usuario->email = $request->email;
+                $usuario->senha = base64_encode($request->senha);
+                $status = $usuario->save();
 
                 if($status == true){
-                    return response()->json($usuarios, 200);
+                    return response()->json($usuario, 200);
                 }else {
                     $usuarios->delete();
                     return response()->json([
@@ -101,20 +115,25 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $usuario = Usuario::find($request->idUsuario);
+        echo dd($request->all());
+        $usuario = Usuario::find($request->id);
 
         if ($usuario != null){
 
             $usuarios = DB::table('usuarios')->where([
                 ['email', '=', $request->email],
                 ['senha', '=', base64_encode($request->senha)],
-                ['idUsuario', '!=', $request->idUsuario],
+                ['idUsuario', '!=', $request->id],
             ])->get();
 
             if (!$usuarios->count()){
                 try {
                     $usuario->nome = $request->nome;
                     if ($request->imagem != null) {
+                        $retirar = array(env('APP_URL'), "/storage/");
+                        $path = str_replace($retirar, '', $usuario->imagem);
+                        Storage::delete($path);
+                        
                         $usuario->imagem = env('APP_URL') . "/storage/" . $request->file('imagem')->store("imagens-usuarios");
                     }
                     $usuario->email = $request->email;
@@ -154,9 +173,14 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        $usuario = Usuario::find($request->idUsuario);
+        $usuario = Usuario::find($id);
 
         if ($usuario != null){
+
+            $retirar = array(env('APP_URL'), "/storage/");
+            $path = str_replace($retirar, '', $usuario->imagem);
+            Storage::delete($path);
+
             $status = $usuario->delete();
 
             if($status == true){

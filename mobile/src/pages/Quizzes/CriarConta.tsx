@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Image, ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 import { Feather } from '@expo/vector-icons';
@@ -9,7 +8,7 @@ import * as ImagePicker from 'expo-image-picker';
 import api from '../../services/api';
 
 export default function CriarUsuario() {
-  const [name, setName] = useState('');
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [image, setImage] = useState('');
@@ -18,14 +17,26 @@ export default function CriarUsuario() {
   async function handleCreateUser() {
     const data = new FormData();
 
-    // data.append('image', {
-    //   uri: image.uri,
-    //   type: image.type,
+    // console.log({
+    //   nome,
+    //   email,
+    //   senha,
+    //   image,
     // });
+    // alert("Usuario criado");
 
-    //Salva o data no asyncStorage
 
-    alert("Usuario criado");
+    data.append('nome', nome);
+    data.append('imagem', {
+      type: 'image/jpg',
+      uri: image
+    } as any);
+    data.append('email', email);
+    data.append('senha', senha);
+
+    await api.post('usuarios', data);
+
+    navigation.navigate('Quiz');
   }
 
   function handleLogin() {
@@ -48,7 +59,7 @@ export default function CriarUsuario() {
     // const { uri: image } = result;
     // setImages([...images, image]);
 
-    console.log(result);
+    // console.log(result);
 
     if (!result.cancelled) {
 
@@ -78,8 +89,8 @@ export default function CriarUsuario() {
       <Text style={styles.label}>Nome*</Text>
        <TextInput
           style={styles.input}
-          value={name}
-          onChangeText={setName}
+          value={nome}
+          onChangeText={setNome}
        />
        
        <Text style={styles.label}>Email*</Text>
