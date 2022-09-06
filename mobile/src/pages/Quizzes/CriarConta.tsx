@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Image, ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import { Image, ScrollView, View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { RectButton } from 'react-native-gesture-handler';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 import * as ImagePicker from 'expo-image-picker';
 import api from '../../services/api';
+import axios from 'axios';
 
 export default function CriarUsuario() {
   const [nome, setNome] = useState('');
@@ -16,28 +16,41 @@ export default function CriarUsuario() {
 
   async function handleCreateUser() {
     const data = new FormData();
+    
+    try {
+      data.append('nome', nome);
+      data.append('imagem', {
+        type: 'image/jpg',
+        uri: image,
+        name: 'asdfas'
+      } as any);
+      data.append('email', email);
+      data.append('senha', senha);
 
-    // console.log({
-    //   nome,
-    //   email,
-    //   senha,
-    //   image,
-    // });
-    // alert("Usuario criado");
+      // Envia a requisição de maneira direta no axios.
+      // const response = await axios({
+      //   method: 'post',
+      //   url: 'http://10.7.7.50/Projects/Abaete/web/public/api/usuarios',
+      //   data: data,
+        // headers: {
+        //   'Content-Type': 'multipart/form-data',
+        // },
+      // })
 
+      // Envia a requisição pelos pseudônimos e após a criação de uma instância do axios.
+      const response = await api.post('usuarios', data);
 
-    data.append('nome', nome);
-    data.append('imagem', {
-      type: 'image/jpg',
-      uri: image
-    } as any);
-    data.append('email', email);
-    data.append('senha', senha);
+      // const json = await response.data;
 
-    await api.post('usuarios', data);
-
-    navigation.navigate('Quiz');
+      if(response.status === 200){
+        navigation.navigate('Quiz');
+      }
+      // console.log(response);
+    } catch (error) {
+      console.log(error.response);
+    }
   }
+
 
   function handleLogin() {
     navigation.navigate('Login');

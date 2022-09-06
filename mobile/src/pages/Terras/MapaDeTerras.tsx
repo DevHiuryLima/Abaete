@@ -2,8 +2,7 @@ import React, { useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { RectButton } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 import mapMarker from '../../images/MapaDeTerras/map-marker.png';
 import api from '../../services/api';
@@ -33,11 +32,8 @@ interface Terra {
 }
 
 export default function MapaDeTerras() {
-  const route = useRoute();
   const [terras, setTerra] = useState<Terra[]>([]);
   const navigation = useNavigation();
-
-  // console.log(terras.length);
 
   useEffect(() => {
     api.get('terras').then(response => {
@@ -53,6 +49,7 @@ export default function MapaDeTerras() {
   }
 
   function handleNavigateQuiz() {
+    // Verifco se o usuario está logado  antes.   
     navigation.navigate('Login');
   }
 

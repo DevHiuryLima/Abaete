@@ -196,4 +196,29 @@ class UsuarioController extends Controller
             ], 404);
         }
     }
+
+    public function login(Request $request)
+    {
+        $usuario = DB::table('usuarios')->where([
+            ['email', '=', $request->email],
+            ['senha', '=', base64_encode($request->senha)],
+        ])->first();
+        
+        if ($usuario == null){
+            return response()->json([
+                'message'   => 'Login ou senha inválidos!',
+            ], 400);
+        } else {
+            // session()->put('idUsuario', $admin->idUsuario);
+            return response()->json(200);
+        }
+
+    }
+
+    public function logout()
+    {
+        // session()->remove('idAdmin');
+        // return redirect()->to('/');
+        return response()->json(200);
+    }
 }

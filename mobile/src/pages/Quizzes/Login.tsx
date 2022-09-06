@@ -1,9 +1,8 @@
 
 import React, { useState } from 'react';
-import { Image, ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity, Dimensions } from 'react-native';
-import { Feather } from '@expo/vector-icons';
-import { RectButton } from 'react-native-gesture-handler';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 import api from '../../services/api';
 
@@ -13,7 +12,33 @@ export default function Login() {
   const navigation = useNavigation();
 
   async function handlelogin() {
-    alert("Usuario logado");
+    const data = new FormData();
+
+    try {
+      data.append('email', email);
+      data.append('senha', senha);
+
+      // Envia a requisição de maneira direta no axios.
+      // const response = await axios({
+      //   method: 'post',
+      //   url: 'http://10.7.7.50/Projects/Abaete/web/public/api/usuarios/login',
+      //   data: data,
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //   },
+      // })
+
+      // Envia a requisição pelos pseudônimos e após a criação de uma instância do axios.
+      const response = await api.post('usuarios/login', data);
+
+      // const json = await response.data;
+      if(response.status === 200){
+        navigation.navigate('Quiz');
+      }
+      
+    } catch (error) {
+      console.log(error.response);  
+    }
   }
 
   function handleNavigateCreateAccount() {
