@@ -30,14 +30,22 @@ export default function Login() {
 
       // Envia a requisição pelos pseudônimos e após a criação de uma instância do axios.
       const response = await api.post('usuarios/login', data);
+      
 
       // const json = await response.data;
       if(response.status === 200){
+        // AsyncStorage.setItem("TOKEN", response.access_token)
         navigation.navigate('Quiz');
       }
       
     } catch (error) {
-      console.log(error.response);  
+
+      console.log(error);
+      console.log('\n');
+      console.log(error.response);
+      console.log('\n');
+
+      return alert(error.response.data.message);  
     }
   }
 
@@ -78,6 +86,7 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#FFF',
   },
 
   title: {

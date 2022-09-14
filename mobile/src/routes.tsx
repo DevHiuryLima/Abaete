@@ -7,6 +7,7 @@ const { Navigator, Screen } = createNativeStackNavigator();
 
 import Home from './pages/Home/Home';
 import Header from './components/Header';
+import HeaderQuiz from './components/HeaderQuiz';
 import MapaDeTerras from './pages/Terras/MapaDeTerras';
 import ListarTerra from './pages/Terras/ListarTerra';
 import CriarConta from './pages/Quizzes/CriarConta';
@@ -56,7 +57,7 @@ export default function Routes() {
           component={Quiz}
           options={{
             headerShown: true,
-            header: () => <Header title='Quiz' />
+            header: () => <HeaderQuiz title='Quiz' />
           }}
         />
       </Navigator>

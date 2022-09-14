@@ -43,11 +43,18 @@ export default function CriarUsuario() {
       // const json = await response.data;
 
       if(response.status === 200){
+
+        // AsyncStorage.setItem("TOKEN", response.data.access_token)
         navigation.navigate('Quiz');
       }
       // console.log(response);
     } catch (error) {
+      console.log(error);
+      console.log('\n');
       console.log(error.response);
+      console.log('\n');
+
+      return alert(error.response.data.message);
     }
   }
 
@@ -135,6 +142,7 @@ export default function CriarUsuario() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#FFF',
   },
 
   title: {

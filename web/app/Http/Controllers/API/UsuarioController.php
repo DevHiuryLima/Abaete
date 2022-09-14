@@ -82,7 +82,7 @@ class UsuarioController extends Controller
             }
         } else {
             return response()->json([
-                'message' => 'Esse Usuario já está cadastrado!',
+                'message' => 'Esse Usuário já está cadastrado!',
             ], 400);
         }
     }

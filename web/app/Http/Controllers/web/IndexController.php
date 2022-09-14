@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\web;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -37,6 +38,17 @@ class IndexController extends Controller
             session()->put('idAdmin', $admin->idAdmin);
             return response()->json(200);
         }
+
+        // $credentials = $request->only('email', 'senha');
+
+        // // Vai fazer uma tentativa de login
+        // if (Auth::attempt($credentials)) {
+
+        // } else {
+        //     return response()->json([
+        //         'message'   => 'Login ou senha inválidos!',
+        //     ], 400);
+        // }
 
     }
 

@@ -1,10 +1,11 @@
 import React, { useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 import mapMarker from '../../images/MapaDeTerras/map-marker.png';
+import opacityBlackQuizIcon from '../../images/Quiz/opacityBlackQuizIcon.png';
 import api from '../../services/api';
 
 interface Terra {
@@ -93,7 +94,8 @@ export default function MapaDeTerras() {
           <Text style={styles.footerText}>Teste seu conhecimento</Text>
 
           <TouchableOpacity style={styles.redirectQuizButton} onPress={handleNavigateQuiz}>
-            <Feather name='arrow-right' color='rgba(0, 0, 0, 0.6)' />
+            {/* <Feather name='arrow-right' color='rgba(0, 0, 0, 0.6)' /> */}
+            <Image source={opacityBlackQuizIcon} style={styles.quizIcon}/>
           </TouchableOpacity>
       </View>
     </View>
@@ -157,11 +159,17 @@ const styles = StyleSheet.create({
   redirectQuizButton: {
     width: 56,
     height: 56,
-    backgroundColor: '#34CB79',
-    // backgroundColor: '#FFD666',
+    // backgroundColor: '#00000099', // Preto tranparente Padrão
+    backgroundColor: '#34CB79', // Verde Padrão
+    // backgroundColor: '#FFD666', // Amrelo padrão
     borderRadius: 20,
 
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  quizIcon: {
+    width: 18,
+    height: 18,
   },
 });
