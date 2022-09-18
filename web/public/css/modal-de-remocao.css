@@ -1,47 +1,42 @@
+@import url('./global.css');
+
 .modalBackground {
     width: 100vw;
     height: 100vh;
 
-    /* overflow-x: hidden;
-    overflow-y: auto; */
     display: flex;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1050;
-    /* display: none; */
+    
     overflow: hidden;
     outline: 0;
     transition: none;
 
-    background-color: rgba(200, 200, 200);
+    background-color: var(--cor-de-fundo-primario);
 
     justify-content: center;
     align-items: center;
-    
-    color: #4D6F80;
-
-    /* width: 100vw;
-    height: 100vh;
-    background-color: rgba(200, 200, 200);
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center; */
 }
   
 .modalContainer {
     width: 500px;
     height: 500px;
     border-radius: 12px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: var(--branco-primario);
+    box-shadow: var(--cor-da-sombra) 0px 5px 15px;
     display: flex;
     flex-direction: column;
     padding: 25px;
 }
 
-.modalContainer .title h1 { display: inline-block; text-align: center; margin-top: 10px; }
+.modalContainer .title h1 {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+    color: var(--cor-do-texto);
+}
 
 .titleCloseBtn { display: flex; justify-content: flex-end; }
 
@@ -59,7 +54,7 @@
     align-items: center;
     font-size: 1.7rem;
     text-align: center;
-    color: #facb4a;
+    color: var(--amarelo-claro);
 }
 
 .modalContainer .footer {
@@ -74,12 +69,19 @@
     height: 45px;
     margin: 10px;
     border: none;
-    background-color: #34CB79;
-    color: white;
+    background-color: var(--verde-claro);
+    color: var(--branco-primario);
     border-radius: 8px;
     font-size: 20px;
     cursor: pointer;
 }
-.modalContainer > .footer > button > a { color: white; text-decoration: none; }
 
-#cancelBtn { background-color: #ff4a4a; }
+.modalContainer .footer button:hover {
+    background-color: var(--verde-escuro);
+}
+
+.modalContainer > .footer > button > a { color: var(--branco-primario); text-decoration: none; }
+
+#cancelBtn { background-color: var(--vermelho-claro); }
+
+#cancelBtn:hover { background-color: var(--vermelho-escuro); }

@@ -1,3 +1,5 @@
+@import url('./global.css');
+
 .container {
     max-width: 1000px;
     margin-left: auto;
@@ -10,11 +12,11 @@
     font-size: 26px;
     margin: 20px 0;
     text-align: center;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--preto-primario);
 }
 small { font-size: 0.5em; }
 
-ul { color: rgba(0, 0, 0, 0.6); }
+ul { color: var(--preto-primario); }
 
 li {
     border-radius: 3px;
@@ -23,15 +25,16 @@ li {
     justify-content: space-between;
     margin-bottom: 25px;
 }
+
 .table-header {
-    /* background-color: #95A5A6; */
-    background: linear-gradient(329.54deg, #34CB79 0%, #2FB86E 100%);
+    background: linear-gradient(329.54deg, var(--verde-claro) 0%, var(--verde-escuro) 100%);
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.03em;
-    color: #FFF;
+    color: var(--branco-primario);
 }
-.table-row { background-color: #ffffff; box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1); }
+
+.table-row { background-color: var(--branco-primario); box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1); }
 
 .col-1 { flex-basis: 10%; }
 
@@ -65,50 +68,50 @@ li {
     padding: 2px;
     width: 30px;
     height: 30px;
-    background-color: #facb4a;
+    background-color: var(--amarelo-claro);
     border: none;
     border-radius: 2px;
     cursor: pointer;
     margin: 2px;
 }
   
-#editar-admin:hover { background: #ffd666; }
+#editar-admin:hover { background-color: var(--amarelo-escuro); }
 
 #remover-admin {
     padding: 2px;
     width: 30px;
     height: 30px;
-    background-color: #ff4a4a;
+    background-color: var(--vermelho-claro);
     border: none;
     border-radius: 2px;
     cursor: pointer;
     margin: 2px;
 }
   
-#remover-admin:hover { background: #ff6767; }
+#remover-admin:hover { background-color: var(--vermelho-escuro); }
 
 #editar-quiz {
     padding: 2px;
     width: 30px;
     height: 30px;
-    background-color: #facb4a;
+    background-color: var(--amarelo-claro);
     border: none;
     border-radius: 2px;
     cursor: pointer;
     margin: 2px;
 }
   
-#editar-quiz:hover { background: #ffd666; }
+#editar-quiz:hover { background-color: var(--amarelo-escuro); }
 
 #remover-quiz {
     padding: 2px;
     width: 30px;
     height: 30px;
-    background-color: #ff4a4a;
+    background-color: var(--vermelho-claro);
     border: none;
     border-radius: 2px;
     cursor: pointer;
     margin: 2px;
 }
   
-#remover-quiz:hover { background: #ff6767; }
+#remover-quiz:hover { background-color: var(--vermelho-escuro); }

@@ -1,9 +1,38 @@
 :root {
-    --primary-color: #34CB79;
-    --title-color: #322153;
-    --text-color: #6C6C80;
-    /* --text-color: #5C8599; */
-    /* --text-color: #00000099; */
+    --cor-de-fundo-primario: #ebf2f5;
+
+    --branco-primario: #FFFFFF;
+
+    --verde-claro: #34CB79;
+    --verde-escuro: #2FB86E;
+
+    /*
+    Antes 
+    --amarelo-primario: #facb4a;
+    --amarelo-primario-hover: #ffd666;
+    */
+    --amarelo-claro: #ffd666;
+    --amarelo-escuro: #ffd153;
+
+    /*
+    Antes
+    --vermelho-primario: #ff4a4a;
+    --vermelho-primario-hover: #ff6767;
+    */
+    --vermelho-claro: #ff4a4a;
+    --vermelho-escuro: #ff4040;
+
+    --preto-primario: #00000099; /* Mesmo que: rgba(0, 0, 0, 0.6); */
+
+    --cor-de-fundo-primario: #ebf2f5;
+    --cor-do-fundo-secundario: #F5F8FA;
+    /* --cor-do-titulo: #4D6F80; */
+    --cor-do-texto: #5C8599;
+    --cor-da-borda-primario: #D3E2E5;
+    --cor-da-borda-secundario: #96D2F0;
+    --cor-da-legenda: #8FA7B3;
+
+    --cor-da-sombra: #00000059; /* Mesmo que: rgba(0, 0, 0, 0.35); */
 }
 
 * {
@@ -13,9 +42,9 @@
 }
 
 body {
-    color: #fff;
+    color: var(--branco-primario);
     -webkit-font-smoothing: antialiased;
-    background: #ebf2f5;
+    background: var(--cor-de-fundo-primario);
 }
 
 body, input, button, textarea {

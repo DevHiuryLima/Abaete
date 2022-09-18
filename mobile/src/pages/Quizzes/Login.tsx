@@ -39,13 +39,19 @@ export default function Login() {
       }
       
     } catch (error) {
-
+            
       console.log(error);
       console.log('\n');
       console.log(error.response);
       console.log('\n');
+      console.log(error.response._response);
 
-      return alert(error.response.data.message);  
+      if(error.response.status === 0){
+        return alert('Desculpe, ocorreu um erro de conexão no login, tente novamente mais tarde.');
+      } else {
+        return alert(error.response.data.message);
+      }
+
     }
   }
 

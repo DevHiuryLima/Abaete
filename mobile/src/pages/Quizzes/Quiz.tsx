@@ -7,6 +7,8 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import api from '../../services/api';
 import homeBackground from '../../images/Home/home-background.png';
+import levelUpQuizIcon from '../../images/Quiz/levelUpQuizIcon.png';
+import level from '../../images/Quiz/level.png';
 
 export default function Quiz() {
   const navigation = useNavigation();
@@ -34,7 +36,7 @@ export default function Quiz() {
 
           <View style={styles.fieldColumn}>
             <Text style={styles.label}>Hiury Lima</Text>
-            <Text style={styles.label}>Pontos: 80</Text>
+            <Text style={styles.label}><Image source={level} style={styles.level}/> Pontos: 80</Text>
           </View>
         </View>
       </View>
@@ -47,70 +49,94 @@ export default function Quiz() {
         </View>
 
         <View style={styles.countdownContainer}>
-          {/* Horas */}
           <View style={styles.CountdownCardsGroup}>
+            <Text style={styles.CountdownCard}>2</Text>
+          </View>
+
+          <View style={styles.lineVertical}/>
+
+          <View style={styles.CountdownCardsGroup}>
+            <Text style={styles.CountdownCard}>4</Text>
+          </View>
+
+          <Text style={styles.CountdownSeparator}>:</Text>
+
+          <View style={styles.CountdownCardsGroup}>
+            <Text style={styles.CountdownCard}>0</Text>
+          </View>
+
+          <View style={styles.lineVertical}/>
+
+          <View style={styles.CountdownCardsGroup}>
+            <Text style={styles.CountdownCard}>0</Text>
+          </View>
+
+
+
+          {/* <View>
+            <Text>Horas</Text>
+          </View> */}
+
+          {/* Daqui para baixo tudo é funcional  */}
+          {/* Horas */}
+          {/* <View style={styles.CountdownCardsGroup}>
             <Text style={styles.CountdownCard}>2</Text>
             <View style={styles.lineVertical}/>
             <Text style={styles.CountdownCard}>4</Text>
           </View>
+          <View>
+            <Text>Horas</Text>
+          </View> */}
           
-          <Text style={styles.CountdownSeparator}>:</Text>
+          {/* <Text style={styles.CountdownSeparator}>:</Text> */}
 
           {/* Minutos */}
-          <View style={styles.CountdownCardsGroup}>
+          {/* <View style={styles.CountdownCardsGroup}>
             <Text style={styles.CountdownCard}>0</Text>
             <View style={styles.lineVertical}/>
             <Text style={styles.CountdownCard}>0</Text>
-          </View>
+          </View> */}
 
-          <Text style={styles.CountdownSeparator}>:</Text>
+          {/* <Text style={styles.CountdownSeparator}>:</Text> */}
 
           {/* Segundos */}
-          <View style={styles.CountdownCardsGroup}>
+          {/* <View style={styles.CountdownCardsGroup}>
             <Text style={styles.CountdownCard}>0</Text>
             <View style={styles.lineVertical}/>
             <Text style={styles.CountdownCard}>0</Text>
+          </View> */}
+        </View>
+
+        <View style={styles.containerInformacoes}>
+          <View>
+            <Text style={styles.containerInformacoesText}>Horas</Text>
+          </View>
+          <View>
+            <Text style={styles.containerInformacoesText}>Minutos</Text>
           </View>
         </View>
+
       </View>
 
 
       {/* ChallengeBox */}
       <View style={styles.challengeBox}>
-        {/* <View style={styles.challengeActive}>
-          <View style={styles.challengeActiveHeader}><Text>Ganhe 10 pontos</Text></View>
-
-          <View style={styles.challengeActiveMain}>
-            
-            <Text>
-              Falta um icone
-            </Text>
-            <Text>
-              Novo Desafio
-            </Text>
-            <View style={styles.challengeDescription}>
-              <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
-            </View>
-          </View>
-
-
-          <View style={styles.challengeActiveFooter}>
-            <TouchableOpacity style={styles.challengeButton} onPress={}>
-              <Feather name='arrow-right' color='rgba(0, 0, 0, 0.6)' />
-            </TouchableOpacity>
-          </View>
-        </View> */}
-
         <View style={styles.challengeNotActive}>
-          <Text style={styles.notActiveTitle}>
-            Aguarde um ciclo para receber uma questão
-          </Text>
+          <View style={styles.notActiveTitle}>
+            <Text>
+              Aguarde um ciclo para receber uma questão
+            </Text>
+          </View>
 
-          <Feather name='arrow-right' color='rgba(0, 0, 0, 0.6)' />
+          <View style={styles.levelUpQuizIcon}>
+            <Image source={levelUpQuizIcon}/>
+          </View>
 
-          <Text style={styles.notActiveSubTitle}>
-            Ganhe pontos respondendo as questões corretamente.
-          </Text>
+          <View style={styles.notActiveSubTitle}>
+            <Text>
+              Ganhe pontos respondendo as questões corretamente.
+            </Text>
+          </View>
         </View>
 
       </View>
@@ -124,6 +150,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
 
+
+  // Perfil
   containerPerfil: {
     flex: 1,
     display: 'flex',
@@ -156,9 +184,11 @@ const styles = StyleSheet.create({
     width: 65,
     height: 65,
     resizeMode: 'cover',
+    // backgroundColor: '#F2F3F5',
+
     borderRadius: 20,
-    // backgroundColor: '#00FF00',
-    backgroundColor: '#F2F3F5',
+    borderWidth: 1,
+    borderColor: '#F2F3F5',
   },
 
   label: {
@@ -167,13 +197,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
-  
-  // Linha Horizontal
-  lineHorizontal: {
-    borderBottomColor: '#D3E2E6',
-    borderBottomWidth: 1,
-    height: 1,
+  level: {
+    width: 12,
+    height: 12,
   },
+
+
+
 
 
   // CountDown
@@ -187,12 +217,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    // width: Dimensions.get('window').width,
   },
 
   title: {
     fontFamily: 'Nunito_600SemiBold',
     fontSize: 28,
     color: '#000',
+
+
+    // Linha Linha Horizontal
+    borderBottomColor: '#F2F3F5',
+    borderBottomWidth: 1,
+  },
+
+  // CountDown -> Linha Horizontal
+  lineHorizontal: {
+    borderBottomColor: '#F2F3F5',
+    borderBottomWidth: 1,
+    height: 1,
   },
 
   countdownContainer: {
@@ -203,45 +246,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     fontFamily: 'Nunito_600SemiBold', //'Rajdhani',
     margin: 8,
-
-    // Feito com base no meu projeto em reacJS.
-    // display: 'flex',
-    // alignItems: 'center',
-    // fontFamily: 'Nunito_600SemiBold', //'Rajdhani',
-    // fontWeight: 600,
-    // color: '#2E384D',
   },
 
   CountdownCardsGroup: {
     // Feito com base no projeto do @sunderhus.
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    flexDirection: 'column', //Antes era 'row'.
+    textAlign: 'center', // Isso não tinha
+    alignItems: 'center', // Isso não tinha
+    // justifyContent: 'space-evenly', // Comenteei esse
     backgroundColor: '#F2F3F5',
     boxShadow: '#000',
     borderRadius: 5,
-
-    // Feito com base no meu projeto em reacJS.
-    // flex: 1,
-    // display: 'flex',
-    // alignItems: 'center',
-    // justifyContent: 'space-evenly',
-
-    // background: '#FFF',
-    // boxShadow: '0 0 60 rgba(0, 0, 0, 0.05)',
-    // borderRadius: 5,
-    // fontSize: 8.5,
-    // textAlign: 'center',
   },
 
   CountdownCard: {
     // Feito com base no projeto do @sunderhus.
     fontSize: 82,
     color: '#000',
-
-    // Feito com base no meu projeto em reacJS.
-    // flex: 1,
-    // borderRight: '1 solid #f0f1f3',
   },
 
   lineVertical: {
@@ -258,6 +280,23 @@ const styles = StyleSheet.create({
     color: '#000',
   },
 
+  containerInformacoes: {
+    flex: 1,
+    flexDirection: 'row',
+    width: Dimensions.get('window').width,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    textAlign: 'center',
+  },
+
+  containerInformacoesText: {
+    // Linha Linha Horizontal
+    borderBottomColor: '#F2F3F5',
+    borderBottomWidth: 1,
+  },
+
+
+
 
   // ChallengeBox
   challengeBox: {
@@ -267,12 +306,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginLeft: 8,
     // backgroundColor: '#F2F3F5',
-    // borderWidth: 2,
-    // borderStyle: 'solid',
-    // borderColor: '#F2F3F5',
+    borderWidth: 1,
     borderRadius: 5,
-    boxShadow: '#000',
-    padding: 10,
+    borderColor: '#F2F3F5',
+    paddingLeft: 10,
+    paddingRight: 10,
+    flexDirection: 'row',
   },
 
   challengeActive: {
@@ -310,16 +349,24 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito_600SemiBold',
     fontSize: 24,
     marginBottom: 16,
-    flexDirection: 'row',
+    // flexDirection: 'row',
     color: '#000',
   },
 
+  levelUpQuizIcon: {
+    // position: 'absolute',
+    width: 120,
+    height: 120,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   notActiveSubTitle: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     alignItems: 'center',
     textAlign: 'center',
-    // maxWidth: 100,
+    // maxWidth: 70,
     marginTop: 16,
-    color: '#000',
+    // color: '#000',
   },
 });
