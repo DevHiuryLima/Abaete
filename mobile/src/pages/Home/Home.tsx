@@ -36,7 +36,7 @@ export default function Home() {
             <TouchableOpacity style={styles.button} onPress={handleNavigateToMapaDeTerras}>
               <View style={styles.buttonIcon}>
                 <Text>
-                  <Feather name="arrow-right" color='rgba(0, 0, 0, 0.6)' />
+                  <Feather name="arrow-right" color='#00000099' />
                 </Text>
               </View>
               <Text style={styles.buttonText}>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: '#FFF',
+    color: '#FFFFFF',
     fontSize: 32,
     fontFamily: 'Nunito_700Bold',
     maxWidth: 260,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
 
   description: {
-    color: '#FFF',
+    color: '#FFFFFF',
     fontSize: 16,
     marginTop: 26,
     fontFamily: 'Nunito_600SemiBold',
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     textAlign: 'center',
-    color: 'rgba(0, 0, 0, 0.6)', // Mudar a cor da letra para a mesma cor do icone de seta.
+    color: '#00000099',
     fontFamily: 'Nunito_600SemiBold',
     fontSize: 16,
   }

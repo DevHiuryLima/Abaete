@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
@@ -60,7 +60,7 @@ export default function Login() {
   }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={{ padding: 24 }}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>Faça Login</Text>
        
        <Text style={styles.label}>Email*</Text>
@@ -92,35 +92,37 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: '#FFFFFF',
+    padding: 15,
   },
 
   title: {
-    color: '#5c8599',
+    color: '#5C8599',
     fontSize: 24,
     fontFamily: 'Nunito_700Bold',
     marginBottom: 32,
     paddingBottom: 24,
     borderBottomWidth: 0.8,
-    borderBottomColor: '#D3E2E6'
+    borderBottomColor: '#D3E2E5',
   },
 
   label: {
-    color: '#8fa7b3',
+    color: '#8FA7B3',
     fontFamily: 'Nunito_600SemiBold',
     marginBottom: 8,
   },
 
   input: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     borderWidth: 1.4,
-    borderColor: '#d3e2e6',
+    borderColor: '#D3E2E5',
     borderRadius: 20,
     height: 56,
     paddingVertical: 18,
     paddingHorizontal: 24,
     marginBottom: 16,
     textAlignVertical: 'top',
+    color: '#5C8599',
   },
 
   loginButton: {
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
   loginButtonText: {
     fontFamily: 'Nunito_800ExtraBold',
     fontSize: 16,
-    color: '#FFF',
+    color: '#FFFFFF',
   },
 
   createAccountButton: {
@@ -150,8 +152,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     fontFamily: 'Nunito_800ExtraBold',
     fontSize: 16,
-    color: '#8fa7b3',
+    color: '#8FA7B3',
   }
-
-  
 })

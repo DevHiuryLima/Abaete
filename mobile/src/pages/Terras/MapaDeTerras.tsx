@@ -105,7 +105,7 @@ export default function MapaDeTerras() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#EBF2F5',
     // alignItems: 'center',
     justifyContent: 'center',
     // width: Dimensions.get('window').width,
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     width: 160,
     height: 46,
     paddingHorizontal: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backgroundColor: '#ffffffcc',
     borderRadius: 16,
     justifyContent: 'center',
   },
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     right: 24,
     bottom: 32,
 
-    backgroundColor: '#FFF',
+    backgroundColor: '#FFFFFF',
     borderRadius: 20,
     height: 56,
     paddingLeft: 24,
@@ -153,15 +153,13 @@ const styles = StyleSheet.create({
 
   footerText: {
     fontFamily: 'Nunito_700Bold',
-    color: '#5C8599',
+    color: '#00000099',
   },
 
   redirectQuizButton: {
     width: 56,
     height: 56,
-    // backgroundColor: '#00000099', // Preto tranparente Padrão
-    backgroundColor: '#34CB79', // Verde Padrão
-    // backgroundColor: '#FFD666', // Amrelo padrão
+    backgroundColor: '#34CB79',
     borderRadius: 20,
 
     justifyContent: 'center',

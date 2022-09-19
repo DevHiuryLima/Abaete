@@ -149,11 +149,11 @@ export default function CriarUsuario() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: '#FFFFFF',
   },
 
   title: {
-    color: '#5c8599',
+    color: '#5C8599',
     fontSize: 24,
     fontFamily: 'Nunito_700Bold',
     marginBottom: 32,
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    color: '#8fa7b3',
+    color: '#8FA7B3',
     fontFamily: 'Nunito_600SemiBold',
     marginBottom: 8,
   },
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
 
   uploadButton: {
     // flex: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    backgroundColor: '#F5F8FA',
     borderStyle: 'dashed',
     borderColor: '#96D2F0',
     borderWidth: 1.4,
@@ -201,9 +201,9 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     borderWidth: 1.4,
-    borderColor: '#d3e2e6',
+    borderColor: '#D3E2E5',
     borderRadius: 20,
     height: 56,
     paddingVertical: 18,
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
   nextButtonText: {
     fontFamily: 'Nunito_800ExtraBold',
     fontSize: 16,
-    color: '#FFF',
+    color: '#FFFFFF',
   },
 
   loginButton: {
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     fontFamily: 'Nunito_800ExtraBold',
     fontSize: 16,
-    color: '#8fa7b3',
+    color: '#8FA7B3',
   }
 
   

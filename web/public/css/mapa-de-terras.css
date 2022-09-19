@@ -91,7 +91,7 @@
 #page-map .criar-terra:hover { background-color: var(--verde-escuro); }
 
 #page-map .map-popup .leaflet-popup-content-wrapper {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--cor-popup-marcacao);
     border-radius: 20px;
     box-shadow: none;
 }

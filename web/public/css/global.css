@@ -1,6 +1,4 @@
 :root {
-    --cor-de-fundo-primario: #ebf2f5;
-
     --branco-primario: #FFFFFF;
 
     --verde-claro: #34CB79;
@@ -11,20 +9,20 @@
     --amarelo-primario: #facb4a;
     --amarelo-primario-hover: #ffd666;
     */
-    --amarelo-claro: #ffd666;
-    --amarelo-escuro: #ffd153;
+    --amarelo-claro: #FFD666;
+    --amarelo-escuro: #FFD153;
 
     /*
     Antes
     --vermelho-primario: #ff4a4a;
     --vermelho-primario-hover: #ff6767;
     */
-    --vermelho-claro: #ff4a4a;
-    --vermelho-escuro: #ff4040;
+    --vermelho-claro: #FF4A4A;
+    --vermelho-escuro: #FF4040;
 
     --preto-primario: #00000099; /* Mesmo que: rgba(0, 0, 0, 0.6); */
 
-    --cor-de-fundo-primario: #ebf2f5;
+    --cor-de-fundo-primario: #EBF2F5;
     --cor-do-fundo-secundario: #F5F8FA;
     /* --cor-do-titulo: #4D6F80; */
     --cor-do-texto: #5C8599;
@@ -33,6 +31,8 @@
     --cor-da-legenda: #8FA7B3;
 
     --cor-da-sombra: #00000059; /* Mesmo que: rgba(0, 0, 0, 0.35); */
+
+    --cor-popup-marcacao: #ffffffcc; /* Mesmo que: rgba(255, 255, 255, 0.8); */
 }
 
 * {
