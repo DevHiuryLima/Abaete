@@ -63,7 +63,7 @@ export default function Login() {
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Faça Login</Text>
        
-       <Text style={styles.label}>Email*</Text>
+       <Text style={styles.label}>E-mail*</Text>
        <TextInput
           style={styles.input}
           value={email}

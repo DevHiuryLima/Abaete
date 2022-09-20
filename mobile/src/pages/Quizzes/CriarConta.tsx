@@ -10,11 +10,24 @@ import axios from 'axios';
 export default function CriarUsuario() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
+  const [confirmarEmail, setConfirmarEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [confirmarSenha, setConfirmarSenha] = useState('');
   const [image, setImage] = useState('');
   const navigation = useNavigation();
 
   async function handleCreateUser() {
+
+    if(!(email == confirmarEmail)){
+      return alert('Os campos email e confirmar email devem conter valores iguais.')
+    }
+
+
+    if(!(senha == confirmarSenha)){
+      return alert('Os campos senha e confirmar senha devem conter valores iguais.')
+    }
+
+
     const data = new FormData();
     
     try {
@@ -22,10 +35,12 @@ export default function CriarUsuario() {
       data.append('imagem', {
         type: 'image/jpg',
         uri: image,
-        name: 'asdfas'
+        name: 'perfil-' + nome,
       } as any);
       data.append('email', email);
+      data.append('confirmarEmail', confirmarEmail);
       data.append('senha', senha);
+      data.append('confirmarSenha', confirmarSenha);
 
       // Envia a requisição de maneira direta no axios.
       // const response = await axios({
@@ -50,14 +65,26 @@ export default function CriarUsuario() {
       // console.log(response);
     } catch (error) {
 
-      console.log(error);
-      console.log('\n');
-      console.log(error.response);
-      console.log('\n');
-      console.log(error.response._response);
+      // console.log(error);
+      // console.log('\n');
+      // console.log(error.response);
+      // console.log('\n');
+      // console.log(error.response._response);
 
       if(error.response.status === 0){
         return alert('Desculpe, ocorreu um erro de conexão no login, tente novamente mais tarde.');
+
+      } else if(error.response.status === 422){
+        // console.log(error.response.data);
+
+        // var errors
+        Object.keys(error.response.data).forEach(function(item){
+
+          return alert(error.response.data[item]);
+
+          // errors = error.response.data[item] + '\n';
+          
+         });
       } else {
         return alert(error.response.data.message);
       }
@@ -120,11 +147,18 @@ export default function CriarUsuario() {
           onChangeText={setNome}
        />
        
-       <Text style={styles.label}>Email*</Text>
+       <Text style={styles.label}>E-mail*</Text>
        <TextInput
           style={styles.input}
           value={email}
           onChangeText={setEmail}
+       />
+
+        <Text style={styles.label}>Confirmar e-mail*</Text>
+       <TextInput
+          style={styles.input}
+          value={confirmarEmail}
+          onChangeText={setConfirmarEmail}
        />
        
        <Text style={styles.label}>Senha*</Text>
@@ -132,6 +166,16 @@ export default function CriarUsuario() {
           style={styles.input}
           value={senha}
           onChangeText={setSenha}
+          secureTextEntry={true}
+          // maxLength={}
+          
+       />
+
+       <Text style={styles.label}>Confirmar senha*</Text>
+       <TextInput
+          style={styles.input}
+          value={confirmarSenha}
+          onChangeText={setConfirmarSenha}
           secureTextEntry={true}
        />
 

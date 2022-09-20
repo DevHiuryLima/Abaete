@@ -43,13 +43,14 @@ class UsuarioController extends Controller
         $validator = Validator::make($request->all(), [
             'nome' => 'required',
             'imagem' => 'required',
-            'email' => 'required|email',
-            'senha' => 'required',
-            // 'senha' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'email' => 'required|email|required_with:confirmarEmail|same:confirmarEmail',
+            'confirmarEmail' => 'required',
+            'senha' => 'required_with:confirmarSenha|same:confirmarSenha',
+            'confirmarSenha' => 'required',
         ]);
 
         if ($validator->stopOnFirstFailure()->fails()) {
-            return response()->json($validator->messages(), 400);
+            return response()->json($validator->messages(), 422);
         }
 
         $usuarios = DB::table('usuarios')->where([
