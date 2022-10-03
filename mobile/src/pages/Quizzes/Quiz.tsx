@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Image, ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import { Image, ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity, Dimensions, TextInputState } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation, useRoute } from '@react-navigation/native';
+// import { CheckBox } from 'react-native-elements'
 
 import * as ImagePicker from 'expo-image-picker';
 import api from '../../services/api';
-import homeBackground from '../../images/Home/home-background.png';
+import homeBackground from '../../images/Quiz/perfil.jpg';
+import lightSeaBlueRankingIcon from '../../images/Quiz/lightSeaBlueRankingIcon.png';
 import levelUpQuizIcon from '../../images/Quiz/levelUpQuizIcon.png';
 import level from '../../images/Quiz/level.png';
 
@@ -24,6 +26,10 @@ export default function Quiz() {
     navigation.navigate('Login');
   }
 
+  function handleNavigateRanking() {
+    navigation.navigate('Ranking');
+  }
+
   return (
     <ScrollView style={styles.container}>
 
@@ -38,12 +44,20 @@ export default function Quiz() {
             <Text style={styles.label}>Hiury Lima</Text>
             <Text style={styles.label}><Image source={level} style={styles.level}/> Pontos: 80</Text>
           </View>
+
+          <TouchableOpacity style={styles.fieldColumn} onPress={handleNavigateRanking}>
+            <Image
+              key={'CN2R98VUT389UUX0U928URKDXXEC09I212U83Y47Q'} 
+              style={styles.imageRanking} 
+              source={lightSeaBlueRankingIcon} />
+              <Text style={styles.labelRanking} >ver ranking</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
       {/* <View style={styles.lineHorizontal} /> */}
 
-      <View style={styles.Countdown}>
+      {/* <View style={styles.Countdown}>
         <View style={styles.CountdownContainerTitle}>
           <Text style={styles.title}>Tempo restante</Text>
         </View>
@@ -70,41 +84,6 @@ export default function Quiz() {
           <View style={styles.CountdownCardsGroup}>
             <Text style={styles.CountdownCard}>0</Text>
           </View>
-
-
-
-          {/* <View>
-            <Text>Horas</Text>
-          </View> */}
-
-          {/* Daqui para baixo tudo é funcional  */}
-          {/* Horas */}
-          {/* <View style={styles.CountdownCardsGroup}>
-            <Text style={styles.CountdownCard}>2</Text>
-            <View style={styles.lineVertical}/>
-            <Text style={styles.CountdownCard}>4</Text>
-          </View>
-          <View>
-            <Text>Horas</Text>
-          </View> */}
-          
-          {/* <Text style={styles.CountdownSeparator}>:</Text> */}
-
-          {/* Minutos */}
-          {/* <View style={styles.CountdownCardsGroup}>
-            <Text style={styles.CountdownCard}>0</Text>
-            <View style={styles.lineVertical}/>
-            <Text style={styles.CountdownCard}>0</Text>
-          </View> */}
-
-          {/* <Text style={styles.CountdownSeparator}>:</Text> */}
-
-          {/* Segundos */}
-          {/* <View style={styles.CountdownCardsGroup}>
-            <Text style={styles.CountdownCard}>0</Text>
-            <View style={styles.lineVertical}/>
-            <Text style={styles.CountdownCard}>0</Text>
-          </View> */}
         </View>
 
         <View style={styles.containerInformacoes}>
@@ -116,11 +95,11 @@ export default function Quiz() {
           </View>
         </View>
 
-      </View>
+      </View> */}
 
 
       {/* ChallengeBox */}
-      <View style={styles.challengeBox}>
+      {/* <View style={styles.challengeBox}>
         <View style={styles.challengeNotActive}>
           <View style={styles.notActiveTitle}>
             <Text>
@@ -139,6 +118,27 @@ export default function Quiz() {
           </View>
         </View>
 
+      </View> */}
+
+      {/* QUizBox */}
+      <View style={styles.quizBox}>
+        <View style={styles.quizBoxHeader}>
+          <Text style={styles.quizBoxHeaderTitulo}>Nova pergunta!</Text>
+        </View>
+
+        <View style={styles.containerForm}>
+          <Text style={styles.perguntas}>Quantas terras homologadas existe no Goiás?</Text>
+          
+          {/* <Text style={styles.label}>Alternativas</Text> */}
+          <Text style={styles.label}>Alternativa A) 6</Text>
+          <Text style={styles.label}>Alternativa B) 8</Text>
+          <Text style={styles.label}>Alternativa C) 4</Text>
+
+
+          <TouchableOpacity style={styles.loginButton} >
+            <Text style={styles.loginButtonText}>Responder</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );
@@ -200,6 +200,18 @@ const styles = StyleSheet.create({
   level: {
     width: 12,
     height: 12,
+  },
+
+  imageRanking: {
+    width: 55,
+    height: 55,
+    resizeMode: 'cover',
+  },
+
+  labelRanking: {
+    color: '#8fa7b3',
+    fontFamily: 'Nunito_600SemiBold',
+    fontSize: 11,
   },
 
 
@@ -368,5 +380,68 @@ const styles = StyleSheet.create({
     // maxWidth: 70,
     marginTop: 16,
     // color: '#000',
+  },
+
+  // QuizBox
+  quizBox: {
+    flex: 1,
+    marginTop: 16,
+    marginRight: 8,
+    marginBottom: 16,
+    marginLeft: 8,
+    // backgroundColor: '#F2F3F5',
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#F2F3F5',
+    paddingLeft: 10,
+    paddingRight: 10,
+    flexDirection: 'column',
+  },
+
+  quizBoxHeader: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+
+  quizBoxHeaderTitulo: {
+    fontFamily: 'Nunito_600SemiBold',
+    fontSize: 28,
+    color: '#000',
+
+    // Linha Linha Horizontal
+    borderBottomColor: '#F2F3F5',
+    borderBottomWidth: 1,
+  },
+
+  containerForm: {
+    flex: 1,
+    // backgroundColor: '#FFFFFF',
+    padding: 15,
+  },
+
+  perguntas: {
+    textAlign: 'left',
+    fontFamily: 'Nunito_600SemiBold',
+    fontSize: 16,
+    marginBottom: 16,
+    // flexDirection: 'row',
+    color: '#000',
+  },
+
+  loginButton: {
+    backgroundColor: '#34CB79',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 56,
+    marginTop: 32,
+  },
+
+  loginButtonText: {
+    fontFamily: 'Nunito_800ExtraBold',
+    fontSize: 16,
+    color: '#FFFFFF',
   },
 });

@@ -20,4 +20,9 @@ class Usuario extends Model
         'email',
         'senha',
     ];
+
+    public function pontuacao()
+    {
+        return $this->hasOne(PontosDoUsuario::class,'usuario','idUsuario');
+    }
 }

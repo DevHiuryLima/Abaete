@@ -22,4 +22,5 @@ Route::group(['namespace' => 'API', 'as' => 'api.' ], function(){
     Route::apiResource('/terras', 'TerraController');
     Route::apiResource('/usuarios', 'UsuarioController');
     Route::post('/usuarios/login', 'UsuarioController@login');
+    Route::get('/ranking', 'UsuarioController@usuariosPorPontos');
 });

@@ -13,6 +13,7 @@ import ListarTerra from './pages/Terras/ListarTerra';
 import CriarConta from './pages/Quizzes/CriarConta';
 import Login from './pages/Quizzes/Login';
 import Quiz from './pages/Quizzes/Quiz';
+import Ranking from './pages/Quizzes/Ranking';
 
 export default function Routes() {
   return (
@@ -58,6 +59,15 @@ export default function Routes() {
           options={{
             headerShown: true,
             header: () => <HeaderQuiz title='Quiz' />
+          }}
+        />
+        
+        <Screen 
+          name='Ranking' 
+          component={Ranking}
+          options={{
+            headerShown: true,
+            header: () => <Header title='Ranking' />
           }}
         />
       </Navigator>

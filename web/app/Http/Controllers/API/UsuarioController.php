@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\PontosDoUsuario;
 use App\Models\Usuario;
 use Exception;
 use App\Http\Controllers\Controller;
@@ -21,7 +22,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios = Usuario::all();
+        $usuarios = Usuario::with('pontuacao')->get();
 
         if(!$usuarios->count()) {
             return response()->json([
@@ -96,7 +97,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        $usuario = Usuario::find($id);
+        $usuario = Usuario::where('idUsuario', '=', $id)->with('pontuacao')->get();
 
         if(!$usuario) {
             return response()->json([
@@ -221,5 +222,18 @@ class UsuarioController extends Controller
         // session()->remove('idAdmin');
         // return redirect()->to('/');
         return response()->json(200);
+    }
+
+    public function usuariosPorPontos()
+    {
+        $usuarios = PontosDoUsuario::with('usuario')->orderBy('pontos', 'desc')->get();
+
+        if(!$usuarios->count()) {
+            return response()->json([
+                'message'   => 'Usuários não encontrado!',
+            ], 404);
+        }
+
+        return response()->json($usuarios, 200);
     }
 }
