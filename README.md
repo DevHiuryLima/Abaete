@@ -75,7 +75,7 @@ Desenvolver uma sistema com localizações geográficas das terras indígenas na
 - Editor: **[Visual Studio Code][vscode]**
 - Teste de API: **[Insomnia][insomnia]**
 - Ícones: **[Feather Icons][feather_icons]**, **[Font Awesome][font_awesome]**
-- Fontes: **[Ubuntu][font_ubuntu]**, **[Roboto][font_roboto]**
+- Fontes: **[Nunito][font_nunito]**
 
 &#xa0;
 
@@ -164,6 +164,8 @@ Feito por <a href="https://github.com/DevHiuryLima" target="_blank">Hiury Lima</
 [font_roboto]: https://fonts.google.com/specimen/Roboto
 
 [font_ubuntu]: https://fonts.google.com/specimen/Ubuntu
+
+[font_nunito]: https://fonts.google.com/specimen/Nunito
 
 [font_awesome]: https://fontawesome.com/
 
