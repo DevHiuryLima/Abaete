@@ -64,13 +64,28 @@ class UsuarioController extends Controller
                 $usuario = new Usuario();
 
                 $usuario->nome = $request->nome;
-                $usuario->imagem = env('APP_URL') . "/storage/" . $request->file('imagem')->store("imagens-usuarios");
+                // $usuario->imagem = env('APP_URL') . "/storage/" . $request->file('imagem')->store("imagens-usuarios");
+                $usuario->imagem = $request->file('imagem')->store("imagens-usuarios");
                 $usuario->email = $request->email;
                 $usuario->senha = base64_encode($request->senha);
                 $status = $usuario->save();
 
+
                 if($status == true){
-                    return response()->json($usuario, 200);
+                    $pontuacao = new PontosDoUsuario();
+                    $pontuacao->usuario = $usuario->idUsuario;
+                    $pontuacao->pontos = 0;
+                    $status = $pontuacao->save();
+
+                    if($status == true){
+                        return response()->json($usuario, 200);
+                    } else {
+                        $pontuacao->delete();
+                        $usuarios->delete();
+                        return response()->json([
+                            'message'   => 'Ocorreu um erro no cadastro!',
+                        ], 422);
+                    }
                 }else {
                     $usuarios->delete();
                     return response()->json([
@@ -97,7 +112,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        $usuario = Usuario::where('idUsuario', '=', $id)->with('pontuacao')->get();
+        $usuario = Usuario::where('idUsuario', '=', $id)->with('pontuacao')->first();
 
         if(!$usuario) {
             return response()->json([
@@ -136,7 +151,8 @@ class UsuarioController extends Controller
                         $path = str_replace($retirar, '', $usuario->imagem);
                         Storage::delete($path);
                         
-                        $usuario->imagem = env('APP_URL') . "/storage/" . $request->file('imagem')->store("imagens-usuarios");
+                        // $usuario->imagem = env('APP_URL') . "/storage/" . $request->file('imagem')->store("imagens-usuarios");
+                        $usuario->imagem = $request->file('imagem')->store("imagens-usuarios");
                     }
                     $usuario->email = $request->email;
                     $usuario->senha = base64_encode($request->senha);
@@ -212,7 +228,7 @@ class UsuarioController extends Controller
             ], 400);
         } else {
             // session()->put('idUsuario', $admin->idUsuario);
-            return response()->json(200);
+            return response()->json($usuario, 200);
         }
 
     }

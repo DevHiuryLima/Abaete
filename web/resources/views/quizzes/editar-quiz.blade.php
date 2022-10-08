@@ -27,14 +27,21 @@
                             <label for="terra">Terra relacionada</label>
                             <select name="terra" id="terra" required="">
                                 @if($terras != null)
+
                                     <option value="">Selecione uma terra</option>
+                                    <option value="0">Geral</option>
                                     @foreach($terras as $terra)
+                                        <option value="{{$terra->idTerra}}" {{$terra->idTerra == $quiz->terra ? "selected='selected'" : ""}}>{{$terra->nome}}</option>
+
+                                        {{-- 
                                         @if($terra->idTerra == $quiz->terra)
                                         <option value="{{$terra->idTerra}}" selected="">{{$terra->nome}}</option>
                                         @else
                                         <option value="{{$terra->idTerra}}">{{$terra->nome}}</option>
                                         @endif
+                                        --}}
                                     @endforeach
+
                                 @else
                                     <option value="" selected="">Cadastre terras, na página de cadastro de terra</option>
                                 @endif
@@ -42,17 +49,17 @@
                         </div>
                         <div class="field">
                             <label for="tipo">Tipo</label>
-                            <small style="color: #8FA7B3;">O tipo cadastrado é:
+                            {{-- <small style="color: #8FA7B3;">O tipo cadastrado é:
                                 @if($quiz->tipo == 'alternativas')
                                     Alternativas.
                                 @else
                                     Verdadeiro ou Falso.
                                 @endif
-                            </small>
+                            </small> --}}
                             <select name="tipo" id="tipo" required="">
-                                <option value="" selected="">Selecione um tipo de quiz</option>
-                                <option value="alternativas">Alternativas</option>
-                                <option value="verdadeiro_ou_falso">Verdadeiro ou Falso</option>
+                                <option value="" >Selecione um tipo de quiz</option>
+                                <option value="alternativas" {{$quiz->tipo == 'alternativas' ? "selected='selected'" : ""}}>Alternativas</option>
+                                <option value="verdadeiro_ou_falso" {{$quiz->tipo == 'verdadeiro_ou_falso' ? "selected='selected'" : ""}}>Verdadeiro ou Falso</option>
                             </select>
                         </div>
                     </div>
@@ -64,7 +71,17 @@
 
                         <div class="input-block field" id="verdadeiro_ou_falso" style="display: none;">
                             <label for="">Marque se é</label>
+                                <label for="verdadeiro">
+                                    <input type="radio" id="verdadeiro" name="verdadeiro_ou_falso" value="1" {{$quiz->verdadeiro_ou_falso == '1' ? "checked" : ""}}>
+                                    <p class="verdadeiro">Verdadeiro</p>
+                                </label>
 
+                                <label for="falso">
+                                    <input type="radio" id="falso" name="verdadeiro_ou_falso" value="0" {{$quiz->verdadeiro_ou_falso == '0' ? "checked" : ""}}>
+                                    <p class="falso">Falso</p>
+                                </label>
+
+                            {{--
                             @switch($quiz->verdadeiro_ou_falso)
                                 @case('1')
                                 <label for="verdadeiro">
@@ -101,6 +118,7 @@
                                     <p class="falso">Falso</p>
                                 </label>
                             @endswitch
+                            --}}
                         </div>
 
                         <div class="input-block field" id="alternativas" style="display: none;">
@@ -117,6 +135,16 @@
 
                             <label >Marque qual a alternativa correta:</label>
                             <label>
+                                <input type="radio" name="correta" value="A" {{$quiz->alternativa_correta == 'A' ? "checked" : ""}}>
+                                <p class="correta">Alternativa A)</p>
+
+                                <input type="radio" name="correta" value="B" {{$quiz->alternativa_correta == 'B' ? "checked" : ""}}>
+                                <p class="correta">Alternativa B)</p>
+
+                                <input type="radio" name="correta" value="C" {{$quiz->alternativa_correta == 'C' ? "checked" : ""}}>
+                                <p class="correta">Alternativa C)</p>
+
+                                {{--
                                 @switch($quiz->alternativa_correta)
                                     @case('A')
                                     <input type="radio" name="correta" value="A" checked>
@@ -158,6 +186,9 @@
                                     <input type="radio" name="correta" value="C">
                                     <p class="correta">Alternativa C)</p>
                                 @endswitch
+                                --}}
+
+
                             </label>
                         </div>
 
@@ -174,10 +205,5 @@
     </div>
 </div>
 
-<script>
-    const APP_URL = `{{env('APP_URL')}}`;
-
-    const API_URL = `{{env('APP_URL')}}` + `/api`;
-</script>
-<script src="<?=asset("js/criar-quiz.js")?>"></script>
+<script src="<?=asset("js/form-quiz.js")?>"></script>
 @endsection

@@ -1,4 +1,4 @@
-// Ao carregar a página criar as tag option do selec de estado
+// Ao carregar a página cria-se os markers de terra no mapa.
 $(window).on('load', function() {
     jQuery.get(API_URL + '/terras', function(data){        
         

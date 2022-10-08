@@ -57,7 +57,8 @@ class TerraController extends Controller
             for ($i=0; $i < count($request->file('images')); $i++) {
                 $imagens = new ImagensTerra();
                 $imagens->terra = $terra->idTerra;
-                $imagens->url = env('APP_URL') . "/storage/" . $request->file('images')[$i]->store("imagens-terras");
+                // $imagens->url = env('APP_URL') . "/storage/" . $request->file('images')[$i]->store("imagens-terras");
+                $imagens->url = $request->file('images')[$i]->store("imagens-terras");
                 $status = $imagens->save();
             }
 

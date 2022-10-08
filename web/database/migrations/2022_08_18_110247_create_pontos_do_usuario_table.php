@@ -17,6 +17,7 @@ class CreatePontosDoUsuarioTable extends Migration
             $table->id('idPontoUsuario');
             $table->unsignedBigInteger('usuario');
             $table->integer('pontos');
+            $table->timestamps();
 
             $table->foreign('usuario')->references('idUsuario')->on('usuarios')->onDelete('cascade');
         });

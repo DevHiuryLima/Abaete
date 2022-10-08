@@ -1,4 +1,5 @@
 // Cria o marcador no mapa.
+
 // Constantes que vai receber os input:hidden
 const inputLongitude = document.getElementById('longitude');
 const inputLatitude = document.getElementById('latitude');
@@ -10,12 +11,12 @@ function onMapClick(e) {
     inputLatitude.value = e.latlng.lat;
     inputLongitude.value = e.latlng.lng;
 
-    // Se o usuario já tive clicado no map. É removido o marcador antigo
+    // Se o usuário já tive clicado no map. É removido o marcador antigo
     if (theMarker != undefined) {
         map.removeLayer(theMarker);
     };
 
-    // Adiciona o marcador/icone estilizado ao local que o usuario clicou.
+    // Adiciona o marcador/icone estilizado ao local que o usuário clicou.
     theMarker = L.marker([e.latlng.lat, e.latlng.lng], {icon: abaeteMapIcon}).addTo(map);
 }
 

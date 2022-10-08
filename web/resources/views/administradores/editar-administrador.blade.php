@@ -30,12 +30,13 @@
                         </div>
                         <div class="input-block field-group">
                             <div class="field">
-                                <label for="login">Login</label>
-                                <input type="text" name="login" id="login" value="{{$administrador->login}}" required="">
+                                <label for="email">E-mail</label>
+                                <input type="email" name="email" id="email" value="{{$administrador->email}}" required="">
                             </div>
                             <div class="field">
                                 <label for="senha">Senha</label>
-                                <input type="password" name="senha" id="senha" value="{{base64_decode($administrador->senha)}}" required="">
+                                <input type="password" name="senha" id="senha" value="{{base64_decode($administrador->senha)}}" minlength="6" required="">
+                                <small style="color: #8FA7B3;">As senhas devem ter pelo menos seis caracteres.</small>
                             </div>
                         </div>
                     </fieldset>

@@ -32,10 +32,12 @@ export default function Login() {
       const response = await api.post('usuarios/login', data);
       
 
-      // const json = await response.data;
+      const id = await response.data.idUsuario;
+      // console.log(response);
       if(response.status === 200){
         // AsyncStorage.setItem("TOKEN", response.access_token)
-        navigation.navigate('Quiz');
+
+        navigation.navigate('Quiz', { id });
       }
       
     } catch (error) {

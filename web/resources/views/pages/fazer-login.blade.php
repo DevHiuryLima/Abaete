@@ -11,11 +11,11 @@
         @csrf
         <fieldset>
             <div class="margem-abaixo">
-                <input type="text" name="login" id="login" placeholder="Insira seu login" required="">
+                <input type="email" name="email" id="email" placeholder="E-mail" required="">
             </div>
             <div class="margem-abaixo" id="container-senha">
                 <label for="senha" id="entrada-senha">
-                    <input type="password" name="senha" id="senha" placeholder="Senha" required="">
+                    <input type="password" name="senha" id="senha" placeholder="Senha" minlength="6" required="">
                     <ion-icon name="eye" id="btn-senha" onclick="mostrarOcultarSenha()" onmouseenter="mudarTitulo()" role="img" class="md hydrated" aria-label="eye">
                     </ion-icon>
                 </label>
@@ -58,13 +58,34 @@
              data: $(this).serialize(),
              dataType: 'json',
              success: function( response ) {
-                 $('#login').val("");
+                 $('#email').val("");
                  $('#senha').val("");
                  window.location.href = "{{ route('terras' ) }}";
              }
         })
         .fail(function(jqXHR){
             $('#message').removeClass('d-none').html(jqXHR.responseJSON.message);
+
+            
+            // console.log(jqXHR);
+            // console.log(jqXHR.responseJSON);
+            // console.log(jqXHR.responseJSON.status);
+            
+
+            // if (jqXHR.status == 422) {
+            //     let vetor = jqXHR.responseJSON;
+
+            //     vetor.map(element => {
+            //         $('#message').html(`<span>${jqXHR.responseJSON.message}</span><br>`);
+            //     });
+            //     $('#message').removeClass('d-none');
+
+            // } 
+            // else if (jqXHR.responseJSON.message == 'Ocorreu um erro no cadastro!') {
+            //     alert(jqXHR.responseJSON.message)
+            // } else {
+            //     alert('Ocorreu um erro cadastro!\n\n' + jqXHR.responseJSON.message);
+            // }
         });
      })
  });

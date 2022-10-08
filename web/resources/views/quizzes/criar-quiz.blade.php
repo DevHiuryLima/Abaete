@@ -102,10 +102,5 @@
     </div>
 </div>
 
-<script>
-    const APP_URL = `{{env('APP_URL')}}`;
-
-    const API_URL = `{{env('APP_URL')}}` + `/api`;
-</script>
-<script src="<?=asset("js/criar-quiz.js")?>"></script>
+<script src="<?=asset("js/form-quiz.js")?>"></script>
 @endsection

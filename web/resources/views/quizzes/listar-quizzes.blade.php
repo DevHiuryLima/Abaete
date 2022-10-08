@@ -36,18 +36,7 @@
                 <li class="table-row">
                     <div class="col col-1" data-label="Terra relacionada">{{$quiz->terra_relacionada->nome}}</div>
                     <div class="col col-2" data-label="Tipo pergunta">
-                        @switch($quiz->tipo)
-                            @case('alternativas')
-                                Alternativas
-                                @break
-
-                            @case('verdadeiro_ou_falso')
-                                Verdadeiro ou Falso
-                                @break
-
-                            @default
-                                Default case...
-                        @endswitch
+                        {{$quiz->tipo == 'alternativas' ? 'Alternativas' : 'Verdadeiro ou Falso'}}
                     </div>
                     <div class="col col-3" data-label="Pergunta">{{$quiz->pergunta}}</div>
                     <div class="col col-3" data-label="Toda Alternativas">
@@ -64,17 +53,10 @@
                             @break
 
                         @case('verdadeiro_ou_falso')
-
-                            @if($quiz->verdadeiro_ou_falso)
-                                Verdadeiro
-                            @else
-                                Falso
-                            @endif
-
+                            {{$quiz->verdadeiro_ou_falso ? 'Verdadeiro' : 'Falso'}}
                             @break
 
                         @default
-                            Default case...
                     @endswitch
                     </div>
                     <div class="col col-3" data-label="Pontos">{{$quiz->pontos}}</div>

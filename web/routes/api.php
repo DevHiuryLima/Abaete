@@ -22,5 +22,7 @@ Route::group(['namespace' => 'API', 'as' => 'api.' ], function(){
     Route::apiResource('/terras', 'TerraController');
     Route::apiResource('/usuarios', 'UsuarioController');
     Route::post('/usuarios/login', 'UsuarioController@login');
+    Route::apiResource('/quizzes', 'QuizController');
+    Route::get('/quiz/busca', 'QuizController@buscarPerguntaAleatoria');
     Route::get('/ranking', 'UsuarioController@usuariosPorPontos');
 });

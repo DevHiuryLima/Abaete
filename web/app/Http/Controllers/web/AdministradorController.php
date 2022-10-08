@@ -41,7 +41,7 @@ class AdministradorController extends Controller
         if(session()->exists('idAdmin')) {
             $administrador = new Administrador();
             $administrador->nome = $request->nome;
-            $administrador->login = $request->login;
+            $administrador->email = $request->email;
             $administrador->senha = base64_encode($request->senha);
             $status = $administrador->save();
 
@@ -82,7 +82,7 @@ class AdministradorController extends Controller
             if ($administrador != null) {
 
                 $administrador->nome = $request->nome;
-                $administrador->login = $request->login;
+                $administrador->email = $request->email;
                 $administrador->senha = base64_encode($request->senha);
                 $status = $administrador->save();
 

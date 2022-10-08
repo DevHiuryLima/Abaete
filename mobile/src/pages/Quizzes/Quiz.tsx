@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { Image, ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity, Dimensions, TextInputState } from 'react-native';
-import { Feather } from '@expo/vector-icons';
-import { RectButton } from 'react-native-gesture-handler';
+import React, { useEffect, useState } from 'react';
+import { Image, ScrollView, View, StyleSheet, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { CheckBox } from '@rneui/themed/dist/CheckBox/index';
 // import { CheckBox } from 'react-native-elements'
 
 import * as ImagePicker from 'expo-image-picker';
@@ -12,8 +11,132 @@ import lightSeaBlueRankingIcon from '../../images/Quiz/lightSeaBlueRankingIcon.p
 import levelUpQuizIcon from '../../images/Quiz/levelUpQuizIcon.png';
 import level from '../../images/Quiz/level.png';
 
+interface UsuarioRouteParams {
+  id: number;
+}
+
+interface Usuario {
+  idUsuario: number;
+  nome: string;
+  imagem: string;
+  email: string;
+  senha: string;
+  ultima_tentativa: Date;
+  created_at: string;
+  updated_at: string;
+  pontuacao: {
+		idPontoUsuario: number;
+		usuario: number;
+		pontos: number;
+	}
+}
+
+interface Quiz {
+  idQuiz: number;
+  terra: number;
+  tipo: string;
+  pergunta: string;
+  alternativa_a: string; 
+  alternativa_b: string; 
+  alternativa_c: string; 
+  alternativa_correta: string; 
+  verdadeiro_falso: string; 
+  pontos: string; 
+  created_at: string;
+  updated_at: string;
+};
+
 export default function Quiz() {
+  const route = useRoute();
   const navigation = useNavigation();
+
+  // Estados relacionado ao elementos da tela.
+  const [quiz, setQuiz] = useState<Quiz>();
+  const [usuario, setUsuario] = useState<Usuario>();
+  const [contagemRegressivaAtiva, setAtivarContagemRegressiva] = useState<boolean>();
+
+  // Estados relacionado ao elementos da tela -> checkbox.
+  const [alternativa_a, setAlternativa_a] = useState(false);
+  const [alternativa_b, setAlternativa_b] = useState(false);
+  const [alternativa_c, setAlternativa_c] = useState(false);
+  const [opcaoVerdadeiro, setOpcaoVerdadeiro] = useState<boolean>();
+  const [opcaoFalso, setOpcaoFalso] = useState<boolean>();
+  
+  // Estados relacionado com a resposta do usário.
+  const [alternativa_correta, setAlternativaCorreta] = useState<string>();
+  const [verdadeiro_ou_falso, setVerdadeiroOuFalso] = useState<number>();
+
+  const params = route.params as UsuarioRouteParams;
+
+  useEffect(() => {
+    api.get(`usuarios/${params.id}`).then(response => {
+      // console.log(response.data);
+      setUsuario(response.data);
+    }).catch((error) => {
+      console.log(error);
+    })
+  }, [params.id]);
+
+
+  useEffect(() => {
+    api.get(`quiz/busca`).then(response => {
+      setQuiz(response.data);
+    }).catch((error) => {
+      console.log(error);
+      console.log('\n');
+      console.log(error.response);
+      console.log('\n');
+      console.log(error.response._response);
+    })
+  }, []);
+
+  useEffect(() => {
+    // if( (usuario?.ultima_tentativa == null) || tempoMaiorQue24Horas(usuario?.ultima_tentativa) ){
+    if( false ){
+      setAtivarContagemRegressiva(true);
+    } else {
+      setAlternativa_a(false);
+      setAlternativa_b(false);
+      setAlternativa_c(false);
+      setOpcaoVerdadeiro(false);
+      setOpcaoFalso(false);
+      
+      setAtivarContagemRegressiva(false);
+    } 
+  });
+
+  const marcarA = () => {
+    setAlternativa_a(true);
+    setAlternativa_b(false);
+    setAlternativa_c(false);
+    setAlternativaCorreta('A');
+  }
+
+  const marcarB = () => {
+    setAlternativa_a(false);
+    setAlternativa_b(true);
+    setAlternativa_c(false);
+    setAlternativaCorreta('B');
+  }
+
+  const marcarC = () => {
+    setAlternativa_a(false);
+    setAlternativa_b(false);
+    setAlternativa_c(true);
+    setAlternativaCorreta('C');
+  }
+
+  const marcarVerdadeiro = () => {
+    setOpcaoVerdadeiro(true);
+    setOpcaoFalso(false);
+    setVerdadeiroOuFalso(1);
+  }
+
+  const marcarFalso = () => {
+    setOpcaoVerdadeiro(false);
+    setOpcaoFalso(true);
+    setVerdadeiroOuFalso(0);
+  }
 
   function logout(){
     // navigation.reset({
@@ -30,6 +153,10 @@ export default function Quiz() {
     navigation.navigate('Ranking');
   }
 
+  function tempoMaiorQue24Horas(tempo: Date) {
+    return true;
+  }
+
   return (
     <ScrollView style={styles.container}>
 
@@ -41,8 +168,8 @@ export default function Quiz() {
             source={homeBackground} />
 
           <View style={styles.fieldColumn}>
-            <Text style={styles.label}>Hiury Lima</Text>
-            <Text style={styles.label}><Image source={level} style={styles.level}/> Pontos: 80</Text>
+            <Text style={styles.label}>{usuario?.nome}</Text>
+            <Text style={styles.label}><Image source={level} style={styles.level}/> Pontos: {usuario?.pontuacao.pontos}</Text>
           </View>
 
           <TouchableOpacity style={styles.fieldColumn} onPress={handleNavigateRanking}>
@@ -55,91 +182,156 @@ export default function Quiz() {
         </View>
       </View>
 
-      {/* <View style={styles.lineHorizontal} /> */}
 
-      {/* <View style={styles.Countdown}>
-        <View style={styles.CountdownContainerTitle}>
-          <Text style={styles.title}>Tempo restante</Text>
+      <View style={styles.lineHorizontal} />
+
+
+
+      {contagemRegressivaAtiva ?
+
+        <View style={styles.quizBox}>
+          <View style={styles.quizBoxHeader}>
+            <Text style={styles.quizBoxHeaderTitulo}>Nova pergunta!</Text>
+          </View>
+
+          <View style={styles.containerForm}>
+            <Text style={styles.perguntas}>{quiz?.pergunta}</Text>
+            
+            {quiz?.tipo === 'alternativas' ?
+              <>
+                <CheckBox
+                  key='S875AS5G7A5GA78SG5A8'
+                  title='Alternativa A)'
+                  center
+                  checkedIcon="dot-circle-o"
+                  uncheckedIcon="circle-o"
+                  checked={alternativa_a}
+                  onPress={marcarA}
+                  style={styles.label}
+                />
+                <Text style={styles.label}>{quiz?.alternativa_a}</Text>
+
+                <CheckBox
+                  key='6A3G5SG377DG8A9ADG9'
+                  title='Alternativa B)'
+                  center
+                  checkedIcon="dot-circle-o"
+                  uncheckedIcon="circle-o"
+                  checked={alternativa_b}
+                  onPress={ marcarB}
+                  style={styles.label}
+                />
+                <Text style={styles.label}>{quiz?.alternativa_b}</Text>
+              
+                <CheckBox
+                  key='G96G9S4GA35G2A6763G'
+                  title='Alternativa C)'
+                  center
+                  checkedIcon="dot-circle-o"
+                  uncheckedIcon="circle-o"
+                  checked={alternativa_c}
+                  onPress={marcarC}
+                  style={styles.label}
+                />
+                <Text style={styles.label}>{quiz?.alternativa_c}</Text>
+              </>
+            : 
+              <>
+                <CheckBox
+                  key='6A3G5SG377DG8A9ADG9'
+                  title='Verdadeiro'
+                  center
+                  checkedIcon="dot-circle-o"
+                  uncheckedIcon="circle-o"
+                  checked={opcaoVerdadeiro}
+                  onPress={marcarVerdadeiro}
+                  style={styles.label}
+                />
+                
+                <CheckBox
+                  key='G96G9S4GA35G2A6763G'
+                  title='Falso'
+                  center
+                  checkedIcon="dot-circle-o"
+                  uncheckedIcon="circle-o"
+                  checked={opcaoFalso}
+                  onPress={marcarFalso}
+                  style={styles.label}
+                />
+              </>
+            }
+
+
+            <TouchableOpacity style={styles.loginButton} >
+              <Text style={styles.loginButtonText}>Responder</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+      
+      :
 
-        <View style={styles.countdownContainer}>
-          <View style={styles.CountdownCardsGroup}>
-            <Text style={styles.CountdownCard}>2</Text>
+        <>
+          <View style={styles.Countdown}>
+            <View style={styles.CountdownContainerTitle}>
+              <Text style={styles.title}>Tempo restante</Text>
+            </View>
+
+            <View style={styles.countdownContainer}>
+              <View style={styles.CountdownCardsGroup}>
+                <Text style={styles.CountdownCard}>2</Text>
+              </View>
+
+              <View style={styles.lineVertical}/>
+
+              <View style={styles.CountdownCardsGroup}>
+                <Text style={styles.CountdownCard}>4</Text>
+              </View>
+
+              <Text style={styles.CountdownSeparator}>:</Text>
+
+              <View style={styles.CountdownCardsGroup}>
+                <Text style={styles.CountdownCard}>0</Text>
+              </View>
+
+              <View style={styles.lineVertical}/>
+
+              <View style={styles.CountdownCardsGroup}>
+                <Text style={styles.CountdownCard}>0</Text>
+              </View>
+            </View>
+
+            <View style={styles.containerInformacoes}>
+              <View>
+                <Text style={styles.containerInformacoesText}>Horas</Text>
+              </View>
+              <View>
+                <Text style={styles.containerInformacoesText}>Minutos</Text>
+              </View>
+            </View>
           </View>
 
-          <View style={styles.lineVertical}/>
+          <View style={styles.challengeBox}>
+            <View style={styles.challengeNotActive}>
+              <View style={styles.notActiveTitle}>
+                <Text>
+                  Aguarde um ciclo para receber uma questão
+                </Text>
+              </View>
 
-          <View style={styles.CountdownCardsGroup}>
-            <Text style={styles.CountdownCard}>4</Text>
+              <View style={styles.levelUpQuizIcon}>
+                <Image source={levelUpQuizIcon}/>
+              </View>
+
+              <View style={styles.notActiveSubTitle}>
+                <Text>
+                  Ganhe pontos respondendo as questões corretamente.
+                </Text>
+              </View>
+            </View>
           </View>
-
-          <Text style={styles.CountdownSeparator}>:</Text>
-
-          <View style={styles.CountdownCardsGroup}>
-            <Text style={styles.CountdownCard}>0</Text>
-          </View>
-
-          <View style={styles.lineVertical}/>
-
-          <View style={styles.CountdownCardsGroup}>
-            <Text style={styles.CountdownCard}>0</Text>
-          </View>
-        </View>
-
-        <View style={styles.containerInformacoes}>
-          <View>
-            <Text style={styles.containerInformacoesText}>Horas</Text>
-          </View>
-          <View>
-            <Text style={styles.containerInformacoesText}>Minutos</Text>
-          </View>
-        </View>
-
-      </View> */}
-
-
-      {/* ChallengeBox */}
-      {/* <View style={styles.challengeBox}>
-        <View style={styles.challengeNotActive}>
-          <View style={styles.notActiveTitle}>
-            <Text>
-              Aguarde um ciclo para receber uma questão
-            </Text>
-          </View>
-
-          <View style={styles.levelUpQuizIcon}>
-            <Image source={levelUpQuizIcon}/>
-          </View>
-
-          <View style={styles.notActiveSubTitle}>
-            <Text>
-              Ganhe pontos respondendo as questões corretamente.
-            </Text>
-          </View>
-        </View>
-
-      </View> */}
-
-      {/* QUizBox */}
-      <View style={styles.quizBox}>
-        <View style={styles.quizBoxHeader}>
-          <Text style={styles.quizBoxHeaderTitulo}>Nova pergunta!</Text>
-        </View>
-
-        <View style={styles.containerForm}>
-          <Text style={styles.perguntas}>Quantas terras homologadas existe no Goiás?</Text>
-          
-          {/* <Text style={styles.label}>Alternativas</Text> */}
-          <Text style={styles.label}>Alternativa A) 6</Text>
-          <Text style={styles.label}>Alternativa B) 8</Text>
-          <Text style={styles.label}>Alternativa C) 4</Text>
-
-
-          <TouchableOpacity style={styles.loginButton} >
-            <Text style={styles.loginButtonText}>Responder</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+        </>
+      
+      }
     </ScrollView>
   );
 }

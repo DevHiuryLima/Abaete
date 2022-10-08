@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -25,14 +26,27 @@ class IndexController extends Controller
 
     public function login(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            // 'email' => 'required|email|required_with:confirmarEmail|same:confirmarEmail',
+            'email' => 'required|email|exists:administradores,email',
+            // 'confirmarEmail' => 'required',
+            // 'senha' => 'min:6|required_with:confirmarSenha|same:confirmarSenha',
+            'senha' => 'min:6|required',
+            // 'confirmarSenha' => 'required',
+        ]);
+
+        if ($validator->stopOnFirstFailure()->fails()) {
+            return response()->json($validator->messages(), 422);
+        }
+
         $admin = DB::table('administradores')->where([
-            ['login', '=', $request->login],
+            ['email', '=', $request->email],
             ['senha', '=', base64_encode($request->senha)],
         ])->first();
         
-        if ($admin == null){
+        if (!$admin){
             return response()->json([
-                'message'   => 'Login ou senha inválidos!',
+                'message'   => 'E-mail ou senha inválidos!',
             ], 400);
         } else {
             session()->put('idAdmin', $admin->idAdmin);
