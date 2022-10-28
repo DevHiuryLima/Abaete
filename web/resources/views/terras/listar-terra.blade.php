@@ -19,7 +19,7 @@
         <main>
             <div class="detalhes">
                 @if( count($terra->imagensTerra) > 0 )
-                    <img src="{{$terra->imagensTerra[0]->url}}" alt="{{$terra->nome}}">
+                    <img src="{{env('APP_URL') . '/storage/' . $terra->imagensTerra[0]->url}}" alt="{{$terra->nome}}">
 
                     <div class="images">
                         @php
@@ -29,11 +29,11 @@
                         @foreach($terra->imagensTerra as $imagem)
                             @if($i == 0)
                             <button class="active" type="button">
-                                <img src="{{$imagem->url}}" alt="{{$terra->nome}}">
+                                <img src="{{env('APP_URL') . '/storage/' . $imagem->url}}" alt="{{$terra->nome}}">
                             </button>
                             @else
                             <button class="" type="button">
-                                <img src="{{$imagem->url}}" alt="{{$terra->nome}}">
+                                <img src="{{env('APP_URL') . '/storage/' . $imagem->url}}" alt="{{$terra->nome}}">
                             </button>
                             @endif
 

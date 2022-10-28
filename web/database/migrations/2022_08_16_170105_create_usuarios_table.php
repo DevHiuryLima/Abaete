@@ -19,7 +19,7 @@ class CreateUsuariosTable extends Migration
             $table->string('imagem');
             $table->string('email');
             $table->string('senha');
-            $table->date('ultima_tentativa')->nullable();
+            $table->string('ultima_tentativa')->nullable();
             $table->timestamps();
         });
     }

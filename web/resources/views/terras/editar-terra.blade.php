@@ -99,7 +99,7 @@
                             </label>
                             @if( count($terra->imagensTerra) >= 1 )
                                     @foreach($terra->imagensTerra as $imagem)
-                                        <img src="{{$imagem->url}}" alt="{{$terra->nome}}" class="remover-imagem" data-imagem="{{$imagem->idImagem}}" title="Remover imagem" style="cursor: pointer;">
+                                        <img src="{{env('APP_URL') . '/storage/' . $imagem->url}}" alt="{{$terra->nome}}" class="remover-imagem" data-imagem="{{$imagem->idImagem}}" title="Remover imagem" style="cursor: pointer;">
                                     @endforeach
                             @endif
                         </div>
