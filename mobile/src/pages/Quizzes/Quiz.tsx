@@ -66,38 +66,35 @@ export default function Quiz() {
   const [alternativa_correta, setAlternativaCorreta] = useState<string>();
   const [verdadeiro_ou_falso, setVerdadeiroOuFalso] = useState<number>();
 
-    // Pega o timeStamp da data atual.
-    const timeStamp = Date.now();
+  // Gera uma nova data.
+  const data = new Date();
+  
+  // Passa a nova data para o padrão ISO
+  const dataAtual = new Date(data.toISOString());
 
-    // Com o timeStamp gera uma nova data.
-    const data = new Date(timeStamp);
+  // Pega a data da ultima tentativa e acrescenta 1 dia.
+  const proximaTentativa = new Date(usuario?.ultima_tentativa);
+  proximaTentativa.setDate(proximaTentativa.getDate()+1);
   
-    // Passa a nova data para o padrão ISO
-    const dataAtual = new Date(data.toISOString());
-  
-    // Pega a data da ultima tentativa e acrescenta 1 dia.
-    const proximaTentativa = new Date(usuario?.ultima_tentativa);
-    proximaTentativa.setDate(proximaTentativa.getDate()+1);
-    
-    // Pega a diferença dessas duas horas
-    var diff = proximaTentativa.getTime() - dataAtual.getTime();  
-  
-    // Separa quantas horas, minutos e segundos se passou.
-    let tempoAux = diff;
-    const horas = Math.floor(tempoAux / 1000 / 60 / 60);
-    tempoAux -= horas * 1000 * 60 * 60;
-    const minutos = Math.floor(tempoAux / 1000 / 60);
-    tempoAux -= minutos * 1000 * 60;
-    const segundos = Math.floor(tempoAux / 1000);
-    tempoAux -= segundos * 1000;
-  
-      // Transformo as horas em segundos
-    const [tempo, setTempo] = useState(Math.floor(1 * horas * 60 * 60));
-    const [ativo, setAtivo] = useState(false);
-  
-    const [horaEsquerda, horaDireita] = String(horas).padStart(2, '0').split('');
-    const [minutoEsquerda, minutoDireita] = String(minutos).padStart(2, '0').split('');
-    const [segundoEsquerda, segundoDireita] = String(segundos).padStart(2, '0').split('');
+  // Pega a diferença dessas duas horas
+  var diff = proximaTentativa.getTime() - dataAtual.getTime();  
+
+  // Separa quantas horas, minutos e segundos se passou.
+  let tempoAux = diff;
+  const horas = Math.floor(tempoAux / 1000 / 60 / 60);
+  tempoAux -= horas * 1000 * 60 * 60;
+  const minutos = Math.floor(tempoAux / 1000 / 60);
+  tempoAux -= minutos * 1000 * 60;
+  const segundos = Math.floor(tempoAux / 1000);
+  tempoAux -= segundos * 1000;
+
+    // Transformo as horas em segundos
+  const [tempo, setTempo] = useState(Math.floor(1 * horas * 60 * 60));
+  const [ativo, setAtivo] = useState(false);
+
+  const [horaEsquerda, horaDireita] = String(horas).padStart(2, '0').split('');
+  const [minutoEsquerda, minutoDireita] = String(minutos).padStart(2, '0').split('');
+  const [segundoEsquerda, segundoDireita] = String(segundos).padStart(2, '0').split('');
 
   const params = route.params as UsuarioRouteParams;
 
