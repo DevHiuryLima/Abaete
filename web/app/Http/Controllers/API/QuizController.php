@@ -89,8 +89,7 @@ class QuizController extends Controller
     public function buscarPerguntaAleatoria()
     {
         $query = "SELECT * FROM quizzes ORDER BY RAND() LIMIT 1";
-        // $quiz = Quiz::orderBy(DB::raw('RAND()'))->limit(1)->first(); // OK
-        $quiz = Quiz::orderBy(DB::raw('RAND()'))->first(); // OK
+        $quiz = Quiz::orderBy(DB::raw('RAND()'))->first();
 
         if(!$quiz) {
             return response()->json([

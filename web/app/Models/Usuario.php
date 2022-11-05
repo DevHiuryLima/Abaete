@@ -19,6 +19,7 @@ class Usuario extends Model
         'imagem',
         'email',
         'senha',
+        'ultima_tentativa',
     ];
 
     public function pontuacao()

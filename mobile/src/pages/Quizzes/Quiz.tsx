@@ -52,7 +52,7 @@ export default function Quiz() {
 
   // Estados relacionado ao elementos da tela.
   const [quiz, setQuiz] = useState<Quiz>();
-  const [usuario, setUsuario] = useState<Usuario>();
+  const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [contagemRegressivaAtiva, setAtivarContagemRegressiva] = useState<boolean>();
 
   // Estados relacionado ao elementos da tela -> checkbox.
@@ -66,12 +66,47 @@ export default function Quiz() {
   const [alternativa_correta, setAlternativaCorreta] = useState<string>();
   const [verdadeiro_ou_falso, setVerdadeiroOuFalso] = useState<number>();
 
+    // Pega o timeStamp da data atual.
+    const timeStamp = Date.now();
+
+    // Com o timeStamp gera uma nova data.
+    const data = new Date(timeStamp);
+  
+    // Passa a nova data para o padrão ISO
+    const dataAtual = new Date(data.toISOString());
+  
+    // Pega a data da ultima tentativa e acrescenta 1 dia.
+    const proximaTentativa = new Date(usuario?.ultima_tentativa);
+    proximaTentativa.setDate(proximaTentativa.getDate()+1);
+    
+    // Pega a diferença dessas duas horas
+    var diff = proximaTentativa.getTime() - dataAtual.getTime();  
+  
+    // Separa quantas horas, minutos e segundos se passou.
+    let tempoAux = diff;
+    const horas = Math.floor(tempoAux / 1000 / 60 / 60);
+    tempoAux -= horas * 1000 * 60 * 60;
+    const minutos = Math.floor(tempoAux / 1000 / 60);
+    tempoAux -= minutos * 1000 * 60;
+    const segundos = Math.floor(tempoAux / 1000);
+    tempoAux -= segundos * 1000;
+  
+      // Transformo as horas em segundos
+    const [tempo, setTempo] = useState(Math.floor(1 * horas * 60 * 60));
+    const [ativo, setAtivo] = useState(false);
+  
+    const [horaEsquerda, horaDireita] = String(horas).padStart(2, '0').split('');
+    const [minutoEsquerda, minutoDireita] = String(minutos).padStart(2, '0').split('');
+    const [segundoEsquerda, segundoDireita] = String(segundos).padStart(2, '0').split('');
+
   const params = route.params as UsuarioRouteParams;
 
   useEffect(() => {
     api.get(`usuarios/${params.id}`).then(response => {
+
       // console.log(response.data);
       setUsuario(response.data);
+      tempoMaiorQue24Horas();
     }).catch((error) => {
       console.log(error);
     })
@@ -91,19 +126,13 @@ export default function Quiz() {
   }, []);
 
   useEffect(() => {
-    // if( (usuario?.ultima_tentativa == null) || tempoMaiorQue24Horas(usuario?.ultima_tentativa) ){
-    if( false ){
-      setAtivarContagemRegressiva(true);
-    } else {
-      setAlternativa_a(false);
-      setAlternativa_b(false);
-      setAlternativa_c(false);
-      setOpcaoVerdadeiro(false);
-      setOpcaoFalso(false);
-      
-      setAtivarContagemRegressiva(false);
-    } 
-  });
+    if (tempo > 0) {
+      setTimeout(() => {
+        console.log('1 minuto ');
+        setTempo(tempo - 1);
+      }, 1000);
+    }
+  }, [tempo]);
 
   const marcarA = () => {
     setAlternativa_a(true);
@@ -153,8 +182,12 @@ export default function Quiz() {
     navigation.navigate('Ranking');
   }
 
-  function tempoMaiorQue24Horas(tempo: Date) {
-    return true;
+  function tempoMaiorQue24Horas() {
+    if (horas <= 0) {
+      setAtivo(true);
+    } else {
+      setAtivo(false);
+    }
   }
 
   return (
@@ -187,7 +220,7 @@ export default function Quiz() {
 
 
 
-      {contagemRegressivaAtiva ?
+      {horas <= 0 ?
 
         <View style={styles.quizBox}>
           <View style={styles.quizBoxHeader}>
@@ -278,25 +311,37 @@ export default function Quiz() {
 
             <View style={styles.countdownContainer}>
               <View style={styles.CountdownCardsGroup}>
-                <Text style={styles.CountdownCard}>2</Text>
+                <Text style={styles.CountdownCard}>{horaEsquerda}</Text>
               </View>
 
               <View style={styles.lineVertical}/>
 
               <View style={styles.CountdownCardsGroup}>
-                <Text style={styles.CountdownCard}>4</Text>
+                <Text style={styles.CountdownCard}>{horaDireita}</Text>
               </View>
 
               <Text style={styles.CountdownSeparator}>:</Text>
 
               <View style={styles.CountdownCardsGroup}>
-                <Text style={styles.CountdownCard}>0</Text>
+                <Text style={styles.CountdownCard}>{minutoEsquerda}</Text>
               </View>
 
               <View style={styles.lineVertical}/>
 
               <View style={styles.CountdownCardsGroup}>
-                <Text style={styles.CountdownCard}>0</Text>
+                <Text style={styles.CountdownCard}>{minutoDireita}</Text>
+              </View>
+
+              <Text style={styles.CountdownSeparator}>:</Text>
+
+              <View style={styles.CountdownCardsGroup}>
+                <Text style={styles.CountdownCard}>{segundoEsquerda}</Text>
+              </View>
+
+              <View style={styles.lineVertical}/>
+
+              <View style={styles.CountdownCardsGroup}>
+                <Text style={styles.CountdownCard}>{segundoDireita}</Text>
               </View>
             </View>
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Exception;
@@ -58,7 +57,6 @@ class TerraController extends Controller
         if(!$terra) {
             return response()->json([
                 'message'   => 'Terra não encontrada!',
-                // 'error'   => $th->getMessage(),
             ], 404);
         }
 
