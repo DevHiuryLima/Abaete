@@ -24,5 +24,6 @@ Route::group(['namespace' => 'API', 'as' => 'api.' ], function(){
     Route::post('/usuarios/login', 'UsuarioController@login');
     Route::apiResource('/quizzes', 'QuizController');
     Route::get('/quiz/busca', 'QuizController@buscarPerguntaAleatoria');
+    Route::post('/quiz/responder', 'QuizController@responderPerguntas');
     Route::get('/ranking', 'UsuarioController@usuariosPorPontos');
 });

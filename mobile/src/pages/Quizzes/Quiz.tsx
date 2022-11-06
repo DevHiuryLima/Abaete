@@ -76,7 +76,7 @@ export default function Quiz() {
   const proximaTentativa = new Date(usuario?.ultima_tentativa);
   proximaTentativa.setDate(proximaTentativa.getDate()+1);
   
-  // Pega a diferença dessas duas horas
+  // Pega a diferença dessas duas datas
   var diff = proximaTentativa.getTime() - dataAtual.getTime();  
 
   // Separa quantas horas, minutos e segundos se passou.
@@ -88,9 +88,9 @@ export default function Quiz() {
   const segundos = Math.floor(tempoAux / 1000);
   tempoAux -= segundos * 1000;
 
-    // Transformo as horas em segundos
+  // Transformo as horas em segundos
   const [tempo, setTempo] = useState(Math.floor(1 * horas * 60 * 60));
-  const [ativo, setAtivo] = useState(false);
+  const [tentativa, setTentativa] = useState(false);
 
   const [horaEsquerda, horaDireita] = String(horas).padStart(2, '0').split('');
   const [minutoEsquerda, minutoDireita] = String(minutos).padStart(2, '0').split('');
@@ -100,14 +100,11 @@ export default function Quiz() {
 
   useEffect(() => {
     api.get(`usuarios/${params.id}`).then(response => {
-
-      // console.log(response.data);
       setUsuario(response.data);
-      tempoMaiorQue24Horas();
     }).catch((error) => {
       console.log(error);
     })
-  }, [params.id]);
+  }, [params.id, tentativa]);
 
 
   useEffect(() => {
@@ -122,14 +119,14 @@ export default function Quiz() {
     })
   }, []);
 
-  useEffect(() => {
-    if (tempo > 0) {
-      setTimeout(() => {
-        console.log('1 minuto ');
-        setTempo(tempo - 1);
-      }, 1000);
-    }
-  }, [tempo]);
+  // useEffect(() => {
+  //   if (tempo > 0) {
+  //     setTimeout(() => {
+  //       console.log('1 minuto ');
+  //       setTempo(tempo - 1);
+  //     }, 1000);
+  //   }
+  // }, [tempo]);
 
   const marcarA = () => {
     setAlternativa_a(true);
@@ -179,11 +176,60 @@ export default function Quiz() {
     navigation.navigate('Ranking');
   }
 
-  function tempoMaiorQue24Horas() {
-    if (horas <= 0) {
-      setAtivo(true);
-    } else {
-      setAtivo(false);
+  async function responderPerguntas(){
+    const dadosForm = new FormData();
+
+    switch (quiz?.tipo) {
+      case 'alternativas':
+
+        dadosForm.append('idQuiz', quiz?.idQuiz);
+        dadosForm.append('idUsuario', usuario?.idUsuario);
+        dadosForm.append('alternativa_correta', alternativa_correta);
+
+        break;
+
+      case 'verdadeiro_ou_falso':
+
+        dadosForm.append('idQuiz', quiz?.idQuiz);
+        dadosForm.append('idUsuario', usuario?.idUsuario);
+        dadosForm.append('verdadeiro_ou_falso', verdadeiro_ou_falso);
+        
+        break;
+    
+      default:
+        return alert('Desculpe, ocorreu um problema ao validarmos sua resposta.');
+
+        break;
+    }
+
+    // Gera uma nova data.
+    let data = new Date();
+    
+    // Passa a nova data para o padrão ISO    
+    let ultima_tentativa = data.toISOString();
+
+    dadosForm.append('ultima_tentativa', ultima_tentativa);    
+
+    try{
+      // Envia a requisição pelos pseudônimos e após a criação de uma instância do axios.
+      const response = await api.post('/quiz/responder', dadosForm);
+      setTentativa(true);
+      return alert(response.data.message);
+
+    } catch (error) {
+
+      // console.log(error);
+      // console.log('\n');
+      // console.log(error.response);
+      // console.log('\n');
+      // console.log(error.response._response);
+
+      if(error.response.status === 0){
+        return alert('Desculpe, ocorreu um problema de conexão ao validarmos sua resposta. Tente novamente mais tarde.');
+
+      } else {
+        return alert(error.response.data.message);
+      }
     }
   }
 
@@ -292,7 +338,7 @@ export default function Quiz() {
             }
 
 
-            <TouchableOpacity style={styles.loginButton} >
+            <TouchableOpacity style={styles.loginButton} onPress={responderPerguntas}>
               <Text style={styles.loginButtonText}>Responder</Text>
             </TouchableOpacity>
           </View>
@@ -329,7 +375,7 @@ export default function Quiz() {
                 <Text style={styles.CountdownCard}>{minutoDireita}</Text>
               </View>
 
-              <Text style={styles.CountdownSeparator}>:</Text>
+              {/* <Text style={styles.CountdownSeparator}>:</Text>
 
               <View style={styles.CountdownCardsGroup}>
                 <Text style={styles.CountdownCard}>{segundoEsquerda}</Text>
@@ -339,7 +385,7 @@ export default function Quiz() {
 
               <View style={styles.CountdownCardsGroup}>
                 <Text style={styles.CountdownCard}>{segundoDireita}</Text>
-              </View>
+              </View> */}
             </View>
 
             <View style={styles.containerInformacoes}>
@@ -349,6 +395,9 @@ export default function Quiz() {
               <View>
                 <Text style={styles.containerInformacoesText}>Minutos</Text>
               </View>
+              {/* <View>
+                <Text style={styles.containerInformacoesText}>Segundos</Text>
+              </View> */}
             </View>
           </View>
 

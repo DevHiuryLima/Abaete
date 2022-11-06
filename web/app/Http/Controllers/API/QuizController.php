@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Usuario;
+use App\Models\PontosDoUsuario;
 use App\Models\Quiz;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -98,5 +100,61 @@ class QuizController extends Controller
         }
 
         return response()->json($quiz, 200);
+    }
+
+    public function responderPerguntas(Request $request)
+    {
+        $quiz = Quiz::find($request->idQuiz);
+        $usuario = Usuario::find($request->idUsuario);
+        $pontosDoUsuario = PontosDoUsuario::where('usuario', '=', $request->idUsuario)->first();
+        $pontos = 1;
+        $usuarioAcertou = false;
+
+        switch ($quiz->tipo) {
+            case 'alternativas':
+                if ($request->alternativa_correta == $quiz->alternativa_correta) {
+                    $pontos = $quiz->pontos;
+                    $usuarioAcertou = true;
+                }
+                break;
+            case 'verdadeiro_ou_falso':
+                if ($request->verdadeiro_ou_falso == $quiz->verdadeiro_ou_falso) {
+                    $pontos = $quiz->pontos;
+                    $usuarioAcertou = true;
+                }
+                break;
+            
+            default:
+                return response()->json([
+                    'message'   => 'Desculpe, ocorreu um problema ao validarmos sua resposta.',
+                ], 422);
+                break;
+        }
+
+
+
+        if ($usuarioAcertou) {
+            $pontosDoUsuario->pontos += $pontos;
+            $status = $pontosDoUsuario->save();
+
+            $usuario->ultima_tentativa = $request->ultima_tentativa;
+            $status = $usuario->save();
+
+            return response()->json([
+                'message'   => 'Parabéns! Você ganhou mais pontos.',
+            ], 200);
+        } else {
+            $pontosDoUsuario->pontos += $pontos;
+            $status = $pontosDoUsuario->save();
+
+            $usuario->ultima_tentativa = $request->ultima_tentativa;
+            $status = $usuario->save();
+
+            return response()->json([
+                'message'   => 'Que pena! Infelizmente você não acertou.',
+            ], 200);
+        }
+
+
     }
 }
