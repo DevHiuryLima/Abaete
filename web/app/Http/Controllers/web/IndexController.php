@@ -27,12 +27,8 @@ class IndexController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            // 'email' => 'required|email|required_with:confirmarEmail|same:confirmarEmail',
             'email' => 'required|email|exists:administradores,email',
-            // 'confirmarEmail' => 'required',
-            // 'senha' => 'min:6|required_with:confirmarSenha|same:confirmarSenha',
             'senha' => 'min:6|required',
-            // 'confirmarSenha' => 'required',
         ]);
 
         if ($validator->stopOnFirstFailure()->fails()) {
@@ -52,17 +48,6 @@ class IndexController extends Controller
             session()->put('idAdmin', $admin->idAdmin);
             return response()->json(200);
         }
-
-        // $credentials = $request->only('email', 'senha');
-
-        // // Vai fazer uma tentativa de login
-        // if (Auth::attempt($credentials)) {
-
-        // } else {
-        //     return response()->json([
-        //         'message'   => 'Login ou senha inválidos!',
-        //     ], 400);
-        // }
 
     }
 

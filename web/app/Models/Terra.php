@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Terra extends Model
 {
+    use HasFactory;
+
     protected $table = 'terras';
     protected $primaryKey = 'idTerra';
     public $timestamps = true;

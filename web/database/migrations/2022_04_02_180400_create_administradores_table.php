@@ -17,18 +17,10 @@ class CreateAdministradoresTable extends Migration
             $table->id('idAdmin');
             $table->string('nome');
             $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('senha');
-            // $table->rememberToken();
+            $table->rememberToken();
             $table->timestamps();
-
-            // $table->id();
-            // $table->string('name');
-            // $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
-            // $table->string('password');
-            // $table->rememberToken();
-            // $table->timestamps();
         });
     }
 
