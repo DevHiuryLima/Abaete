@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Dimensions, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
@@ -65,12 +65,12 @@ export default function Login() {
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Faça Login</Text>
        
-       <Text style={styles.label}>E-mail*</Text>
-       <TextInput
+        <Text style={styles.label}>E-mail*</Text>
+        <TextInput
           style={styles.input}
           value={email}
           onChangeText={setEmail}
-       />
+        />
        
        <Text style={styles.label}>Senha*</Text>
        <TextInput
@@ -78,15 +78,15 @@ export default function Login() {
           value={senha}
           onChangeText={setSenha}
           secureTextEntry={true}
-       />
+        />
 
-      <TouchableOpacity style={styles.loginButton} onPress={handlelogin}>
-        <Text style={styles.loginButtonText}>Login</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.loginButton} onPress={handlelogin}>
+          <Text style={styles.loginButtonText}>Login</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.createAccountButton} onPress={handleNavigateCreateAccount}>
-        <Text style={styles.createAccountButtonText}>Criar conta</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.createAccountButton} onPress={handleNavigateCreateAccount}>
+          <Text style={styles.createAccountButtonText}>Criar conta</Text>
+        </TouchableOpacity>
     </ScrollView>
   );
 }
@@ -128,12 +128,12 @@ const styles = StyleSheet.create({
   },
 
   loginButton: {
-    backgroundColor: '#34CB79',
-    borderRadius: 20,
+    height: 56,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 56,
+    borderRadius: 20,
     marginTop: 32,
+    backgroundColor: '#34CB79',
   },
 
   loginButtonText: {

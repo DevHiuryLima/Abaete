@@ -14,7 +14,10 @@ export default function Header({ title }: HeaderProps) {
 
   return (
     <View style={styles.container}>
-      <View />
+      {/* <View /> */}
+      <TouchableOpacity onPress={navigation.goBack}>
+        <Feather name='arrow-left' size={24} color='rgba(0, 0, 0, 0.6)' />
+      </TouchableOpacity>
 
       <View style={styles.containerTitle}>
         <Text style={styles.title}>

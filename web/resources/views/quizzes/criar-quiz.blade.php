@@ -27,6 +27,7 @@
                             <select name="terra" id="terra" required="">
                                 @if($terras != null)
                                     <option value="" selected="">Selecione uma terra</option>
+                                    <option value="">Geral</option>
                                     @foreach($terras as $terra)
                                     <option value="{{$terra->idTerra}}">{{$terra->nome}}</option>
                                     @endforeach

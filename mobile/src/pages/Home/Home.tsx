@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   description: {
     color: '#FFFFFF',
     fontSize: 16,
-    marginTop: 26,
+    marginTop: 16,
     fontFamily: 'Nunito_600SemiBold',
     maxWidth: 260,
     lineHeight: 24,
@@ -87,8 +87,9 @@ const styles = StyleSheet.create({
   },
 
   button: {
+    // height: 40,
+    // width: 60,
     backgroundColor: '#FFD666',
-    height: 60,
     flexDirection: 'row',
     borderRadius: 10,
     overflow: 'hidden',

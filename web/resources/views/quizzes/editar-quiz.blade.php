@@ -29,7 +29,7 @@
                                 @if($terras != null)
 
                                     <option value="">Selecione uma terra</option>
-                                    <option value="0">Geral</option>
+                                    <option value="" {{$quiz->terra == null ? "selected='selected'" : ""}}>Geral</option>
                                     @foreach($terras as $terra)
                                         <option value="{{$terra->idTerra}}" {{$terra->idTerra == $quiz->terra ? "selected='selected'" : ""}}>{{$terra->nome}}</option>
 

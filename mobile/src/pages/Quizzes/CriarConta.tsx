@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 
 import * as ImagePicker from 'expo-image-picker';
 import api from '../../services/api';
-import axios from 'axios';
 
 export default function CriarUsuario() {
   const [nome, setNome] = useState('');
@@ -55,14 +54,13 @@ export default function CriarUsuario() {
       // Envia a requisição pelos pseudônimos e após a criação de uma instância do axios.
       const response = await api.post('usuarios', data);
 
-      // const json = await response.data;
-
+      const id = await response.data.idUsuario;
+      // console.log(response);   
       if(response.status === 200){
 
         // AsyncStorage.setItem("TOKEN", response.data.access_token)
-        navigation.navigate('Quiz');
+        navigation.navigate('Quiz', { id });
       }
-      // console.log(response);
     } catch (error) {
 
       // console.log(error);
@@ -126,61 +124,60 @@ export default function CriarUsuario() {
       <Text style={styles.title}>Insira seus Dados</Text>
         
       <Text style={styles.label}>Foto*</Text>
+
       { image ? (
-          <View style={styles.containerUpload}>
-            <TouchableOpacity  style={styles.uploadButton} onPress={handleSelectImages}>
-              <Image key={image} source={{uri: image}} style={styles.uploadedImage} />
-            </TouchableOpacity>
-          </View>
+        <View style={styles.containerUpload}>
+          <TouchableOpacity  style={styles.uploadButton} onPress={handleSelectImages}>
+            <Image key={image} source={{uri: image}} style={styles.uploadedImage} />
+          </TouchableOpacity>
+        </View>
       ) : (
-          <View style={styles.containerUpload}>
-            <TouchableOpacity style={styles.uploadButton} onPress={handleSelectImages}>
-              <Feather name="plus" size={24} color="#15B6D6" />
-            </TouchableOpacity>
-          </View>
+        <View style={styles.containerUpload}>
+          <TouchableOpacity style={styles.uploadButton} onPress={handleSelectImages}>
+            <Feather name="plus" size={24} color="#15B6D6" />
+          </TouchableOpacity>
+        </View>
       )}
 
       <Text style={styles.label}>Nome*</Text>
-       <TextInput
-          style={styles.input}
-          value={nome}
-          onChangeText={setNome}
-       />
+      <TextInput
+        style={styles.input}
+        value={nome}
+        onChangeText={setNome}
+      />
        
-       <Text style={styles.label}>E-mail*</Text>
-       <TextInput
-          style={styles.input}
-          value={email}
-          onChangeText={setEmail}
-       />
+      <Text style={styles.label}>E-mail*</Text>
+      <TextInput
+        style={styles.input}
+        value={email}
+        onChangeText={setEmail}
+      />
 
-        <Text style={styles.label}>Confirmar e-mail*</Text>
-       <TextInput
-          style={styles.input}
-          value={confirmarEmail}
-          onChangeText={setConfirmarEmail}
-       />
+      <Text style={styles.label}>Confirmar e-mail*</Text>
+      <TextInput
+        style={styles.input}
+        value={confirmarEmail}
+        onChangeText={setConfirmarEmail}
+      />
        
-       <Text style={styles.label}>Senha*</Text>
-       <TextInput
-          style={styles.input}
-          value={senha}
-          onChangeText={setSenha}
-          secureTextEntry={true}
-          // maxLength={}
-          
-       />
+      <Text style={styles.label}>Senha*</Text>
+      <TextInput
+        style={styles.input}
+        value={senha}
+        onChangeText={setSenha}
+        secureTextEntry={true}          
+      />
 
-       <Text style={styles.label}>Confirmar senha*</Text>
-       <TextInput
-          style={styles.input}
-          value={confirmarSenha}
-          onChangeText={setConfirmarSenha}
-          secureTextEntry={true}
-       />
+      <Text style={styles.label}>Confirmar senha*</Text>
+      <TextInput
+        style={styles.input}
+        value={confirmarSenha}
+        onChangeText={setConfirmarSenha}
+        secureTextEntry={true}
+      />
 
-      <TouchableOpacity style={styles.nextButton} onPress={handleCreateUser}>
-        <Text style={styles.nextButtonText}>Cadastrar</Text>
+      <TouchableOpacity style={styles.cadastrarButton} onPress={handleCreateUser}>
+        <Text style={styles.cadastrarButtonText}>Cadastrar</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
@@ -213,14 +210,12 @@ const styles = StyleSheet.create({
   },
 
   containerUpload: {
-    // flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   uploadButton: {
-    // flex: 1,
     backgroundColor: '#F5F8FA',
     borderStyle: 'dashed',
     borderColor: '#96D2F0',
@@ -235,7 +230,6 @@ const styles = StyleSheet.create({
   },
 
   uploadedImage: {
-    // flex: 1,
     width: 250,
     height: 250,
     borderRadius: 20,
@@ -256,7 +250,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
   },
 
-  nextButton: {
+  cadastrarButton: {
     backgroundColor: '#34CB79',
     borderRadius: 20,
     justifyContent: 'center',
@@ -265,7 +259,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
   },
 
-  nextButtonText: {
+  cadastrarButtonText: {
     fontFamily: 'Nunito_800ExtraBold',
     fontSize: 16,
     color: '#FFFFFF',
@@ -285,6 +279,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#8FA7B3',
   }
-
-  
 })

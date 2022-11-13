@@ -7,7 +7,6 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 import * as ImagePicker from 'expo-image-picker';
 import api from '../../services/api';
-import homeBackground from '../../images/Quiz/perfil.jpg';
 import levelUpQuizIcon from '../../images/Quiz/levelUpQuizIcon.png';
 import level from '../../images/Quiz/level.png';
 
@@ -20,6 +19,7 @@ interface Competidores {
     email: string;
   }
   pontos: string;
+  url: string;
 }
 
 export default function Ranking() {
@@ -36,6 +36,12 @@ export default function Ranking() {
     })
   }, []);
 
+  if(!competidores) return (
+    <View style={styles.container}>
+      <Text style={styles.description}>Carregando...</Text>
+    </View>
+  );
+
   return (
     <ScrollView style={styles.container}>
       
@@ -47,7 +53,7 @@ export default function Ranking() {
             <Image
               key={competidor.idPontoUsuario+competidor.usuario.idUsuario} 
               style={styles.image} 
-              source={homeBackground} />
+              source={{ uri: competidor.url + competidor.usuario.imagem }} />
 
             <View style={styles.fieldColumn}>
               <Text style={styles.label}>{competidor.usuario.nome}</Text>
@@ -72,6 +78,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
 
+  description: {
+    fontFamily: 'Nunito_600SemiBold',
+    color: '#5c8599',
+    lineHeight: 24,
+    marginTop: 16,
+  },
 
   // Perfil
   containerPerfil: {

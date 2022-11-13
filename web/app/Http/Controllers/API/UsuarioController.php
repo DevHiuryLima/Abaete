@@ -64,7 +64,6 @@ class UsuarioController extends Controller
                 $usuario = new Usuario();
 
                 $usuario->nome = $request->nome;
-                // $usuario->imagem = env('APP_URL') . "/storage/" . $request->file('imagem')->store("imagens-usuarios");
                 $usuario->imagem = $request->file('imagem')->store("imagens-usuarios");
                 $usuario->email = $request->email;
                 $usuario->senha = base64_encode($request->senha);
@@ -114,6 +113,8 @@ class UsuarioController extends Controller
     {
         $usuario = Usuario::where('idUsuario', '=', $id)->with('pontuacao')->first();
 
+        $usuario['url'] = env('APP_URL') . '/storage/';
+
         if(!$usuario) {
             return response()->json([
                 'message'   => 'Usuário não encontrado!',
@@ -151,7 +152,6 @@ class UsuarioController extends Controller
                         $path = str_replace($retirar, '', $usuario->imagem);
                         Storage::delete($path);
                         
-                        // $usuario->imagem = env('APP_URL') . "/storage/" . $request->file('imagem')->store("imagens-usuarios");
                         $usuario->imagem = $request->file('imagem')->store("imagens-usuarios");
                     }
                     $usuario->email = $request->email;
@@ -243,6 +243,11 @@ class UsuarioController extends Controller
     public function usuariosPorPontos()
     {
         $usuarios = PontosDoUsuario::with('usuario')->orderBy('pontos', 'desc')->get();
+
+        $arrayUsuarios = array();
+        foreach ($usuarios as $usuario) {
+            $usuario['url'] = env('APP_URL') . '/storage/';
+        }
 
         if(!$usuarios->count()) {
             return response()->json([

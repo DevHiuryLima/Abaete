@@ -34,7 +34,7 @@
                             <div class="field">
                                 <label for="senha">Senha</label>
                                 <input type="password" name="senha" id="senha" minlength="6" required="">
-                                <small style="color: #8FA7B3;">As senhas devem ter pelo menos seis caracteres.</small>
+                                <small style="color: #8FA7B3;">A senha devem ter pelo menos seis caracteres.</small>
                             </div>
                         </div>
                     </fieldset>

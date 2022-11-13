@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
-import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 import mapMarker from '../../images/MapaDeTerras/map-marker.png';
@@ -94,7 +93,6 @@ export default function MapaDeTerras() {
           <Text style={styles.footerText}>Teste seu conhecimento</Text>
 
           <TouchableOpacity style={styles.redirectQuizButton} onPress={handleNavigateQuiz}>
-            {/* <Feather name='arrow-right' color='rgba(0, 0, 0, 0.6)' /> */}
             <Image source={opacityBlackQuizIcon} style={styles.quizIcon}/>
           </TouchableOpacity>
       </View>

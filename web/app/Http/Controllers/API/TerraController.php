@@ -54,6 +54,8 @@ class TerraController extends Controller
             ->with('imagensTerra')
             ->first();
 
+        $terra['url'] = env('APP_URL') . '/storage/';
+
         if(!$terra) {
             return response()->json([
                 'message'   => 'Terra não encontrada!',

@@ -3,6 +3,7 @@ import { Image, ScrollView, View, StyleSheet, Text, TouchableOpacity, Dimensions
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { CheckBox } from '@rneui/themed/dist/CheckBox/index';
 // import { CheckBox } from 'react-native-elements'
+import { v4 as uuidv4 } from 'uuid';
 
 import * as ImagePicker from 'expo-image-picker';
 import api from '../../services/api';
@@ -24,11 +25,12 @@ interface Usuario {
   ultima_tentativa: Date;
   created_at: string;
   updated_at: string;
+  url: string;
   pontuacao: {
 		idPontoUsuario: number;
 		usuario: number;
 		pontos: number;
-	}
+	};
 }
 
 interface Quiz {
@@ -53,7 +55,6 @@ export default function Quiz() {
   // Estados relacionado ao elementos da tela.
   const [quiz, setQuiz] = useState<Quiz>();
   const [usuario, setUsuario] = useState<Usuario | null>(null);
-  const [contagemRegressivaAtiva, setAtivarContagemRegressiva] = useState<boolean>();
 
   // Estados relacionado ao elementos da tela -> checkbox.
   const [alternativa_a, setAlternativa_a] = useState(false);
@@ -233,15 +234,21 @@ export default function Quiz() {
     }
   }
 
+  if(!usuario || !quiz) return (
+    <View style={styles.container}>
+      <Text style={styles.description}>Carregando...</Text>
+    </View>
+  );
+
   return (
     <ScrollView style={styles.container}>
 
       <View style={styles.containerPerfil}>
         <View style={styles.fieldRow}>
           <Image
-            key={'ksjf13mafjalsas23as11k2jdg2131913c0la'} 
+            key={uuidv4()} 
             style={styles.image} 
-            source={homeBackground} />
+            source={{ uri: usuario?.url + usuario?.imagem }} />
 
           <View style={styles.fieldColumn}>
             <Text style={styles.label}>{usuario?.nome}</Text>
@@ -250,7 +257,7 @@ export default function Quiz() {
 
           <TouchableOpacity style={styles.fieldColumn} onPress={handleNavigateRanking}>
             <Image
-              key={'CN2R98VUT389UUX0U928URKDXXEC09I212U83Y47Q'} 
+              key={uuidv4()} 
               style={styles.imageRanking} 
               source={lightSeaBlueRankingIcon} />
               <Text style={styles.labelRanking} >ver ranking</Text>
@@ -433,6 +440,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
 
+  description: {
+    fontFamily: 'Nunito_600SemiBold',
+    color: '#5c8599',
+    lineHeight: 24,
+    marginTop: 16,
+  },
 
   // Perfil
   containerPerfil: {

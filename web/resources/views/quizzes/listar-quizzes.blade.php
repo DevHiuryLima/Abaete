@@ -34,7 +34,9 @@
                 @if ($quizzes != null)
                     @foreach($quizzes as $quiz)
                 <li class="table-row">
-                    <div class="col col-1" data-label="Terra relacionada">{{$quiz->terra_relacionada->nome}}</div>
+                    <div class="col col-1" data-label="Terra relacionada">
+                        {{$quiz->terra_relacionada != null ? $quiz->terra_relacionada->nome : 'Não possui'}}
+                    </div>
                     <div class="col col-2" data-label="Tipo pergunta">
                         {{$quiz->tipo == 'alternativas' ? 'Alternativas' : 'Verdadeiro ou Falso'}}
                     </div>

@@ -15,7 +15,7 @@ class CreateQuizzesTable extends Migration
     {
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id('idQuiz');
-            $table->unsignedBigInteger('terra');
+            $table->unsignedBigInteger('terra')->nullable();
             $table->string('tipo');
             $table->string('pergunta');
             $table->string('alternativa_a')->nullable();
