@@ -7,7 +7,7 @@
     </div>
 
     <h1>Área Restrita</h1>
-    <form name="formLoginAdministrador">
+    <form name="formLoginAdministrador" method="POST" action="{{ route('fazer-login') }}">
         @csrf
         <fieldset>
             <div class="margem-abaixo">
@@ -53,8 +53,8 @@
          event.preventDefault();
 
          $.ajax({
-             url: "{{ route('fazer-login') }}",
-             type: "POST",
+             url: $(this).attr('action'),
+             type: $(this).attr('method'),
              data: $(this).serialize(),
              dataType: 'json',
              success: function( response ) {
@@ -66,26 +66,9 @@
         .fail(function(jqXHR){
             $('#message').removeClass('d-none').html(jqXHR.responseJSON.message);
 
-            
             // console.log(jqXHR);
             // console.log(jqXHR.responseJSON);
             // console.log(jqXHR.responseJSON.status);
-            
-
-            // if (jqXHR.status == 422) {
-            //     let vetor = jqXHR.responseJSON;
-
-            //     vetor.map(element => {
-            //         $('#message').html(`<span>${jqXHR.responseJSON.message}</span><br>`);
-            //     });
-            //     $('#message').removeClass('d-none');
-
-            // } 
-            // else if (jqXHR.responseJSON.message == 'Ocorreu um erro no cadastro!') {
-            //     alert(jqXHR.responseJSON.message)
-            // } else {
-            //     alert('Ocorreu um erro cadastro!\n\n' + jqXHR.responseJSON.message);
-            // }
         });
      })
  });

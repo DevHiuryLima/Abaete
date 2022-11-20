@@ -17,14 +17,14 @@
         </aside>
 
         <main>
-            <form class="form-create-and-update" action="{{ route('criar.terra') }}" method="POST" enctype="multipart/form-data">
+            <form name="formCriarTerra" class="form-create-and-update" action="{{ route('criar.terra') }}" method="POST" enctype="multipart/form-data">
             @csrf
                 <fieldset>
                     <legend>Dados</legend>
                     <fieldset>
                         <div class="input-block field">
                             <label for="nome">Nome</label>
-                            <input type="text" name="nome" id="name" required="">
+                            <input type="text" name="nome" id="name" required="Selecione uma UF">
                         </div>
                         <div class="input-block field-group">
                             <div class="field">
@@ -103,4 +103,15 @@
 <script src="<?=asset('js/carregar-mapa.js')?>"></script>
 <script src="<?=asset('js/interacoes-no-form-de-terra.js')?>"></script>
 <script src="<?=asset('js/busca-estados-e-municipios.js')?>"></script>
+<script>
+ $(function() {
+     $('form[name="formCriarTerra"]').submit(function(event) {
+         
+         if ( ($('#latitude').val() == '') || ($('#longitude').val() == '') ) {
+            event.preventDefault();
+            return alert('Preencha no mapa a localização da Terra indígena.')
+         }
+     })
+ });
+</script>
 @endsection

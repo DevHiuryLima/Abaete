@@ -17,7 +17,7 @@
         </aside>
 
         <main>
-            <form class="form-create-and-update" action="{{ route('editar.terra') }}" method="POST" enctype="multipart/form-data">
+            <form name="formEditarTerra" class="form-create-and-update" action="{{ route('editar.terra') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="idTerra" value="{{$terra->idTerra}}">
                 <fieldset>
@@ -261,5 +261,16 @@
             }
         });
     });
+</script>
+<script>
+ $(function() {
+     $('form[name="formEditarTerra"]').submit(function(event) {
+         
+         if ( ($('#latitude').val() == '') || ($('#longitude').val() == '') ) {
+            event.preventDefault();
+            return alert('Preencha no mapa a localização da Terra indígena.')
+         }
+     })
+ });
 </script>
 @endsection

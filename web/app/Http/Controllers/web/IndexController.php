@@ -26,29 +26,40 @@ class IndexController extends Controller
 
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|exists:administradores,email',
-            'senha' => 'min:6|required',
-        ]);
+        try {
 
-        if ($validator->stopOnFirstFailure()->fails()) {
-            return response()->json($validator->messages(), 422);
-        }
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|exists:administradores,email',
+                'senha' => 'min:6|required',
+            ]);
+            
+            // Assim que ocorre uma unica falha o validator para de validar os atributos.
+            if ($validator->stopOnFirstFailure()->fails()) {
+                return response()->json([
+                    'message' => $validator->messages()->first() // Retornar dentro do array de menssagens a primeira menssagem.
+                ], 422);
+            }
+    
+            $admin = DB::table('administradores')->where([
+                ['email', '=', $request->email],
+                ['senha', '=', base64_encode($request->senha)],
+            ])->first();
+            
+            if (!$admin){
+                return response()->json([
+                    'message'   => 'E-mail ou senha inválidos!',
+                ], 400);
+            } else {
+                session()->put('idAdmin', $admin->idAdmin);
+                return response()->json(200);
+            }
 
-        $admin = DB::table('administradores')->where([
-            ['email', '=', $request->email],
-            ['senha', '=', base64_encode($request->senha)],
-        ])->first();
-        
-        if (!$admin){
+        } catch (\Throwable $th) {
             return response()->json([
-                'message'   => 'E-mail ou senha inválidos!',
-            ], 400);
-        } else {
-            session()->put('idAdmin', $admin->idAdmin);
-            return response()->json(200);
+                'message'   => 'Desculpe! Ocorreu um erro no nosso servidor.',
+                'error'   => $th->getMessage(),
+            ], 500);
         }
-
     }
 
     public function logout()

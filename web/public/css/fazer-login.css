@@ -82,6 +82,7 @@
     border: none;
     justify-content: center;
     border-radius: 5px;
+    /* padding: 2px; */
 }
 
 #container-login > form > fieldset > div > a {
