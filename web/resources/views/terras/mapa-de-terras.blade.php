@@ -45,11 +45,9 @@
     </div>
 </div>
 
-<script>
-    const APP_URL = `{{env('APP_URL')}}`;
-    const API_URL = `{{env('APP_URL')}}` + `/api`;
-</script>
-<script src="<?=asset('js/mapIcon.js')?>"></script>
-<script src="<?=asset('js/carregar-mapa.js')?>"></script>
-<script src="<?=asset('js/carregar-terras-no-mapa.js')?>"></script>
+@push('scripts')
+<script src="{{ asset('js/mapIcon.js') }}"></script>
+<script src="{{ asset('js/carregar-mapa.js') }}"></script>
+<script src="{{ asset('js/carregar-terras-no-mapa.js') }}"></script>
+@endpush
 @endsection

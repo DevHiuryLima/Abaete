@@ -196,7 +196,7 @@ form > fieldset > fieldset > #verdadeiro_ou_falso > label > input[type=radio] {
 
 .falso { color: var(--vermelho-claro); }
 
-form > fieldset > fieldset > #alternativas > label > input[type=radio] {
+form > fieldset > fieldset > #alternativas > div#inputs-alternativa-correta > input[type=radio] {
   height: 15px;
   margin: 5px;
   padding: 0px;
@@ -206,4 +206,18 @@ form > fieldset > fieldset > #alternativas > label > input[type=radio] {
   border-radius: 0px;
   outline: none;
   color: var(--cor-do-texto);
+}
+
+form > fieldset > fieldset > #alternativas > p#texto-alternativa-correta {
+  display: flex;
+  color: var(--cor-da-legenda);
+  margin-bottom: 8px;
+  line-height: 24px;
+}
+
+form > fieldset > fieldset > #alternativas > div#inputs-alternativa-correta > label {
+  display: inline;
+  color: var(--cor-da-legenda);
+  margin-bottom: 8px;
+  line-height: 24px;
 }

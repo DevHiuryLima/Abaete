@@ -17,7 +17,7 @@
         </aside>
 
         <main>
-            <form class="form-create-and-update" action="{{ route('criar') }}" method="POST" enctype="multipart/form-data">
+            <form class="form-create-and-update" action="{{ route('criar.administrador') }}" method="POST" enctype="multipart/form-data">
             @csrf
                 <fieldset>
                     <legend>Dados</legend>
@@ -45,10 +45,7 @@
     </div>
 </div>
 
-<script>
-    const APP_URL = `{{env('APP_URL')}}`;
-
-    const API_URL = `{{env('APP_URL')}}` + `/api`;
-</script>
-<script src="<?=asset("js/criar-terra.js")?>"></script>
+@push('scripts')
+<script src="{{ asset('js/criar-terra.js') }}"></script>
+@endpush
 @endsection

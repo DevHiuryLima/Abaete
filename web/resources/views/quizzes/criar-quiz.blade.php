@@ -77,17 +77,17 @@
 
                             <br>
 
-                            <label >Marque qual a alternativa correta:</label>
-                            <label>
-                                <input type="radio" name="correta" value="A">
-                                <p class="correta">Alternativa A)</p>
+                            <p id="texto-alternativa-correta">Marque qual a alternativa correta:</p>
+                            <div id="inputs-alternativa-correta">
+                                <input type="radio" name="correta" value="A" id="correta_a">
+                                <label for="correta_a" class="correta">Alternativa A)</label>
 
-                                <input type="radio" name="correta" value="B">
-                                <p class="correta">Alternativa B)</p>
+                                <input type="radio" name="correta" value="B" id="correta_b">
+                                <label for="correta_b" class="correta">Alternativa B)</label>
 
-                                <input type="radio" name="correta" value="C">
-                                <p class="correta">Alternativa C)</p>
-                            </label>
+                                <input type="radio" name="correta" value="C" id="correta_c">
+                                <label for="correta_c" class="correta">Alternativa C)</label>
+                            </div>
                         </div>
 
                         <div class="input-block field">
@@ -103,5 +103,7 @@
     </div>
 </div>
 
-<script src="<?=asset("js/form-quiz.js")?>"></script>
+@push('scripts')
+<script src="{{ asset('js/form-quiz.js') }}"></script>
+@endpush
 @endsection

@@ -94,15 +94,11 @@
     </div>
 </div>
 
-<script>
-    const APP_URL = `{{env('APP_URL')}}`;
-
-    const API_URL = `{{env('APP_URL')}}` + `/api`;
-</script>
-<script src="<?=asset('js/mapIcon.js')?>"></script>
-<script src="<?=asset('js/carregar-mapa.js')?>"></script>
-<script src="<?=asset('js/interacoes-no-form-de-terra.js')?>"></script>
-<script src="<?=asset('js/busca-estados-e-municipios.js')?>"></script>
+@push('scripts')
+<script src="{{ asset('js/mapIcon.js') }}"></script>
+<script src="{{ asset('js/carregar-mapa.js') }}"></script>
+<script src="{{ asset('js/interacoes-no-form-de-terra.js') }}"></script>
+<script src="{{ asset('js/busca-estados-e-municipios.js') }}"></script>
 <script>
  $(function() {
      $('form[name="formCriarTerra"]').submit(function(event) {
@@ -114,4 +110,5 @@
      })
  });
 </script>
+@endpush
 @endsection

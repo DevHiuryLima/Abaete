@@ -17,7 +17,7 @@
         </aside>
 
         <main>
-            <form class="form-create-and-update" action="{{ route('editar') }}" method="POST" enctype="multipart/form-data">
+            <form class="form-create-and-update" action="{{ route('editar.administrador') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="idAdmin" value="{{$administrador->idAdmin}}">
 
@@ -47,10 +47,7 @@
     </div>
 </div>
 
-<script>
-    const APP_URL = `{{env('APP_URL')}}`;
-
-    const API_URL = `{{env('APP_URL')}}` + `/api`;
-</script>
-<script src="<?=asset("js/criar-terra.js")?>"></script>
+@push('scripts')
+<script src="{{ asset('js/criar-terra.js') }}"></script>
+@endpush
 @endsection

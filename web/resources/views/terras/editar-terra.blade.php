@@ -133,13 +133,9 @@
 </div>
 
 
-<script>
-    const APP_URL = `{{env('APP_URL')}}`;
-
-    const API_URL = `{{env('APP_URL')}}` + `/api`;
-</script>
-<script src="<?=asset('js/mapIcon.js')?>"></script>
-<script src="<?=asset('js/busca-estados-e-municipios.js')?>"></script>
+@push('scripts')
+<script src="{{ asset('js/mapIcon.js') }}"></script>
+<script src="{{ asset('js/busca-estados-e-municipios.js') }}"></script>
 <script>
     //Esse script está local pois nescessita pegar a latitude e longitude da terra para ser colocada no mapa.
 
@@ -273,4 +269,5 @@
      })
  });
 </script>
+@endpush
 @endsection

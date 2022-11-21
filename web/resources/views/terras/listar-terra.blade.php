@@ -143,12 +143,8 @@
     </div>
 </div>
 
-<script>
-    const APP_URL = `{{env('APP_URL')}}`;
-
-    const API_URL = `{{env('APP_URL')}}` + `/api`;
-</script>
-<script src="<?=asset('js/mapIcon.js')?>"></script>
+@push('scripts')
+<script src="{{ asset('js/mapIcon.js') }}"></script>
 <script>
     // A variavel 'map' recebe a classe leaflet (l) ponto map
     // passando a div do mapa para tudo que for criado ser dentro dela
@@ -197,4 +193,5 @@
         $(this).attr('class', 'active');
     });
 </script>
+@endpush
 @endsection

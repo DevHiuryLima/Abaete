@@ -32,14 +32,6 @@
                                     <option value="" {{$quiz->terra == null ? "selected='selected'" : ""}}>Geral</option>
                                     @foreach($terras as $terra)
                                         <option value="{{$terra->idTerra}}" {{$terra->idTerra == $quiz->terra ? "selected='selected'" : ""}}>{{$terra->nome}}</option>
-
-                                        {{-- 
-                                        @if($terra->idTerra == $quiz->terra)
-                                        <option value="{{$terra->idTerra}}" selected="">{{$terra->nome}}</option>
-                                        @else
-                                        <option value="{{$terra->idTerra}}">{{$terra->nome}}</option>
-                                        @endif
-                                        --}}
                                     @endforeach
 
                                 @else
@@ -49,13 +41,7 @@
                         </div>
                         <div class="field">
                             <label for="tipo">Tipo</label>
-                            {{-- <small style="color: #8FA7B3;">O tipo cadastrado é:
-                                @if($quiz->tipo == 'alternativas')
-                                    Alternativas.
-                                @else
-                                    Verdadeiro ou Falso.
-                                @endif
-                            </small> --}}
+
                             <select name="tipo" id="tipo" required="">
                                 <option value="" >Selecione um tipo de quiz</option>
                                 <option value="alternativas" {{$quiz->tipo == 'alternativas' ? "selected='selected'" : ""}}>Alternativas</option>
@@ -80,45 +66,6 @@
                                     <input type="radio" id="falso" name="verdadeiro_ou_falso" value="0" {{$quiz->verdadeiro_ou_falso == '0' ? "checked" : ""}}>
                                     <p class="falso">Falso</p>
                                 </label>
-
-                            {{--
-                            @switch($quiz->verdadeiro_ou_falso)
-                                @case('1')
-                                <label for="verdadeiro">
-                                    <input type="radio" id="verdadeiro" name="verdadeiro_ou_falso" value="1" checked>
-                                    <p class="verdadeiro">Verdadeiro</p>
-                                </label>
-
-                                <label for="falso">
-                                    <input type="radio" id="falso" name="verdadeiro_ou_falso" value="0">
-                                    <p class="falso">Falso</p>
-                                </label>
-                                @break
-
-                                @case('0')
-                                <label for="verdadeiro">
-                                    <input type="radio" id="verdadeiro" name="verdadeiro_ou_falso" value="1">
-                                    <p class="verdadeiro">Verdadeiro</p>
-                                </label>
-
-                                <label for="falso">
-                                    <input type="radio" id="falso" name="verdadeiro_ou_falso" value="0" checked>
-                                    <p class="falso">Falso</p>
-                                </label>
-                                @break
-
-                                @default
-                                <label for="verdadeiro">
-                                    <input type="radio" id="verdadeiro" name="verdadeiro_ou_falso" value="1">
-                                    <p class="verdadeiro">Verdadeiro</p>
-                                </label>
-
-                                <label for="falso">
-                                    <input type="radio" id="falso" name="verdadeiro_ou_falso" value="0">
-                                    <p class="falso">Falso</p>
-                                </label>
-                            @endswitch
-                            --}}
                         </div>
 
                         <div class="input-block field" id="alternativas" style="display: none;">
@@ -133,63 +80,17 @@
 
                             <br>
 
-                            <label >Marque qual a alternativa correta:</label>
-                            <label>
-                                <input type="radio" name="correta" value="A" {{$quiz->alternativa_correta == 'A' ? "checked" : ""}}>
-                                <p class="correta">Alternativa A)</p>
+                            <p id="texto-alternativa-correta">Marque qual a alternativa correta:</p>
+                            <div id="inputs-alternativa-correta">
+                                <input type="radio" name="correta" value="A" id="correta_a" {{$quiz->alternativa_correta == 'A' ? "checked" : ""}} >
+                                <label for="correta_a" class="correta">Alternativa A)</label>
 
-                                <input type="radio" name="correta" value="B" {{$quiz->alternativa_correta == 'B' ? "checked" : ""}}>
-                                <p class="correta">Alternativa B)</p>
+                                <input type="radio" name="correta" value="B" id="correta_b" {{$quiz->alternativa_correta == 'B' ? "checked" : ""}}>
+                                <label for="correta_b" class="correta">Alternativa B)</label>
 
-                                <input type="radio" name="correta" value="C" {{$quiz->alternativa_correta == 'C' ? "checked" : ""}}>
-                                <p class="correta">Alternativa C)</p>
-
-                                {{--
-                                @switch($quiz->alternativa_correta)
-                                    @case('A')
-                                    <input type="radio" name="correta" value="A" checked>
-                                    <p class="correta">Alternativa A)</p>
-
-                                    <input type="radio" name="correta" value="B">
-                                    <p class="correta">Alternativa B)</p>
-
-                                    <input type="radio" name="correta" value="C">
-                                    <p class="correta">Alternativa C)</p>
-                                        @break
-                                    @case('B')
-                                    <input type="radio" name="correta" value="A">
-                                    <p class="correta">Alternativa A)</p>
-
-                                    <input type="radio" name="correta" value="B" checked>
-                                    <p class="correta">Alternativa B)</p>
-
-                                    <input type="radio" name="correta" value="C">
-                                    <p class="correta">Alternativa C)</p>
-                                        @break
-                                    @case('C')
-                                    <input type="radio" name="correta" value="A">
-                                    <p class="correta">Alternativa A)</p>
-
-                                    <input type="radio" name="correta" value="B">
-                                    <p class="correta">Alternativa B)</p>
-
-                                    <input type="radio" name="correta" value="C" checked>
-                                    <p class="correta">Alternativa C)</p>
-                                        @break
-                                    @default
-                                    <input type="radio" name="correta" value="A">
-                                    <p class="correta">Alternativa A)</p>
-
-                                    <input type="radio" name="correta" value="B">
-                                    <p class="correta">Alternativa B)</p>
-
-                                    <input type="radio" name="correta" value="C">
-                                    <p class="correta">Alternativa C)</p>
-                                @endswitch
-                                --}}
-
-
-                            </label>
+                                <input type="radio" name="correta" value="C" id="correta_c"{{$quiz->alternativa_correta == 'C' ? "checked" : ""}}>
+                                <label for="correta_c" class="correta">Alternativa C)</label>
+                            </div>
                         </div>
 
                         <div class="input-block field">
@@ -205,5 +106,7 @@
     </div>
 </div>
 
-<script src="<?=asset("js/form-quiz.js")?>"></script>
+@push('scripts')
+<script src="{{ asset('js/form-quiz.js') }}"></script>
+@endpush
 @endsection
