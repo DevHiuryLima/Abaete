@@ -21,20 +21,20 @@
 }
   
 .modalContainer {
-    width: 500px;
-    height: 500px;
-    border-radius: 12px;
+    width: 31.25rem;
+    height: 31.25rem;
+    border-radius: 0.75rem;
     background-color: var(--branco-primario);
-    box-shadow: var(--cor-da-sombra) 0px 5px 15px;
+    box-shadow: var(--cor-da-sombra) 0rem 0.313rem 0.938rem;
     display: flex;
     flex-direction: column;
-    padding: 25px;
+    padding: 1.563rem;
 }
 
 .modalContainer .title h1 {
     display: inline-block;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 0.625rem;
     color: var(--cor-do-texto);
 }
 
@@ -43,7 +43,7 @@
 .titleCloseBtn button {
     background-color: transparent;
     border: none;
-    font-size: 25px;
+    font-size: 1.563rem;
     cursor: pointer;
 }
 
@@ -65,14 +65,14 @@
 }
 
 .modalContainer .footer button {
-    width: 150px;
-    height: 45px;
-    margin: 10px;
+    width: 9.375rem;
+    height: 2.813rem;
+    margin: 0.625rem;
     border: none;
     background-color: var(--verde-claro);
     color: var(--branco-primario);
-    border-radius: 8px;
-    font-size: 20px;
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
     cursor: pointer;
 }
 
@@ -85,3 +85,31 @@
 #cancelBtn { background-color: var(--vermelho-claro); }
 
 #cancelBtn:hover { background-color: var(--vermelho-escuro); }
+
+@media(max-width: 800px) {
+  
+}
+
+@media(max-width: 720px) {
+  
+}
+
+@media(max-width: 620px) {
+    
+}
+
+@media(max-width: 570px) {
+    .modalContainer {
+        width: 28.125rem;
+    }
+}
+
+@media(max-width: 520px) {
+
+}
+
+@media(max-width: 500px) {
+    .modalContainer {
+        width: 25rem;
+    }
+}

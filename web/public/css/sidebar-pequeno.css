@@ -1,28 +1,29 @@
 @import url('./global.css');
 
 aside.app-sidebar {
-  position: fixed;
+  width: 6.125rem;
   height: 100%;
-  padding: 32px 24px;
   background: linear-gradient(329.54deg, var(--verde-claro) 0%, var(--verde-escuro) 100%);
-
+  padding: 2rem 1.5rem;
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
 }
   
-aside.app-sidebar img { width: 48px; }
+aside.app-sidebar img { width: 3rem; }
 
 aside.app-sidebar footer a,
 aside.app-sidebar footer button {
-  width: 48px;
-  height: 48px;
+  width: 3rem;
+  height: 3rem;
 
   border: 0;
 
   background-color: var(--amarelo-claro);
-  border-radius: 16px;
+  border-radius: 1rem;
 
   cursor: pointer;
 
@@ -36,4 +37,20 @@ aside.app-sidebar footer button {
 aside.app-sidebar footer a:hover,
 aside.app-sidebar footer button:hover { 
   background: var(--amarelo-escuro);
+}
+
+@media(max-width: 800px) {
+  
+}
+
+@media(max-width: 720px) {
+  
+}
+
+@media(max-width: 620px) {
+    
+}
+
+@media(max-width: 520px) {
+
 }

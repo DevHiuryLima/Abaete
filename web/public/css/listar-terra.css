@@ -172,3 +172,60 @@
 #delete { background-color: var(--vermelho-claro); }
 
 #delete:hover { background-color: var(--vermelho-escuro); }
+
+
+@media(max-width: 970px) {
+  #page-list main {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #page-list main .detalhes {
+    margin: 4rem 2rem;
+  }
+}
+
+@media(max-width: 870px) {
+  #page-list main .detalhes {
+    margin: 0;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+}
+
+@media(max-width: 820px) {
+  #page-list main .detalhes {
+    width: 500px;
+    margin: 4rem 2rem;
+  }
+}
+
+@media(max-width: 800px) {
+  
+}
+
+@media(max-width: 720px) {
+  
+}
+
+@media(max-width: 680px) {
+  #page-list main .detalhes {
+    width: 400px;
+    margin: 4rem 1rem;
+  }
+
+  .field-group {
+    flex: 1;
+    display: grid;
+  }
+}
+
+@media(max-width: 620px) {
+    
+}
+
+@media(max-width: 540px) {
+  #page-list main .detalhes {
+    width: 350px;
+  }
+}
