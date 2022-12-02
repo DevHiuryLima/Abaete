@@ -3,11 +3,11 @@
 @section('content')
 <div id="root">
     <div id="page-map">
-        <aside style="padding-left: 45px; padding-right: 45px;">
+        <aside>
             <header>
                 <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
                 <h2>Cadastre um administrador</h2>
-                <p>Após, os cadastrado irão aparecer na tabela ao lado.</p>
+                <p>Após, os cadastrados irão aparecer na tabela ao lado.</p>
             </header>
             <footer>
                 <a href="{{ route('terras') }}" title="Voltar">
@@ -24,17 +24,17 @@
             <ul class="responsive-table">
                 <li class="table-header">
                     <div class="col col-1">ID</div>
-                    <div class="col col-2">Nome</div>
-                    <div class="col col-3">E-mail</div>
-                    <div class="col col-4">Ação</div>
+                    <div class="col col-1">Nome</div>
+                    <div class="col col-1">E-mail</div>
+                    <div class="col col-1">Ação</div>
                 </li>
                 @if ($administradores != null)
                     @foreach($administradores as $administrador)
                 <li class="table-row">
-                    <div class="col col-1" data-label="Administrador Id">{{$administrador->idAdmin}}</div>
-                    <div class="col col-2" data-label="Administrador Nome">{{$administrador->nome}}</div>
-                    <div class="col col-3" data-label="Administrador Login">{{$administrador->email}}</div>
-                    <div class="col col-4" data-label="Ação" style="display: flex; align-items: center;">
+                    <div class="col col-1" data-label="Id">{{$administrador->idAdmin}}</div>
+                    <div class="col col-1" data-label="Nome">{{$administrador->nome}}</div>
+                    <div class="col col-1" data-label="E-mail">{{$administrador->email}}</div>
+                    <div class="col col-1" data-label="Ação" style="display: flex; align-items: center;">
 
                         @if($user->idAdmin == 1)
                             @if($administrador->idAdmin == 1)

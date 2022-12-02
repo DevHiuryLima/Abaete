@@ -3,11 +3,11 @@
 @section('content')
 <div id="root">
     <div id="page-map">
-        <aside style="padding-left: 45px; padding-right: 45px;">
+        <aside>
             <header>
                 <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
                 <h2>Cadastre um quiz</h2>
-                <p>Após, os cadastrado irão aparecer na tabela ao lado.</p>
+                <p>Após, os cadastrados irão aparecer na tabela ao lado.</p>
             </header>
             <footer>
                 <a href="{{ route('terras') }}" title="Voltar">
@@ -23,32 +23,32 @@
             <h2></h2>
             <ul class="responsive-table">
                 <li class="table-header">
-                    <div class="col col-2">Terra</div>
+                    <div class="col col-1">Terra</div>
                     <div class="col col-1">Tipo</div>
-                    <div class="col col-3">Pergunta</div>
-                    <div class="col col-3">Alternativas</div>
-                    <div class="col col-3">Resposta</div>
-                    <div class="col col-3">Pontos</div>
-                    <div class="col col-4">Ação</div>
+                    <div class="col col-1">Pergunta</div>
+                    <div class="col col-1">Alternativas</div>
+                    <div class="col col-1">Resposta</div>
+                    <div class="col col-1">Pontos</div>
+                    <div class="col col-1">Ação</div>
                 </li>
                 @if ($quizzes != null)
                     @foreach($quizzes as $quiz)
                 <li class="table-row">
-                    <div class="col col-1" data-label="Terra relacionada">
+                    <div class="col col-1" data-label="Terra">
                         {{$quiz->terra_relacionada != null ? $quiz->terra_relacionada->nome : 'Não possui'}}
                     </div>
-                    <div class="col col-2" data-label="Tipo pergunta">
+                    <div class="col col-1" data-label="Tipo">
                         {{$quiz->tipo == 'alternativas' ? 'Alternativas' : 'Verdadeiro ou Falso'}}
                     </div>
-                    <div class="col col-3" data-label="Pergunta">{{$quiz->pergunta}}</div>
-                    <div class="col col-3" data-label="Toda Alternativas">
+                    <div class="col col-1" data-label="Pergunta">{{$quiz->pergunta}}</div>
+                    <div class="col col-1" data-label="Alternativas">
                         @if($quiz->tipo == 'alternativas')
                         <p><b>A)</b> {{$quiz->alternativa_a}}</p><br>
                         <p><b>B)</b> {{$quiz->alternativa_b}}</p><br>
                         <p><b>C)</b> {{$quiz->alternativa_c}}</p>
                         @endif
                     </div>
-                    <div class="col col-3" data-label="Resposta">
+                    <div class="col col-1" data-label="Resposta">
                     @switch($quiz->tipo)
                         @case('alternativas')
                             {{$quiz->alternativa_correta}}
@@ -61,8 +61,8 @@
                         @default
                     @endswitch
                     </div>
-                    <div class="col col-3" data-label="Pontos">{{$quiz->pontos}}</div>
-                    <div class="col col-4" data-label="Ação" style="display: flex; align-items: center;">
+                    <div class="col col-1" data-label="Pontos">{{$quiz->pontos}}</div>
+                    <div class="col col-1" data-label="Ação" style="display: flex; align-items: center;">
                         <button id="editar-quiz" title="Editar quiz">
                             <a href="{{ route('redireciona.editar.quiz', ['idQuiz' => $quiz->idQuiz]) }}">
                                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 576 512" color="#FFF" xmlns="http://www.w3.org/2000/svg" style="color: rgb(255, 255, 255);">

@@ -2,14 +2,14 @@
 
 #page-map .criar-terra {
     position: absolute;
-    right: 190px;
-    bottom: 40px;
+    right: 11.875rem;
+    bottom: 2rem;
     z-index: 10;
 
-    width: 64px;
-    height: 64px;
+    width: 4rem;
+    height: 4rem;
     background-color: var(--verde-claro);
-    border-radius: 20px;
+    border-radius: 1rem;
 
     display: flex;
     justify-content: center;
@@ -22,15 +22,15 @@
 
 #page-map .map-popup .leaflet-popup-content-wrapper {
     background-color: var(--cor-popup-marcacao);
-    border-radius: 20px;
+    border-radius: 1.25rem;
     box-shadow: none;
 }
   
 #page-map .map-popup .leaflet-popup-content {
     color: var(--verde-escuro);
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: bold;
-    margin: 8px 12px;
+    margin: 0.5rem 0.75rem;
   
     display: flex;
     justify-content: space-between;
@@ -41,8 +41,8 @@
     width: 40px;
     height: 40px;
     background-color: var(--verde-claro);
-    box-shadow: 17.2868px 27.6589px 41.4884px rgba(23, 142, 166, 0.166);
-    border-radius: 12px;
+    box-shadow: 1.08rem 1.729rem 2.593rem rgba(23, 142, 166, 0.166);
+    border-radius: 0.75rem;
     
     display: flex;
     justify-content: center ;
@@ -50,3 +50,23 @@
 }
   
 #page-map .map-popup .leaflet-popup-tip-container { display: none; }
+
+@media(max-width: 800px) {
+
+}
+
+@media(max-width: 720px) {
+  #page-map .criar-terra {
+    width: 3rem;
+    height: 3rem;
+    right: 8.75rem;
+  }
+}
+
+@media(max-width: 620px) {
+    
+}
+
+@media(max-width: 520px) {
+
+}

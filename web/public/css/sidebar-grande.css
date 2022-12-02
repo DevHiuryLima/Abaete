@@ -9,12 +9,12 @@
 }
 
 #page-map aside {
-  width: 440px;
+  width: 27.5rem;
   background: linear-gradient(329.54deg, var(--verde-claro) 0%, var(--verde-escuro) 100%);
-  padding-top: 80px;
-  padding-left: 80px;
-  padding-right: 80px;
-  padding-bottom: 32px;
+  padding-top: 5rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-bottom: 2rem;
 
   display: flex;
   flex-direction: column;
@@ -22,30 +22,30 @@
 }
 
 #page-map aside h2 {
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 800;
-  line-height: 42px;
-  margin-top: 34px; /*64px */
+  line-height: 2.625rem;
+  margin-top: 3.938rem; /*4rem */
 }
 
-#page-map aside p { line-height: 28px; margin-top: 24px; }
+#page-map aside p { line-height: 1.75rem; margin-top: 1.5rem; }
 
 #page-map aside footer {
   display: flex;
   flex-direction: column;
-  line-height: 24px;
+  line-height: 1.5rem;
 }
 
 #page-map aside footer strong { font-weight: 800; }
 
 #page-map footer a {
-  width: 48px;
-  height: 48px;
+  width: 3rem;
+  height: 3rem;
 
   border: 0;
 
   background-color: var(--amarelo-claro);
-  border-radius: 16px;
+  border-radius: 1rem;
 
   cursor: pointer;
 
@@ -63,32 +63,99 @@
 
 #page-map .leaflet-container { z-index: 5; }
 
-#page-map .criar-admin {
+#page-map .criar-quiz {
   position: absolute;
-  right: 40px;
-  bottom: 40px;
+  right: 7.188rem;
+  bottom: 2rem;
   z-index: 10;
-  width: 64px;
-  height: 64px;
+  width: 4rem;
+  height: 4rem;
   background-color: var(--verde-claro);
-  border-radius: 20px;
+  border-radius: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background-color 0.5s;
 }
 
-#page-map .criar-quiz {
+#page-map .criar-quiz:hover { background-color: var(--verde-escuro); }
+
+#page-map .criar-admin {
   position: absolute;
-  right: 115px;
-  bottom: 40px;
+  right: 2.5rem;
+  bottom: 2rem;
   z-index: 10;
-  width: 64px;
-  height: 64px;
+  width: 4rem;
+  height: 4rem;
   background-color: var(--verde-claro);
-  border-radius: 20px;
+  border-radius: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background-color 0.5s;
+}
+
+#page-map .criar-admin:hover { background-color: var(--verde-escuro); }
+
+@media(max-width: 800px) {
+
+}
+
+/* Adcionado por causa da celula de 'E-mail' na tela de listagem de administradores. */
+@media(max-width: 735px) {
+  #page-map aside {
+    width: 27rem;
+  }
+}
+
+@media(max-width: 720px) {
+  #page-map aside {
+    width: 25rem;
+    padding-left: 3.75rem;
+    padding-right: 3.75rem;
+  }
+
+  #page-map aside header img {
+    width: 3rem;
+  }
+
+  #page-map .criar-quiz {
+    width: 3rem;
+    height: 3rem;
+    right: 5rem;
+  }
+  
+  #page-map .criar-admin {
+    width: 3rem;
+    height: 3rem;
+    right: 1.25rem;
+  }
+}
+
+@media(max-width: 700px) {
+  #page-map aside {
+    width: 20rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media(max-width: 620px) {
+  #page-map aside {
+    width: 6.125rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  #page-map aside h2 {
+    display: none;
+  }
+
+  #page-map aside p {
+    display: none;
+  }
+}
+
+@media(max-width: 520px) {
+
 }
