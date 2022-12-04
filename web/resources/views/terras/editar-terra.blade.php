@@ -63,7 +63,6 @@
                         <div class="field">
                             <label for="citys">Cidade</label>
                             <small style="color: #8FA7B3;">
-                                Aperte e segure a tecla ctrl para selecionar mais de uma cidade.
                                 As cidades cadastrada são:
                                 @foreach($terra->cidades as $cidade)
                                     - {{$cidade->cidade}}.
@@ -72,6 +71,9 @@
                             <select name="citys[]" id="citys" multiple required="">
                                 <option value="" selected="">Selecione uma cidade</option>
                             </select>
+                            <small style="color: #8FA7B3;">
+                                Aperte e segure a tecla ctrl para selecionar mais de uma cidade.
+                            </small>
                         </div>
                     </div>
 
@@ -83,8 +85,8 @@
                     <input type="hidden" name="longitude" id="longitude" value="{{$terra->longitude}}">
 
                     <div class="input-block">
-                        <label for="sobre">Sobre<span>Máximo de 3000 caracteres</span></label>
-                        <textarea id="sobre" name="sobre" maxlength="3000" required="">{{$terra->sobre}}</textarea>
+                        <label for="sobre">Sobre<span>Máximo de 5000 caracteres</span></label>
+                        <textarea id="sobre" name="sobre" maxlength="5000" required="">{{$terra->sobre}}</textarea>
                     </div>
 
                     <div class="input-block">

@@ -94,7 +94,7 @@
                     </div>
                     <h3>Sobre</h3>
                     <hr>
-                    <p class="justificar-texto">{{$terra->sobre}}</p>
+                    <p class="justificar-texto" style="white-space: break-spaces; word-break: break-word;">{{$terra->sobre}}</p>
                     <div class="map-container">
                         <div id="map-container" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="width: 100%; height: 280px; position: relative;">
 
