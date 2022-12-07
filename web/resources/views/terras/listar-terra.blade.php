@@ -19,7 +19,7 @@
         <main>
             <div class="detalhes">
                 @if( count($terra->imagensTerra) > 0 )
-                    <img src="{{env('APP_URL') . '/storage/' . $terra->imagensTerra[0]->url}}" alt="{{$terra->nome}}">
+                    <img src="{{env('APP_URL') . '/storage/' . $terra->imagensTerra[0]->url}}" alt="{{$terra->nome}}" title="{{$terra->referencia_das_fotos}}" >
 
                     <div class="images">
                         @php
@@ -42,6 +42,7 @@
                             @endphp
                         @endforeach
                     </div>
+                    <p class="texto-referencia">{{$terra->referencia_das_fotos}}</p>
                 @endif
                 <div class="detalhes-conteudo">
                     <div class="field-group">

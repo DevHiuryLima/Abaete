@@ -7,7 +7,7 @@
             <header>
                 <img src="{{ asset('images/map-marker.svg') }}" alt="Abaeté">
                 <h2>Cadastre uma terra indígena</h2>
-                <p>Após o cadastrado, as terras irão aparecer no mapa ao lado.</p>
+                <p>Após, o cadastrado as terras irão aparecer no mapa ao lado.</p>
             </header>
             <footer>
                 <a href="{{ route('logout') }}" title="Logout">

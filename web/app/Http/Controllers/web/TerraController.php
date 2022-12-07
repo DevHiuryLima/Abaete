@@ -43,6 +43,7 @@ class TerraController extends Controller
             $terra->latitude = $request->latitude;
             $terra->longitude = $request->longitude;
             $terra->sobre = $request->sobre;
+            $terra->referencia_das_fotos = $request->referencia;
             $status = $terra->save();
 
             // Cadastrar cada cidade da terra.
@@ -54,12 +55,14 @@ class TerraController extends Controller
             }
 
             // Cadastrar cada imagem da terra.
-            for ($i=0; $i < count($request->file('images')); $i++) {
-                $imagens = new ImagensTerra();
-                $imagens->terra = $terra->idTerra;
-                // $imagens->url = env('APP_URL') . "/storage/" . $request->file('images')[$i]->store("imagens-terras");
-                $imagens->url = $request->file('images')[$i]->store("imagens-terras");
-                $status = $imagens->save();
+            if ($request->images != null) {
+                for ($i=0; $i < count($request->file('images')); $i++) {
+                    $imagens = new ImagensTerra();
+                    $imagens->terra = $terra->idTerra;
+                    // $imagens->url = env('APP_URL') . "/storage/" . $request->file('images')[$i]->store("imagens-terras");
+                    $imagens->url = $request->file('images')[$i]->store("imagens-terras");
+                    $status = $imagens->save();
+                }
             }
 
             if($status == true){
@@ -129,6 +132,7 @@ class TerraController extends Controller
                 $terra->latitude = $request->latitude;
                 $terra->longitude = $request->longitude;
                 $terra->sobre = $request->sobre;
+                $terra->referencia_das_fotos = $request->referencia;
                 $status = $terra->save();
 
                 //Removendo as cidade antigas para adicionar novas.

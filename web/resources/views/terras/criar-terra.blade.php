@@ -88,7 +88,14 @@
                                 </svg>
                             </label>
                         </div>
-                        <input type="file" id="images" name="images[]" multiple accept="image/*" required="">
+                        <input type="file" id="images" name="images[]" multiple accept="image/*" >
+                    </div>
+
+                    <div class="input-block field-group">
+                        <div class="field">
+                            <label for="referencia">Referência das fotos</label>
+                            <input type="text" name="referencia" id="referencia">
+                        </div>
                     </div>
                 </fieldset>
                 <button class="confirm-button" type="submit">Confirmar</button>
