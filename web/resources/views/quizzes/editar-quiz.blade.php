@@ -95,7 +95,7 @@
 
                         <div class="input-block field">
                             <label for="pontos">Quantos pontos vale essa pergunta?</label>
-                            <input type="number" name="pontos" id="pontos" value="{{$quiz->pontos}}" required="">
+                            <input type="number" name="pontos" id="pontos" min="1" max="100" value="{{$quiz->pontos}}" required="">
                         </div>
                     </fieldset>
                 </fieldset>
