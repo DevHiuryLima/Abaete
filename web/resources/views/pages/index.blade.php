@@ -12,7 +12,7 @@
             </div>
 
             <div id="content-wrapper-middle">
-                <h1>Descubra mais sobre os nativos brasileiros</h1>
+                <h1>Descubra mais sobre os povos originários brasileiros</h1>
                 <p>Aprenda sobre quem são, onde vivem e muito mais sobre sua cultura e história.</p>
             </div>
             

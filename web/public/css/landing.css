@@ -50,7 +50,8 @@
 #page-landing .content-wrapper #content-wrapper-middle { max-width: 23.438rem }
 
 #page-landing .content-wrapper #content-wrapper-middle h1 {
-    font-size: 4.75rem;
+    /* font-size: 4.75rem; */
+    font-size: 4.125rem;
     font-weight: 900;
     line-height: 4.175rem;
 }
@@ -70,7 +71,6 @@
 }
 
 #page-landing .content-wrapper #content-wrapper-bottom .enter-app {
-    /* position: absolute; */
     right: 0;
     bottom: 0;
 
@@ -92,7 +92,6 @@
 
 @media(max-width: 800px) {
     #page-landing .content-wrapper {
-        /* justify-content: space-between; */
         background: url(../images/landing.png) no-repeat 90% center;
         background-size: contain;
     }
@@ -100,21 +99,9 @@
 
 @media(max-width: 720px) {
     #page-landing .content-wrapper {
-        /* justify-content: space-between; */
         background: url(../images/landing.png) no-repeat 90% center;
         background-size: 256px;
     }
-
-    /* #page-landing .content-wrapper #content-wrapper-top img {
-        width: 256px;
-    }
-
-    #page-landing .content-wrapper #content-wrapper-middle h1 {
-        font-size: 4rem;
-        font-weight: 900;
-        line-height: 4rem;   
-    }
-    */
 }
 
 @media(max-width: 620px) {
@@ -132,7 +119,7 @@
     }
 
     #page-landing .content-wrapper #content-wrapper-middle h1 {
-        font-size: 4rem;
+        font-size: 3.13rem;
         font-weight: 900;
         line-height: 4rem;   
     }
@@ -147,9 +134,9 @@
 }
 
 @media(max-width: 520px) {
-    #page-landing {
-        height: 100%;
-    }
+    #root { overflow: hidden; }
+
+    #page-landing { height: auto; }
 
     #page-landing .content-wrapper {
         min-height: 800px;
@@ -161,12 +148,6 @@
     #page-landing .content-wrapper #content-wrapper-top {
         margin-bottom: 0;
     }
-
-    /*
-
-    #page-landing .content-wrapper #content-wrapper-top img {
-        width: 256px;
-    } */
 
     #page-landing .content-wrapper #content-wrapper-top div strong {
         display: none;
@@ -181,12 +162,7 @@
         line-height: 3rem;   
     }
 
-    /*
-    #page-landing .content-wrapper #content-wrapper-middle {
-        margin-bottom: 2rem;
+    #page-landing .content-wrapper #content-wrapper-bottom {
+        width: 96%;
     }
-
-    #page-landing .content-wrapper #content-wrapper-bottom{
-        margin-top: 2rem;
-    } */
 }
