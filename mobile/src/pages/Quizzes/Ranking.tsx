@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Image, ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity, Dimensions, TextInputState } from 'react-native';
-import { Feather } from '@expo/vector-icons';
-import { RectButton } from 'react-native-gesture-handler';
+import { Image, ScrollView, View, StyleSheet, Text } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-// import { CheckBox } from 'react-native-elements'
 
-import * as ImagePicker from 'expo-image-picker';
 import api from '../../services/api';
-import levelUpQuizIcon from '../../images/Quiz/levelUpQuizIcon.png';
 import level from '../../images/Quiz/level.png';
 
 interface Competidores {
@@ -104,18 +99,12 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
     flexDirection: 'row',
-    // marginBottom: 24,
-    // marginRight: 24,
-    // margin: 6,
-    // justifyContent: 'space-evenly'
   },
 
   fieldColumn: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    // marginBottom: 24,
-    // marginRight: 24,
     margin: 8,
   },
 
@@ -123,19 +112,15 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    // marginBottom: 24,
-    // marginRight: 24,
     margin: 8,
     justifyContent: 'center',
     alignItems: 'flex-end'
-    // alignContent: 'flex-end'
   },
 
   image: {
     width: 65,
     height: 65,
     resizeMode: 'cover',
-    // backgroundColor: '#F2F3F5',
 
     borderRadius: 20,
     borderWidth: 1,
@@ -149,8 +134,6 @@ const styles = StyleSheet.create({
   },
 
   labelPosicao: {
-    // color: '#8fa7b3',
-    // color: '#FFD666',
     color: '#34CB79',
     fontFamily: 'Nunito_600SemiBold',
     marginBottom: 8,

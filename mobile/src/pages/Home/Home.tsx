@@ -16,7 +16,11 @@ export default function Home() {
   }
 
   return (
+    // KeyboardEvoidingView: Ajustará automaticamente sua altura, posição ou preenchimento inferior com base na altura do teclado para permanecer visível enquanto o teclado virtual é exibido.
+    // Behavior: Especifique como reagir à presença do teclado.
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios'? 'padding' : undefined}>
+
+        {/* Possibilita uma view  que transita entre varias cores. */}
         <LinearGradient colors={['#34CB79', '#2FB86E']} style={{ flex: 1,  width: Dimensions.get('window').width, height: Dimensions.get('window').height, }}>
 
         
@@ -53,7 +57,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    padding: 20, // 32
+    padding: 20,
     marginTop: 16,
     justifyContent: 'center',
   },
@@ -63,7 +67,6 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontFamily: 'Nunito_700Bold',
     maxWidth: 260,
-    // marginTop: 16,
   },
 
   description: {
@@ -78,8 +81,6 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
     margin: 8,
-    // marginTop: 0,
-    // marginBottom: 0,
   },
 
   container: {
@@ -87,8 +88,6 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    // height: 40,
-    // width: 60,
     backgroundColor: '#FFD666',
     flexDirection: 'row',
     borderRadius: 10,

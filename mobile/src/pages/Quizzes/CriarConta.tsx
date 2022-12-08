@@ -48,16 +48,6 @@ export default function CriarUsuario() {
       data.append('senha', senha);
       data.append('confirmarSenha', confirmarSenha);
 
-      // Envia a requisição de maneira direta no axios.
-      // const response = await axios({
-      //   method: 'post',
-      //   url: 'http://10.7.7.50/Projects/Abaete/web/public/api/usuarios',
-      //   data: data,
-        // headers: {
-        //   'Content-Type': 'multipart/form-data',
-        // },
-      // })
-
       // Envia a requisição pelos pseudônimos e após a criação de uma instância do axios.
       const response = await api.post('usuarios', data);
 

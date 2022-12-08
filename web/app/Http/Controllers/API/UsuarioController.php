@@ -233,13 +233,6 @@ class UsuarioController extends Controller
 
     }
 
-    public function logout()
-    {
-        // session()->remove('idAdmin');
-        // return redirect()->to('/');
-        return response()->json(200);
-    }
-
     public function usuariosPorPontos()
     {
         $usuarios = PontosDoUsuario::with('usuario')->orderBy('pontos', 'desc')->get();

@@ -56,6 +56,8 @@ export default function MapaDeTerras() {
 
   return (
     <View style={styles.container}>
+
+      {/* Componente que constrói os  recurso do mapa. */}
       <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}
@@ -105,10 +107,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#EBF2F5',
-    // alignItems: 'center',
     justifyContent: 'center',
-    // width: Dimensions.get('window').width,
-    // height: Dimensions.get('window').height,
   },
 
   map: {

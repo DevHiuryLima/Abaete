@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
 
 import api from '../../services/api';
 
@@ -17,16 +16,6 @@ export default function Login() {
     try {
       data.append('email', email);
       data.append('senha', senha);
-
-      // Envia a requisição de maneira direta no axios.
-      // const response = await axios({
-      //   method: 'post',
-      //   url: 'http://10.7.7.50/Projects/Abaete/web/public/api/usuarios/login',
-      //   data: data,
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data',
-      //   },
-      // })
 
       // Envia a requisição pelos pseudônimos e após a criação de uma instância do axios.
       const response = await api.post('usuarios/login', data);
