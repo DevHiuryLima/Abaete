@@ -2,12 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Image, ScrollView, View, StyleSheet, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { CheckBox } from '@rneui/themed/dist/CheckBox/index';
-// import { CheckBox } from 'react-native-elements'
 import { v4 as uuidv4 } from 'uuid';
 
-import * as ImagePicker from 'expo-image-picker';
 import api from '../../services/api';
-import homeBackground from '../../images/Quiz/perfil.jpg';
 import lightSeaBlueRankingIcon from '../../images/Quiz/lightSeaBlueRankingIcon.png';
 import levelUpQuizIcon from '../../images/Quiz/levelUpQuizIcon.png';
 import level from '../../images/Quiz/level.png';
@@ -73,7 +70,7 @@ export default function Quiz() {
   // Passa a nova data para o padrão ISO
   const dataAtual = new Date(data.toISOString());
 
-  // Pega a data da ultima tentativa e acrescenta 1 dia.
+  // Pega a data da última tentativa e acrescenta 1 dia.
   const proximaTentativa = new Date(usuario?.ultima_tentativa);
   proximaTentativa.setDate(proximaTentativa.getDate()+1);
   
@@ -89,13 +86,13 @@ export default function Quiz() {
   const segundos = Math.floor(tempoAux / 1000);
   tempoAux -= segundos * 1000;
 
-  // Transformo as horas em segundos
-  const [tempo, setTempo] = useState(Math.floor(1 * horas * 60 * 60));
   const [tentativa, setTentativa] = useState(false);
 
+  // Pego as horas e minutos e separo eles, em esquerda e direita
+  // caso não tenha o número da esquerda é acrescentado o 0 
+  // e por fim separados na constante.
   const [horaEsquerda, horaDireita] = String(horas).padStart(2, '0').split('');
   const [minutoEsquerda, minutoDireita] = String(minutos).padStart(2, '0').split('');
-  const [segundoEsquerda, segundoDireita] = String(segundos).padStart(2, '0').split('');
 
   const params = route.params as UsuarioRouteParams;
 
@@ -119,15 +116,6 @@ export default function Quiz() {
       console.log(error.response._response);
     })
   }, []);
-
-  // useEffect(() => {
-  //   if (tempo > 0) {
-  //     setTimeout(() => {
-  //       console.log('1 minuto ');
-  //       setTempo(tempo - 1);
-  //     }, 1000);
-  //   }
-  // }, [tempo]);
 
   const marcarA = () => {
     setAlternativa_a(true);
@@ -381,18 +369,6 @@ export default function Quiz() {
               <View style={styles.CountdownCardsGroup}>
                 <Text style={styles.CountdownCard}>{minutoDireita}</Text>
               </View>
-
-              {/* <Text style={styles.CountdownSeparator}>:</Text>
-
-              <View style={styles.CountdownCardsGroup}>
-                <Text style={styles.CountdownCard}>{segundoEsquerda}</Text>
-              </View>
-
-              <View style={styles.lineVertical}/>
-
-              <View style={styles.CountdownCardsGroup}>
-                <Text style={styles.CountdownCard}>{segundoDireita}</Text>
-              </View> */}
             </View>
 
             <View style={styles.containerInformacoes}>
@@ -402,9 +378,6 @@ export default function Quiz() {
               <View>
                 <Text style={styles.containerInformacoesText}>Minutos</Text>
               </View>
-              {/* <View>
-                <Text style={styles.containerInformacoesText}>Segundos</Text>
-              </View> */}
             </View>
           </View>
 
