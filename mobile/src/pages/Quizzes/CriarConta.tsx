@@ -21,6 +21,13 @@ export default function CriarUsuario() {
       return alert('Os campos email e confirmar email devem conter valores iguais.')
     }
 
+    if(senha.length < 6) {
+      console.log('O campo senha precisa ter no mínimo 6 caracteres.');
+    }
+
+    if(confirmarSenha.length < 6) {
+      console.log('O campo confirmar senha precisa ter no mínimo 6 caracteres.');
+    }
 
     if(!(senha == confirmarSenha)){
       return alert('Os campos senha e confirmar senha devem conter valores iguais.')

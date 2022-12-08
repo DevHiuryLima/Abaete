@@ -22,6 +22,7 @@ interface Terra {
   latitude: number;
   longitude: number;
   estado: string;
+  referencia_das_fotos: string;
   created_at: string;
   updated_at: string;
   url: string;
@@ -61,25 +62,31 @@ export default function ListarTerra() {
     </View>
   );
 
-  // console.log(terra?.imagens_terra.map(i => i.idImagem));
+  // console.log(terra?.imagens_terra.map(i => i.idImagem.));
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.imagesContainer}>
         <ScrollView horizontal pagingEnabled>
-          {terra?.imagens_terra.map(imagem => {
+          {terra?.imagens_terra.map(imagem => {            
             return (
               <Image
-                key={imagem.idImagem} 
-                style={styles.image} 
+                key={imagem.idImagem.toString()}
+                style={styles.image}
                 source={{ uri: terra?.url + imagem.url }} />
             );
           })}
         </ScrollView>
       </View>
+
+      <View style={styles.fieldGroupReferencia}>
+        <View style={styles.fieldReferencia} >
+          <Text style={styles.contentDataReferencia}>{terra?.referencia_das_fotos}</Text>
+        </View>
+      </View>
+
       
       <View style={styles.fieldGroup}>
-
         <View style={styles.field}>
           <Text style={styles.contentTitle}>Nome</Text>
           <View style={styles.lineHorizontal} />
@@ -91,11 +98,9 @@ export default function ListarTerra() {
           <View style={styles.lineHorizontal} />
           <Text style={styles.contentData}>{terra?.populacao}</Text>
         </View>
-
       </View>
 
       <View style={styles.fieldGroup}>
-
         <View style={styles.field}>
           <Text style={styles.contentTitle}>Povos</Text>
           <View style={styles.lineHorizontal} />
@@ -107,17 +112,14 @@ export default function ListarTerra() {
           <View style={styles.lineHorizontal} />
           <Text style={styles.contentData}>{terra?.lingua}</Text>
         </View>
-
       </View>
 
-      <View style={styles.fieldGroupTwo}>
-
+      <View style={styles.fieldGroup}>
         <View style={styles.field}>
           <Text style={styles.contentTitle}>Modalidade</Text>
           <View style={styles.lineHorizontal} />
           <Text style={styles.contentData}>{terra?.modalidade}</Text>
         </View>
-
       </View>
       
       <View style={styles.fieldGroup}>
@@ -126,7 +128,9 @@ export default function ListarTerra() {
           <View style={styles.lineHorizontal} />
           <Text style={styles.contentData}>{terra?.estado}</Text>
         </View>
+      </View>
 
+      <View style={styles.fieldGroup}>        
         <View style={styles.field}>
           <Text style={styles.contentTitle}>Cidade</Text>
           <View style={styles.lineHorizontal} />
@@ -138,22 +142,6 @@ export default function ListarTerra() {
             })}
           </Text>
         </View>
-        
-        {/* <View style={styles.fieldTwo}>
-          <Text style={styles.contentTitle}>Cidade</Text>
-          <View style={styles.lineHorizontal} />
-          <Text style={styles.contentData}>
-            {terra?.cidades.map(cidade => {
-              return (
-                <Text>- {cidade.cidade}{'\n'}</Text>
-              );
-            })}
-          </Text>
-        </View> */}
-
-        {/* <View style={styles.field}>
-        </View> */}
-
       </View>
         
       <View style={styles.about}>
@@ -192,13 +180,12 @@ const styles = StyleSheet.create({
 
   imagesContainer: {
     height: 240,
-    marginBottom: 40,
   },
 
   image: {
     width: Dimensions.get('window').width,
     height: 240,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
   },
 
   fieldGroup: {
@@ -208,19 +195,26 @@ const styles = StyleSheet.create({
     margin: 16,
   },
 
-  fieldGroupTwo: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    margin: 16,
-  },
-
   field: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    // marginBottom: 24,
-    // marginRight: 24,
+    margin: 6,
+  },
+
+  fieldGroupReferencia: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    margin: 16,
+    marginBottom: 40,
+  },
+  
+  fieldReferencia: {
+    fontSize: 12,
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
     margin: 6,
   },
 
@@ -228,7 +222,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontFamily: 'Nunito_700Bold',
     fontSize: 24,
-    // lineHeight: 46,
     color: '#4D6F80',
   },
 
@@ -241,15 +234,19 @@ const styles = StyleSheet.create({
   contentData: {
     fontFamily: 'Nunito_700Bold',
     fontSize: 18,
-    // lineHeight: 28,
     textAlign: 'justify', 
     color: '#5C8599',
-    // marginTop: 24,
+  },
+
+  contentDataReferencia: {
+    fontFamily: 'Nunito_700Bold',
+    fontSize: 12,
+    textAlign: 'justify', 
+    color: '#5C8599',
   },
 
   about: {
     margin: 16,
-    // marginTop: 32,
   },
 
   mapContainer: {
@@ -266,10 +263,6 @@ const styles = StyleSheet.create({
 
   map: {
     flex: 1,
-    // width: Dimensions.get('window').width,
-    // height: Dimensions.get('window').height,
-    // width: 536,
-    // height: 280,
   },
 
   mapStyle: {

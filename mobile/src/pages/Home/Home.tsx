@@ -25,7 +25,7 @@ export default function Home() {
             <Image source={logo}/>
 
             <View>
-              <Text style={styles.title}>Descubra mais sobre os nativos brasileiros</Text>
+              <Text style={styles.title}>Descubra mais sobre os povos originários brasileiros</Text>
               <Text style={styles.description}>Aprenda sobre quem são, onde vivem e muito mais sobre sua cultura e história.</Text>
             </View>
           </View>

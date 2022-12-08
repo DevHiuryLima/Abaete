@@ -18,6 +18,7 @@ interface Terra {
   latitude: number;
   longitude: number;
   estado: string;
+  referencia_das_fotos: string;
   created_at: string;
   updated_at: string;
   cidades: Array<{
