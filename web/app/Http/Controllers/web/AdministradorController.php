@@ -39,18 +39,26 @@ class AdministradorController extends Controller
     public function criarAdministrador(Request $request)
     {
         if(session()->exists('idAdmin')) {
-            $administrador = new Administrador();
-            $administrador->nome = $request->nome;
-            $administrador->email = $request->email;
-            $administrador->senha = base64_encode($request->senha);
-            $status = $administrador->save();
+            $administradores = Administrador::where('email', '=', $request->email)->get();
 
-            if($status == true){
-                echo "<script>window.alert('Cadastrado com sucesso!')</script>";
-                return redirect()->to('/administradores');
+            if (!$administradores->count()) {
+                $administrador = new Administrador();
+
+                $administrador->nome = $request->nome;
+                $administrador->email = $request->email;
+                $administrador->senha = base64_encode($request->senha);
+                $status = $administrador->save();
+
+                if($status == true){
+                    echo "<script>window.alert('Cadastrado com sucesso!')</script>";
+                    return redirect()->to('/administradores');
+                } else {
+                    $administrador->delete();
+                    echo "<script>window.alert('Ocorreu um erro ao cadastrar Administrador! Por favor, tente novamente mais tarde.')</script>";
+                    echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
+                }
             } else {
-                $administrador->delete();
-                echo "<script>window.alert('Ocorreu um erro ao cadastrar Administrador! Por favor, tente novamente mais tarde.')</script>";
+                echo "<script>window.alert('Já existe um administrador com esse E-mail!')</script>";
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
         } else {
@@ -80,17 +88,24 @@ class AdministradorController extends Controller
             $administrador = Administrador::find($request->idAdmin);
 
             if ($administrador != null) {
+                $administradores = Administrador::where('email', '=', $request->email)->get();
 
-                $administrador->nome = $request->nome;
-                $administrador->email = $request->email;
-                $administrador->senha = base64_encode($request->senha);
-                $status = $administrador->save();
+                if (!$administradores->count()) {
 
-                if($status == true){
-                    echo "<script>window.alert('Cadastrado com sucesso!')</script>";
-                    return redirect()->to('/administradores');
+                    $administrador->nome = $request->nome;
+                    $administrador->email = $request->email;
+                    $administrador->senha = base64_encode($request->senha);
+                    $status = $administrador->save();
+
+                    if($status == true){
+                        echo "<script>window.alert('Cadastrado com sucesso!')</script>";
+                        return redirect()->to('/administradores');
+                    } else {
+                        echo "<script>window.alert('Ocorreu um erro ao cadastrar Administrador! Por favor, tente novamente mais tarde.')</script>";
+                        echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
+                    }
                 } else {
-                    echo "<script>window.alert('Ocorreu um erro ao cadastrar Administrador! Por favor, tente novamente mais tarde.')</script>";
+                    echo "<script>window.alert('Já existe um administrador com esse E-mail!')</script>";
                     echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
                 }
             } else {
