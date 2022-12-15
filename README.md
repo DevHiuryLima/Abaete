@@ -23,18 +23,19 @@
 
 ## 📖 Sobre
 
-Este projeto pertence ao meu trabalho de conclusão de curso, no curso de Tecnologia em Análise e Desenvolvimento de Sistemas (TADS) do [Instituto Federal Goiano - Campus Iporá][ifgoiano], o mesmo foi feito com a orientação do meu professor o [Dr. Cleon Xavier Pereira Júnior][orientador].
+Este projeto pertence ao meu trabalho de conclusão de curso, no curso de Tecnologia em Análise e Desenvolvimento de Sistemas (TADS) do [Instituto Federal Goiano - Campus Iporá][ifgoiano]. O mesmo foi feito com a orientação do meu professor o [Dr. Cleon Xavier Pereira Júnior][orientador].
 
 &#xa0;
 
 ## :dart: Objetivo
 
-Com o objetivo de colaborar na formação da população sobre a importância da preservação de aldeias e terras indígenas. Na inteção de valorizar, informar e conscientizar sobre os povos originários, surge o `Abaeté`.
+Com o objetivo de colaborar na formação da população, sobre a importância da preservação de aldeias e terras indígenas. Na inteção de valorizar, informar e conscientizar sobre os povos originários, surge o &#32; &#32; &#32;<img src="https://github.com/DevHiuryLima/Abaete/blob/main/web/public/images/logo.svg" alt="Logo Abaeté" width="96px"/>.
 
 O projeto tem como finalidade preservar os hábitos e as histórias dos povos indígenas de Goiás, pois disseminá-las para uma maior conscientização deve ser um
 trabalho contínuo e de grande importância.
 
 &#xa0;
+
 Logo o sistema Web é restrito para que pessoas capacitadas (denomidas como administradores) faça login no sistema, onde poderão:
  - Gerenciar as terras indígenas, tendo como funcionalidade Cadastrar, Visualizar, Editar e Excluir as terras indígenas.
  - Gerenciar perguntas para um Quiz sobre os povos originários e poderão Cadastrar, Visualizar, Editar e Excluir essas perguntas.
@@ -42,7 +43,8 @@ Logo o sistema Web é restrito para que pessoas capacitadas (denomidas como admi
  apenas colaborar com os sistema em relação as terras e o quiz. E somente alterar as suas informações.
  
  &#xa0;
- Os usuários terão acesso ao aplicativo, onde poderão:
+ 
+ O aplicativo tem acesso livre, onde os usuários poderão:
  - Navegar pelo mapa interativo e visualizar todas informações pertinentes aos povos indígenas.
  - Criar um cadastro no sistema e testar seus conhecimentos através de Quiz sobre esses povos.
 
@@ -80,6 +82,7 @@ Logo o sistema Web é restrito para que pessoas capacitadas (denomidas como admi
 - Editor: **[Visual Studio Code][vscode]**
 - Teste de API: **[Insomnia][insomnia]**
 - Fontes: **[Nunito][font_nunito]**
+- Ícones: **[Markdown Emoji][markdown_emoji]**
 
 &#xa0;
 
@@ -87,7 +90,7 @@ Logo o sistema Web é restrito para que pessoas capacitadas (denomidas como admi
 
 ### Web
 
-Essas são apenas algumas telas do sistema Web e referentes ao gerenciamente de terras indigenas.
+Essas são apenas algumas telas do sistema Web e refere-se ao gerenciamento de terras indigenas.
 <div align="center">
     <img src="https://user-images.githubusercontent.com/69491885/207755699-3a08b8a8-a6e0-429c-bff1-766748bef928.png" width="250px" height="115px" title="Tela inicial do sistema Web." alt="Tela inicial do sistema Web.">
     <img src="https://user-images.githubusercontent.com/69491885/207755927-b4199c47-b378-481e-868c-edec6d748889.png" width="250px" height="115px" title="Tela de login." alt="Tela de login.">
@@ -183,6 +186,7 @@ Feito por <a href="https://github.com/DevHiuryLima" target="_blank">Hiury Lima</
 
 [insomnia]: https://insomnia.rest/
 
+[markdown_emoji]: https://github.com/ikatyang/emoji-cheat-sheet
 
 
 
