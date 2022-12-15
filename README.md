@@ -81,6 +81,31 @@ Desenvolver uma sistema com localizações geográficas das terras indígenas na
 
 ## 🎨 Layout
 
+### Web
+
+Essas são apenas algumas telas do sistema Web e referentes ao gerenciamente de terras indigenas.
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/69491885/207755699-3a08b8a8-a6e0-429c-bff1-766748bef928.png" width="250px" height="115px" title="Tela inicial do sistema Web." alt="Tela inicial do sistema Web.">
+    <img src="https://user-images.githubusercontent.com/69491885/207755927-b4199c47-b378-481e-868c-edec6d748889.png" width="250px" height="115px" title="Tela de login." alt="Tela de login.">
+    <img src="https://user-images.githubusercontent.com/69491885/207755982-97928ba1-1a4f-4762-b054-89a329c97df8.png" width="250px" height="115px" title="Tela de listagem de todas terras pelo mapa interatvio." alt="Tela de listagem de todas terras pelo mapa interatvio.">
+    <img src="https://user-images.githubusercontent.com/69491885/207756871-dd6b2b01-544f-4df4-b64c-9fcf78d8dc87.png" width="250px" height="320px" title="Tela de cadastro de uma terra indígena." alt="Tela de cadastro de uma terra indígena.">
+    <img src="https://user-images.githubusercontent.com/69491885/207757417-daf593bb-76fe-4c0e-b1e7-3cf3db6a5f5a.png" width="250px" height="320px" title="Tela de listagem de uma terra indígena." alt="Tela de listagem de uma terra indígena.">
+    <img src="https://user-images.githubusercontent.com/69491885/207758526-8736113a-086d-4dda-b291-7b6328c55a4e.png" width="250px" height="320px" title="Tela de edição de uma terra indígena." alt="Tela de edição de uma terra indígena.">
+</div>
+
+
+### Mobile
+
+Essas são apenas algumas telas do sistema Mobile.
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/69491885/207760899-361b3f03-2aad-402d-8723-fbabee83186b.jpg" width="250px" title="Tela inicial do sistema mobile." alt="Tela inicial do sistema mobile.">
+    <img src="https://user-images.githubusercontent.com/69491885/207761443-bfe6ef58-616b-449f-9588-fbb1a87d55ff.jpg" width="250px" title="Tela de listagem de todas terras pelo mapa interatvio, do sistema mobile." alt="Tela de listagem de todas terras pelo mapa interatvio do sistema mobile.">
+    <img src="https://user-images.githubusercontent.com/69491885/207762097-1634f39e-0750-4220-99d4-6d032326c61c.jpg" width="250px" title="Tela de login para o quiz no sistema mobile." alt="Tela de login para o quiz no sistema mobile.">
+    <img src="https://user-images.githubusercontent.com/69491885/207762881-0377c62c-db44-4dab-82be-864a86f62b7a.jpg" width="250px" title="Tela de quiz na parte de responder uma pergunta." alt="Tela de quiz na parte de responder uma pergunta.">
+    <img src="https://user-images.githubusercontent.com/69491885/207763152-26a183c1-89da-4286-8c6b-bb466725524e.jpg" width="250px" title="Tela de quiz na parte de espera para a próxima pergunta." alt="Tela de quiz na parte de espera para a próxima pergunta.">
+    <img src="https://user-images.githubusercontent.com/69491885/207763385-4ea5e423-1822-4c88-a0f5-3115a9ed20de.jpg" width="250px" title="Tela de ranking de usuários do quiz." alt="Tela de ranking de usuários do quiz.">
+</div>
+
 &#xa0;
 
 ## 🚀 Como executar o projeto
@@ -88,6 +113,12 @@ Desenvolver uma sistema com localizações geográficas das terras indígenas na
 &#xa0;
 
 ## :octocat: Como contribuir
+
+1. Faça um **fork** do projeto.
+1. Crie uma nova branch com as suas alterações: `git checkout -b my-feature`
+1. Salve as alterações e crie uma mensagem de commit contando o que você fez: `git commit -m "feature: My new feature"`
+1. Envie as suas alterações: `git push origin my-feature`
+> Caso tenha alguma dúvida confira este [guia de como contribuir no GitHub](https://github.com/firstcontributions/first-contributions)
 
 &#xa0;
 
