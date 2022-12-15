@@ -29,7 +29,22 @@ Este projeto pertence ao meu trabalho de conclusão de curso, no curso de Tecnol
 
 ## :dart: Objetivo
 
-Desenvolver uma sistema com localizações geográficas das terras indígenas na região de Goiás e que contenha os dados sobre a população desta terra, sua história, sua cultura, dialeto falado e algumas outras curiosidades.
+Com o objetivo de colaborar na formação da população sobre a importância da preservação de aldeias e terras indígenas. Na inteção de valorizar, informar e conscientizar sobre os povos originários, surge o `Abaeté`.
+
+O projeto tem como finalidade preservar os hábitos e as histórias dos povos indígenas de Goiás, pois disseminá-las para uma maior conscientização deve ser um
+trabalho contínuo e de grande importância.
+
+&#xa0;
+Logo o sistema Web é restrito para que pessoas capacitadas (denomidas como administradores) faça login no sistema, onde poderão:
+ - Gerenciar as terras indígenas, tendo como funcionalidade Cadastrar, Visualizar, Editar e Excluir as terras indígenas.
+ - Gerenciar perguntas para um Quiz sobre os povos originários e poderão Cadastrar, Visualizar, Editar e Excluir essas perguntas.
+ - O Administrador principal pode Criar, Listar, Atualizar e Remover outros administradores. Porém o administrador secundário poderá
+ apenas colaborar com os sistema em relação as terras e o quiz. E somente alterar as suas informações.
+ 
+ &#xa0;
+ Os usuários terão acesso ao aplicativo, onde poderão:
+ - Navegar pelo mapa interativo e visualizar todas informações pertinentes aos povos indígenas.
+ - Criar um cadastro no sistema e testar seus conhecimentos através de Quiz sobre esses povos.
 
 &#xa0;
 
@@ -38,22 +53,14 @@ Desenvolver uma sistema com localizações geográficas das terras indígenas na
 #### **Web** ([Laravel][laravel] + [PHP][php])
 
   - **[Leaflet][leaflet]**
+  - **[jQuery][jQuery]**
  
   \* Veja o arquivo <kbd>[package.json](https://github.com/DevHiuryLima/Abaete/blob/main/web/package.json)</kbd>
   
 #### **Server** 
   
-  - **[Express][express]**
-  - **[CORS][cors]**
-  - **[KnexJS][knex]**
-  - **[SQLite][sqlite3]**
-  - **[ts-node][tsnode]**
-  - **[dotENV][dotenv]**
-  - **[Multer][multer]**
-  - **[Celebrate][celebrate]**
-  - **[Joi][joi]**
-
-  \* Veja o arquivo <kbd>[package.json](./sources/server/package.json)</kbd>
+  - **[MySQL][mysql]**
+  
 
 #### **Mobile** ([React Native][react_native] + [TypeScript][typescript])
 
@@ -61,20 +68,17 @@ Desenvolver uma sistema com localizações geográficas das terras indígenas na
   - **[Expo Google Fonts][expo_google_fonts]**
   - **[React Navigation][react_navigation]**
   - **[React Native Maps][react_native_maps]**
-  - **[Expo Constants][expo_constants]**
-  - **[React Native SVG][react_native_svg]**
   - **[Axios][axios]**
   - **[Expo Location][expo_location]**
+  - **[Yarn][yarn]**
 
   \* Veja o arquivo <kbd>[package.json](https://github.com/DevHiuryLima/Abaete/blob/main/mobile/package.json)</kbd>
 
 #### **Utilitários**
 
-- API: **[IBGE API][ibge_api]** &rarr; **<kbd>[API de UFs][ibge_api_ufs]</kbd>**, **<kbd>[API de Municípios][ibge_api_municipios]</kbd>** 
-- Maps: **[Leaflet][leaflet]**
+- API: **[IBGE API][ibge_api]** &rarr; **<kbd>[API de UFs][ibge_api_ufs]</kbd>**, **<kbd>[API de Municípios][ibge_api_municipios]</kbd>**
 - Editor: **[Visual Studio Code][vscode]**
 - Teste de API: **[Insomnia][insomnia]**
-- Ícones: **[Feather Icons][feather_icons]**, **[Font Awesome][font_awesome]**
 - Fontes: **[Nunito][font_nunito]**
 
 &#xa0;
@@ -134,11 +138,14 @@ Feito por <a href="https://github.com/DevHiuryLima" target="_blank">Hiury Lima</
 
 
 
-<!-- Techs -->
+<!-- Links -->
 
 [ifgoiano]: https://ifgoiano.edu.br/home/index.php/ipora.html
 
 [orientador]: https://www.linkedin.com/in/cleon-xavier-pereira-junior-18958669/
+
+
+<!-- Techs Web -->
 
 [laravel]: https://laravel.com
 
@@ -146,9 +153,25 @@ Feito por <a href="https://github.com/DevHiuryLima" target="_blank">Hiury Lima</
 
 [leaflet]: https://leafletjs.com/
 
+[jQuery]: https://jquery.com/
+
+
+
+<!-- Techs Server -->
+
+[mysql]: https://www.mysql.com/
+
+
+
+<!-- Techs Mobile -->
+
 [react_native]: http://www.reactnative.com/
 
 [typescript]: https://www.typescriptlang.org/
+
+
+
+<!-- Techs Utilitárias -->
 
 [ibge_api]: https://servicodados.ibge.gov.br/api/docs/localidades?versao=1
 
@@ -158,23 +181,16 @@ Feito por <a href="https://github.com/DevHiuryLima" target="_blank">Hiury Lima</
 
 [vscode]: https://code.visualstudio.com/
 
-[express]: https://expressjs.com/
-
-[cors]: https://expressjs.com/en/resources/middleware/cors.html
-
-[knex]: http://knexjs.org/
-
-[feather_icons]: https://feathericons.com/
-
 [insomnia]: https://insomnia.rest/
+
+
+
 
 [react_router_dom]: https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom
 
 [react_icons]: https://react-icons.github.io/react-icons/
 
 [axios]: https://github.com/axios/axios
-
-[dotenv]: https://github.com/motdotla/dotenv
 
 [expo]: https://expo.io/
 
@@ -184,28 +200,11 @@ Feito por <a href="https://github.com/DevHiuryLima" target="_blank">Hiury Lima</
 
 [react_native_maps]: https://github.com/react-native-community/react-native-maps
 
-[expo_constants]: https://docs.expo.io/versions/latest/sdk/constants/
-
-[react_native_svg]: https://github.com/react-native-community/react-native-svg
 
 [expo_location]: https://docs.expo.io/versions/latest/sdk/location/
 
 [expo_mail_composer]: https://docs.expo.io/versions/latest/sdk/mail-composer/
 
-[font_roboto]: https://fonts.google.com/specimen/Roboto
-
-[font_ubuntu]: https://fonts.google.com/specimen/Ubuntu
-
 [font_nunito]: https://fonts.google.com/specimen/Nunito
-
-[font_awesome]: https://fontawesome.com/
-
-[multer]: https://github.com/expressjs/multer
-
-[celebrate]: https://github.com/arb/celebrate
-
-[joi]: https://github.com/hapijs/joi
-
-[react_dropzone]: https://github.com/react-dropzone/react-dropzone
 
 [yarn]: https://classic.yarnpkg.com/en/docs/install/#debian-stable
