@@ -117,6 +117,59 @@ Essas são apenas algumas telas do sistema Mobile.
 
 ## 🚀 Como executar o projeto
 
+1. Faça um clone :
+
+```sh
+  $ git clone https://github.com/DevHiuryLima/Abaete.git
+```
+
+### Web
+  **Pré-requisitos**
+  - É **necessário** possuir o **[PHP][php]** instalado na máquina.
+  - E também é **essencial** ter o ****[Composer][composer]**** instalado na máquina.
+
+  **Executando a Aplicação:**
+```
+  # Instale as depedências
+  - Apague a pasta vendor em 'web/vendor'.
+  - Execute o comando composer update.
+  - Execute o comando npm install.
+
+  # Crie o arquivo .env
+  - Busque em outros projetos o arquivo '.env' e cole na raiz do projeto web.
+  - Atualize as informações do arquivo '.env' de acordo com o projeto atual.
+  
+  # Execute a aplicação web
+  - Pelo terminal entre na pasta 'web'
+  - Execute o comando 'php artisan serve'.
+```
+
+
+### Mobile
+
+  **Pré-requisitos**
+  - É **necessário** possuir o **[Node.js](https://nodejs.org/en/)** instalado na máquina.
+  - Também, é **preciso** ter um gerenciador de pacotes seja o 
+    **[NPM](https://www.npmjs.com/)** ou **[Yarn](https://yarnpkg.com/)**.
+  - Por fim, é **essencial** ter o **[Expo](https://expo.io/)** instalado de forma global na máquina.
+  - Instale o aplicativo [Expo](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en) no seu smartphone.
+
+
+  **Executando a Aplicação:**
+```
+  # Instale as dependências
+  - Execute o comando 'npm install'.
+
+  # Inicie a API
+  - Execute a aplicação web.
+  - No arquivo 'api.ts' mude o link na 'baseURL' de acordo com o ip da maquina.
+
+  # Execute a aplicação mobile
+  - Pelo terminal entre na pasta 'mobile'
+  - execute o comando 'expo start'.
+  - Abra o aplicativo do expo e no modo **LAN** faça o scan do QRCode.
+```
+
 &#xa0;
 
 ## :octocat: Como contribuir
@@ -153,6 +206,8 @@ Feito por <a href="https://github.com/DevHiuryLima" target="_blank">Hiury Lima</
 [laravel]: https://laravel.com
 
 [php]: https://www.php.net
+
+[composer]: https://getcomposer.org/
 
 [leaflet]: https://leafletjs.com/
 
