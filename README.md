@@ -136,8 +136,9 @@ Essas são apenas algumas telas do sistema Mobile.
   - Execute o comando npm install.
 
   # Crie o arquivo .env
-  - Busque em outros projetos o arquivo '.env' e cole na raiz do projeto web.
-  - Atualize as informações do arquivo '.env' de acordo com o projeto atual.
+  - Copie o arquivo '.env.example' na raiz da sua aplicação 'web' e cole no mesmo local com o nome '.env'.
+  - Crie uma nova chave para a aplicação, executando o comando 'php artisan key:generate'.
+  - Em seguida atualize as informações do arquivo '.env' de acordo com o projeto atual.
   
   # Execute a aplicação web
   - Pelo terminal entre na pasta 'web'
