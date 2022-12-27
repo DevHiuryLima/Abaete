@@ -29,14 +29,14 @@ Este projeto pertence ao meu trabalho de conclusão de curso, no curso de Tecnol
 
 ## :dart: Objetivo
 
-Com o objetivo de colaborar na formação da população, sobre a importância da preservação de aldeias e terras indígenas. Na inteção de valorizar, informar e conscientizar sobre os povos originários, surge o &#32; &#32; &#32;<img src="https://github.com/DevHiuryLima/Abaete/blob/main/web/public/images/logo.svg" alt="Logo Abaeté" width="96px"/>.
+Com o objetivo de colaborar na formação da população, sobre a importância da preservação de aldeias e terras indígenas. Na intenção de valorizar, informar e conscientizar sobre os povos originários, surge o &#32; &#32; &#32;<img src="https://github.com/DevHiuryLima/Abaete/blob/main/web/public/images/logo.svg" alt="Logo Abaeté" width="96px"/>.
 
 O projeto tem como finalidade preservar os hábitos e as histórias dos povos indígenas de Goiás, pois disseminá-las para uma maior conscientização deve ser um
 trabalho contínuo e de grande importância.
 
 &#xa0;
 
-Logo o sistema Web é restrito para que pessoas capacitadas (denomidas como administradores) faça login no sistema, onde poderão:
+Logo o sistema Web é restrito para que pessoas capacitadas (denominadas como administradores) faça login no sistema, onde poderão:
  - Gerenciar as terras indígenas, tendo como funcionalidade Cadastrar, Visualizar, Editar e Excluir as terras indígenas.
  - Gerenciar perguntas para um Quiz sobre os povos originários e poderão Cadastrar, Visualizar, Editar e Excluir essas perguntas.
  - O Administrador principal pode Criar, Listar, Atualizar e Remover outros administradores. Porém o administrador secundário poderá
@@ -90,7 +90,7 @@ Logo o sistema Web é restrito para que pessoas capacitadas (denomidas como admi
 
 ### Web
 
-Essas são apenas algumas telas do sistema Web e refere-se ao gerenciamento de terras indigenas.
+Essas são apenas algumas telas do sistema Web e refere-se ao gerenciamento de terras indígenas.
 <div align="center">
     <img src="https://user-images.githubusercontent.com/69491885/207755699-3a08b8a8-a6e0-429c-bff1-766748bef928.png" width="250px" height="115px" title="Tela inicial do sistema Web." alt="Tela inicial do sistema Web.">
     <img src="https://user-images.githubusercontent.com/69491885/207755927-b4199c47-b378-481e-868c-edec6d748889.png" width="250px" height="115px" title="Tela de login." alt="Tela de login.">
@@ -130,7 +130,7 @@ Essas são apenas algumas telas do sistema Mobile.
 
   **Executando a Aplicação:**
 ```
-  # Instale as depedências
+  # Instale as dependências
   - Apague a pasta vendor em 'web/vendor'.
   - Execute o comando composer update.
   - Execute o comando npm install.
