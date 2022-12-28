@@ -23,7 +23,7 @@
 
 ## 📖 Sobre
 
-Este projeto pertence ao meu trabalho de conclusão de curso, no curso de Tecnologia em Análise e Desenvolvimento de Sistemas (TADS) do [Instituto Federal Goiano - Campus Iporá][ifgoiano]. O mesmo foi feito com a orientação do meu professor o [Dr. Cleon Xavier Pereira Júnior][orientador].
+Este projeto teve início no meu trabalho de conclusão de curso, durante curso de Tecnologia em Análise e Desenvolvimento de Sistemas (TADS) do [Instituto Federal Goiano - Campus Iporá][ifgoiano]. O mesmo foi feito com a orientação do meu professor o [Dr. Cleon Xavier Pereira Júnior][orientador].
 
 &#xa0;
 
