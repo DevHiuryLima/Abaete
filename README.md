@@ -46,7 +46,7 @@ Logo o sistema Web é restrito para que pessoas capacitadas (denominadas como ad
  
  O aplicativo tem acesso livre, onde os usuários poderão:
  - Navegar pelo mapa interativo e visualizar todas informações pertinentes aos povos indígenas.
- - Criar um cadastro no sistema e testar seus conhecimentos através de Quiz sobre esses povos.
+ - Criar um cadastro no sistema e testar seus conhecimentos através de um Quiz sobre esses povos.
 
 &#xa0;
 
