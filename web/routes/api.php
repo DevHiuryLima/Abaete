@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\TerraController;
+use App\Http\Controllers\API\UsuarioController;
+use App\Http\Controllers\API\QuizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +22,11 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::group(['namespace' => 'API', 'as' => 'api.' ], function(){
-    Route::apiResource('/terras', 'TerraController');
-    Route::apiResource('/usuarios', 'UsuarioController');
-    Route::post('/usuarios/login', 'UsuarioController@login');
-    Route::apiResource('/quizzes', 'QuizController');
-    Route::get('/quiz/busca', 'QuizController@buscarPerguntaAleatoria');
-    Route::post('/quiz/responder', 'QuizController@responderPerguntas');
-    Route::get('/ranking', 'UsuarioController@usuariosPorPontos');
+    Route::apiResource('/terras', TerraController::class);
+    Route::apiResource('/usuarios', UsuarioController::class);
+    Route::post('/usuarios/login', [UsuarioController::class, 'login']);
+    Route::apiResource('/quizzes', QuizController::class);
+    Route::get('/quiz/busca', [QuizController::class, 'buscarPerguntaAleatoria']);
+    Route::post('/quiz/responder', [QuizController::class, 'responderPerguntas']);
+    Route::get('/ranking', [UsuarioController::class, 'usuariosPorPontos']);
 });
