@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\web;
+namespace App\Http\Controllers\web\dashboard;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use App\Models\Terra;
-use App\Models\Quiz;
 use App\Http\Controllers\Controller;
+use App\Models\Quiz;
+use App\Models\Terra;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -15,9 +13,9 @@ class QuizController extends Controller
     {
         if(session()->exists('idAdmin')) {
             $quizzes = Quiz::all();
-            return view('quizzes.listar-quizzes', compact('quizzes'));
+            return view('dashboard.quizzes.listar-quizzes', compact('quizzes'));
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 
@@ -31,9 +29,9 @@ class QuizController extends Controller
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
 
-            return view('quizzes.criar-quiz', compact('terras'));
+            return view('dashboard.quizzes.criar-quiz', compact('terras'));
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 
@@ -69,14 +67,14 @@ class QuizController extends Controller
 
             if($status == true){
                 echo "<script>window.alert('Cadastrado com sucesso!')</script>";
-                return redirect()->to('/quizzes');
+                return redirect()->route('quizzes');
             } else {
                 $administrador->delete();
                 echo "<script>window.alert('Ocorreu um erro ao cadastrar Quiz! Por favor, tente novamente mais tarde.')</script>";
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 
@@ -94,10 +92,10 @@ class QuizController extends Controller
                 echo "<script>window.alert('Ocorreu um erro ao buscar terras! Por favor verifique se há terras cadastradas, tente novamente mais tarde.')</script>";
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
-            
-            return view('quizzes.editar-quiz', compact('quiz', 'terras'));
+
+            return view('dashboard.quizzes.editar-quiz', compact('quiz', 'terras'));
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 
@@ -142,7 +140,7 @@ class QuizController extends Controller
 
                 if($status == true){
                     echo "<script>window.alert('Cadastrado com sucesso!')</script>";
-                    return redirect()->to('/quizzes');
+                    return redirect()->route('quizzes');
                 } else {
                     echo "<script>window.alert('Ocorreu um erro ao cadastrar Quiz! Por favor, tente novamente mais tarde.')</script>";
                     echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
@@ -153,7 +151,7 @@ class QuizController extends Controller
             }
 
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 
@@ -178,7 +176,7 @@ class QuizController extends Controller
                 ], 404);
             }
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 }

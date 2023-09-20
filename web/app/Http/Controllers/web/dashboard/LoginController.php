@@ -1,26 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\web;
+namespace App\Http\Controllers\web\dashboard;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
-class IndexController extends Controller
+class LoginController extends Controller
 {
-    public function index(Request $request)
-    {
-        return view('pages.index');
-    }
-
     public function redirecionaLogin(Request $request)
     {
         if(session()->exists('idAdmin')) {
-            return redirect()->to('/terras');
+            return redirect()->route('terras');
         } else {
-            return view('pages.fazer-login');
+            return view('dashboard.pages.login');
         }
     }
 
@@ -32,19 +26,19 @@ class IndexController extends Controller
                 'email' => 'required|email|exists:administradores,email',
                 'senha' => 'min:6|required',
             ]);
-            
+
             // Assim que ocorre uma unica falha o validator para de validar os atributos.
             if ($validator->stopOnFirstFailure()->fails()) {
                 return response()->json([
                     'message' => $validator->messages()->first() // Retornar dentro do array de menssagens a primeira menssagem.
                 ], 422);
             }
-    
+
             $admin = DB::table('administradores')->where([
                 ['email', '=', $request->email],
                 ['senha', '=', base64_encode($request->senha)],
             ])->first();
-            
+
             if (!$admin){
                 return response()->json([
                     'message'   => 'E-mail ou senha inválidos!',
@@ -65,6 +59,6 @@ class IndexController extends Controller
     public function logout()
     {
         session()->remove('idAdmin');
-        return redirect()->to('/');
+        return redirect()->route('redireciona.login');
     }
 }

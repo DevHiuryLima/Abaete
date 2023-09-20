@@ -1,32 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\web;
+namespace App\Http\Controllers\web\dashboard;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 use App\Models\CidadeTerra;
 use App\Models\ImagensTerra;
 use App\Models\Terra;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TerraController extends Controller
 {
     public function index(Request $request)
     {
         if(session()->exists('idAdmin')) {
-            return view('terras.mapa-de-terras');
+            return view('dashboard.terras.mapa-de-terras');
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 
     public function redirecionaCriarTerra(Request $request)
     {
         if(session()->exists('idAdmin')) {
-            return view('terras.criar-terra');
+            return view('dashboard.terras.criar-terra');
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 
@@ -67,14 +66,14 @@ class TerraController extends Controller
 
             if($status == true){
                 echo "<script>window.alert('Cadastrado com sucesso!')</script>";
-                return redirect()->to('/terras');
+                return redirect()->route('terras');
             } else {
                 $terra->delete();
                 echo "<script>window.alert('Ocorreu um erro ao cadastrar terra! Por favor, tente novamente mais tarde.')</script>";
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 
@@ -91,9 +90,9 @@ class TerraController extends Controller
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
 
-            return view('terras.listar-terra', compact('terra'));
+            return view('dashboard.terras.listar-terra', compact('terra'));
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 
@@ -110,9 +109,9 @@ class TerraController extends Controller
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
 
-            return view('terras.editar-terra', compact('terra'));
+            return view('dashboard.terras.editar-terra', compact('terra'));
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 
@@ -163,7 +162,7 @@ class TerraController extends Controller
 
                 if($status == true){
                     echo "<script>window.alert('Cadastrado com sucesso!')</script>";
-                    return redirect()->to('/terras');
+                    return redirect()->route('terras');
                 } else {
                     $terra->delete();
                     echo "<script>window.alert('Ocorreu um erro ao cadastrar terra! Por favor, tente novamente mais tarde.')</script>";
@@ -174,7 +173,7 @@ class TerraController extends Controller
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 
@@ -205,13 +204,13 @@ class TerraController extends Controller
 
             if($status == true){
                 echo "<script>window.alert('Terra removida com sucesso!')</script>";
-                return redirect()->to('/terras');
+                return redirect()->route('terras');
             } else {
                 echo "<script>window.alert('Ocorreu um erro ao deletar terra! Por favor, tente novamente mais tarde.')</script>";
                 echo "<script language='javaScript'>window.setTimeout('history.back(-1)', 02);</script> ";
             }
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 
@@ -239,7 +238,7 @@ class TerraController extends Controller
                 ], 422);
             }
         } else {
-            return redirect()->to('/login');
+            return redirect()->route('redireciona.login');
         }
     }
 }

@@ -7,7 +7,7 @@
     </div>
 
     <h1>Área Restrita</h1>
-    <form name="formLoginAdministrador" method="POST" action="{{ route('fazer-login') }}">
+    <form name="formLoginAdministrador" method="POST" action="{{ route('login') }}">
         @csrf
         <fieldset>
             <div class="margem-abaixo">
