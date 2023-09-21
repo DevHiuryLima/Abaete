@@ -44,6 +44,7 @@ class UserController extends Controller
                 $administrador->name = $request->name;
                 $administrador->email = $request->email;
                 $administrador->password = base64_encode($request->password);
+                $administrador->admin = true;
                 $status = $administrador->save();
 
                 if($status == true){
