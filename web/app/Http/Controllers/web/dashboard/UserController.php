@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\web\dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Administrador;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdministradorController extends Controller
+class UserController extends Controller
 {
     public function index(Request $request)
     {
-        if(session()->exists('idAdmin')) {
-            $user = Administrador::find(session()->get('idAdmin'));
-            $administradores = Administrador::all();
+        if(session()->exists('id')) {
+            $user = User::find(session()->get('id'));
+            $administradores = User::all();
 
             if (!$administradores->count()) {
                 echo "<script>window.alert('Ocorreu um erro ao buscar administradores! Por favor, tente novamente mais tarde.')</script>";
@@ -26,7 +26,7 @@ class AdministradorController extends Controller
 
     public function redirecionaCriarAdministrador(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             return view('dashboard.administradores.criar-administrador');
         } else {
             return redirect()->route('redireciona.login');
@@ -35,15 +35,15 @@ class AdministradorController extends Controller
 
     public function criarAdministrador(Request $request)
     {
-        if(session()->exists('idAdmin')) {
-            $administradores = Administrador::where('email', '=', $request->email)->get();
+        if(session()->exists('id')) {
+            $administradores = User::where('email', '=', $request->email)->get();
 
             if (!$administradores->count()) {
-                $administrador = new Administrador();
+                $administrador = new User();
 
-                $administrador->nome = $request->nome;
+                $administrador->name = $request->name;
                 $administrador->email = $request->email;
-                $administrador->senha = base64_encode($request->senha);
+                $administrador->password = base64_encode($request->password);
                 $status = $administrador->save();
 
                 if($status == true){
@@ -65,8 +65,8 @@ class AdministradorController extends Controller
 
     public function redirecionaEditarAdministrador(Request $request)
     {
-        if(session()->exists('idAdmin')) {
-            $administrador = Administrador::find($request->idAdmin);
+        if(session()->exists('id')) {
+            $administrador = User::find($request->id);
 
             if ($administrador == null) {
                 echo "<script>window.alert('Ocorreu um erro ao buscar Administrador! Por favor, tente novamente mais tarde.')</script>";
@@ -81,17 +81,17 @@ class AdministradorController extends Controller
 
     public function editarAdministrador(Request $request)
     {
-        if(session()->exists('idAdmin')) {
-            $administrador = Administrador::find($request->idAdmin);
+        if(session()->exists('id')) {
+            $administrador = User::find($request->id);
 
             if ($administrador != null) {
-                $administradores = Administrador::where('email', '=', $request->email)->get();
+                $administradores = User::where('email', '=', $request->email)->get();
 
                 if (!$administradores->count()) {
 
-                    $administrador->nome = $request->nome;
+                    $administrador->name = $request->name;
                     $administrador->email = $request->email;
-                    $administrador->senha = base64_encode($request->senha);
+                    $administrador->password = base64_encode($request->password);
                     $status = $administrador->save();
 
                     if($status == true){
@@ -117,8 +117,8 @@ class AdministradorController extends Controller
 
     public function removerAdministrador(Request $request)
     {
-        if(session()->exists('idAdmin')) {
-            $administrador = Administrador::find($request->idAdmin);
+        if(session()->exists('id')) {
+            $administrador = User::find($request->id);
 
             if ($administrador != null) {
                 $status = $administrador->delete();

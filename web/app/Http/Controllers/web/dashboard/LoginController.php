@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function redirecionaLogin(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             return redirect()->route('terras');
         } else {
             return view('dashboard.pages.login');
@@ -23,8 +23,8 @@ class LoginController extends Controller
         try {
 
             $validator = Validator::make($request->all(), [
-                'email' => 'required|email|exists:administradores,email',
-                'senha' => 'min:6|required',
+                'email' => 'required|email|exists:users,email',
+                'password' => 'min:6|required',
             ]);
 
             // Assim que ocorre uma unica falha o validator para de validar os atributos.
@@ -34,9 +34,9 @@ class LoginController extends Controller
                 ], 422);
             }
 
-            $admin = DB::table('administradores')->where([
+            $admin = DB::table('users')->where([
                 ['email', '=', $request->email],
-                ['senha', '=', base64_encode($request->senha)],
+                ['password', '=', base64_encode($request->password)],
             ])->first();
 
             if (!$admin){
@@ -44,7 +44,7 @@ class LoginController extends Controller
                     'message'   => 'E-mail ou senha inválidos!',
                 ], 400);
             } else {
-                session()->put('idAdmin', $admin->idAdmin);
+                session()->put('id', $admin->id);
                 return response()->json(200);
             }
 
@@ -58,7 +58,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        session()->remove('idAdmin');
+        session()->remove('id');
         return redirect()->route('redireciona.login');
     }
 }

@@ -7,7 +7,7 @@ use App\Http\Controllers\web\site\IndexController;
 use App\Http\Controllers\web\dashboard\LoginController;
 use App\Http\Controllers\web\dashboard\TerraController;
 use App\Http\Controllers\web\dashboard\QuizController;
-use App\Http\Controllers\web\dashboard\AdministradorController;
+use App\Http\Controllers\web\dashboard\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,13 +54,13 @@ Route::prefix('/dashboard')->group(function () {
         Route::post('/remover', [QuizController::class, 'removerQuiz'])->name('remover.quiz');
     });
 
-    Route::get('/administradores', [AdministradorController::class, 'index'])->name('administradores');
+    Route::get('/administradores', [UserController::class, 'index'])->name('administradores');
     Route::prefix('/administrador')->group(function () {
-        Route::get('/criar', [AdministradorController::class, 'redirecionaCriarAdministrador'])->name('redireciona.criar.administrador');
-        Route::post('/criar', [AdministradorController::class, 'criarAdministrador'])->name('criar.administrador');
-        Route::get('/editar/{idAdmin}', [AdministradorController::class, 'redirecionaEditarAdministrador'])->name('redireciona.editar.administrador');
-        Route::post('/editar', [AdministradorController::class, 'editarAdministrador'])->name('editar.administrador');
-        Route::post('/remover', [AdministradorController::class, 'removerAdministrador'])->name('remover.administrador');
+        Route::get('/criar', [UserController::class, 'redirecionaCriarAdministrador'])->name('redireciona.criar.administrador');
+        Route::post('/criar', [UserController::class, 'criarAdministrador'])->name('criar.administrador');
+        Route::get('/editar/{id}', [UserController::class, 'redirecionaEditarAdministrador'])->name('redireciona.editar.administrador');
+        Route::post('/editar', [UserController::class, 'editarAdministrador'])->name('editar.administrador');
+        Route::post('/remover', [UserController::class, 'removerAdministrador'])->name('remover.administrador');
     });
 });
 

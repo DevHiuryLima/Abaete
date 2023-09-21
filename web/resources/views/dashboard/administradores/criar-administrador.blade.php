@@ -23,8 +23,8 @@
                     <legend>Dados</legend>
                     <fieldset>
                         <div class="input-block field">
-                            <label for="nome">Nome</label>
-                            <input type="text" name="nome" id="name" required="">
+                            <label for="name">Nome</label>
+                            <input type="text" name="name" id="name" required="">
                         </div>
                         <div class="input-block field-group">
                             <div class="field">
@@ -32,8 +32,8 @@
                                 <input type="email" name="email" id="email" required="">
                             </div>
                             <div class="field">
-                                <label for="senha">Senha</label>
-                                <input type="password" name="senha" id="senha" minlength="6" required="">
+                                <label for="password">Senha</label>
+                                <input type="password" name="password" id="password" minlength="6" required="">
                                 <small style="color: #8FA7B3;">A senha devem ter pelo menos seis caracteres.</small>
                             </div>
                         </div>

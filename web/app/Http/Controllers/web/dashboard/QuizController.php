@@ -11,7 +11,7 @@ class QuizController extends Controller
 {
     public function index(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             $quizzes = Quiz::all();
             return view('dashboard.quizzes.listar-quizzes', compact('quizzes'));
         } else {
@@ -21,7 +21,7 @@ class QuizController extends Controller
 
     public function redirecionaCriarQuiz(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             $terras = Terra::all();
 
             if (!$terras->count()) {
@@ -37,7 +37,7 @@ class QuizController extends Controller
 
     public function criarQuiz(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             $quiz = new Quiz();
 
             switch ($request->tipo) {
@@ -80,7 +80,7 @@ class QuizController extends Controller
 
     public function redirecionaEditarQuiz(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             $quiz = Quiz::find($request->idQuiz);
             $terras = Terra::all();
 
@@ -101,7 +101,7 @@ class QuizController extends Controller
 
     public function editarQuiz(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             $quiz = Quiz::find($request->idQuiz);
 
             if ($quiz != null) {
@@ -157,7 +157,7 @@ class QuizController extends Controller
 
     public function removerQuiz(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             $quiz = QUiz::find($request->idQuiz);
 
             if ($quiz != null) {

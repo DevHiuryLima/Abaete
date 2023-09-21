@@ -52,14 +52,14 @@
     color: var(--cor-do-texto);
 }
 
-#container-login > form > fieldset > div#container-senha {
+#container-login > form > fieldset > div#container-password {
     border-bottom: 1px solid var(--cor-da-borda-primario);
     border-radius: 3px;
 }
 
-#container-login > form > fieldset > div#container-senha > label {}
+#container-login > form > fieldset > div#container-password > label {}
 
-#container-login > form > fieldset > div#container-senha > label > input {
+#container-login > form > fieldset > div#container-password > label > input {
     padding-left: 10px;
     appearance: none;
     border: none;
@@ -72,7 +72,7 @@
     color: var(--cor-do-texto);
 }
 
-#container-login > form > fieldset > div#container-senha > label > input::placeholder { color: var(--cor-do-texto); }
+#container-login > form > fieldset > div#container-password > label > input::placeholder { color: var(--cor-do-texto); }
 
 #container-login > form > fieldset > div#message {
     display: flex;

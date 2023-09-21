@@ -13,7 +13,7 @@ class TerraController extends Controller
 {
     public function index(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             return view('dashboard.terras.mapa-de-terras');
         } else {
             return redirect()->route('redireciona.login');
@@ -22,7 +22,7 @@ class TerraController extends Controller
 
     public function redirecionaCriarTerra(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             return view('dashboard.terras.criar-terra');
         } else {
             return redirect()->route('redireciona.login');
@@ -31,7 +31,7 @@ class TerraController extends Controller
 
     public function criarTerra(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             $terra = new Terra();
             $terra->nome = $request->nome;
             $terra->populacao = $request->populacao . " Pessoas";
@@ -79,7 +79,7 @@ class TerraController extends Controller
 
     public function redirecionaListarTerra(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             $terra = Terra::where('idTerra', '=', $request->idTerra)
                 ->with('cidades')
                 ->with('imagensTerra')
@@ -98,7 +98,7 @@ class TerraController extends Controller
 
     public function redirecionaEditarTerra(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             $terra = Terra::where('idTerra', '=', $request->idTerra)
                 ->with('cidades')
                 ->with('imagensTerra')
@@ -117,7 +117,7 @@ class TerraController extends Controller
 
     public function editarTerra(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             $terra = Terra::find($request->idTerra);
 
             if ($terra != null) {
@@ -179,7 +179,7 @@ class TerraController extends Controller
 
     public function removerTerra(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             $terra = Terra::find($request->idTerra);
 
             if ($terra == null) {
@@ -216,7 +216,7 @@ class TerraController extends Controller
 
     public function removerImagem(Request $request)
     {
-        if(session()->exists('idAdmin')) {
+        if(session()->exists('id')) {
             $imagem = ImagensTerra::find($request->idImagem);
             if ($imagem == null) {
                 return response()->json([

@@ -13,10 +13,10 @@
             <div class="margem-abaixo">
                 <input type="email" name="email" id="email" placeholder="E-mail" required="">
             </div>
-            <div class="margem-abaixo" id="container-senha">
-                <label for="senha" id="entrada-senha">
-                    <input type="password" name="senha" id="senha" placeholder="Senha" minlength="6" required="">
-                    <ion-icon name="eye" id="btn-senha" onclick="mostrarOcultarSenha()" onmouseenter="mudarTitulo()" role="img" class="md hydrated" aria-label="eye">
+            <div class="margem-abaixo" id="container-password">
+                <label for="password" id="entrada-password">
+                    <input type="password" name="password" id="password" placeholder="Senha" minlength="6" required="">
+                    <ion-icon name="eye" id="btn-password" onclick="mostrarOcultarSenha()" onmouseenter="mudarTitulo()" role="img" class="md hydrated" aria-label="eye">
                     </ion-icon>
                 </label>
             </div>
@@ -35,14 +35,14 @@
 
 <script>
     function mostrarOcultarSenha() {
-        var senha = document.getElementById("senha");
-        var btn = document.getElementById("btn-senha");
+        var password = document.getElementById("password");
+        var btn = document.getElementById("btn-password");
 
-        if (senha.type == "password") {
-            senha.type = "text";
+        if (password.type == "password") {
+            password.type = "text";
             btn.name = 'eye-off';
         } else {
-            senha.type = "password";
+            password.type = "password";
             btn.name = 'eye';
         }
     }
@@ -59,7 +59,7 @@
              dataType: 'json',
              success: function( response ) {
                  $('#email').val("");
-                 $('#senha').val("");
+                 $('#password').val("");
                  window.location.href = "{{ route('terras' ) }}";
              }
         })
