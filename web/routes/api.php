@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\TerraController;
-use App\Http\Controllers\API\UsuarioController;
+use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\QuizController;
 
 /*
@@ -23,10 +23,10 @@ use App\Http\Controllers\API\QuizController;
 
 Route::group(['namespace' => 'API', 'as' => 'api.' ], function(){
     Route::apiResource('/terras', TerraController::class);
-    Route::apiResource('/usuarios', UsuarioController::class);
-    Route::post('/usuarios/login', [UsuarioController::class, 'login']);
+    Route::apiResource('/usuarios', UserController::class);
+    Route::post('/usuarios/login', [UserController::class, 'login']);
     Route::apiResource('/quizzes', QuizController::class);
     Route::get('/quiz/busca', [QuizController::class, 'buscarPerguntaAleatoria']);
     Route::post('/quiz/responder', [QuizController::class, 'responderPerguntas']);
-    Route::get('/ranking', [UsuarioController::class, 'usuariosPorPontos']);
+    Route::get('/ranking', [UserController::class, 'usuariosPorPontos']);
 });

@@ -12,7 +12,7 @@ class UserController extends Controller
     {
         if(session()->exists('id')) {
             $user = User::find(session()->get('id'));
-            $administradores = User::all();
+            $administradores = User::where('admin', '=', true)->get();
 
             if (!$administradores->count()) {
                 echo "<script>window.alert('Ocorreu um erro ao buscar administradores! Por favor, tente novamente mais tarde.')</script>";

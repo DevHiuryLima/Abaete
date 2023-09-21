@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Usuario;
+use App\Models\User;
 use App\Models\PontosDoUsuario;
 use App\Models\Quiz;
 use App\Http\Controllers\Controller;
@@ -56,7 +56,7 @@ class QuizController extends Controller
                 'message'   => 'Quiz não encontrado!',
             ], 404);
         }
-        
+
         return response()->json($quiz, 200);
     }
 
@@ -105,7 +105,7 @@ class QuizController extends Controller
     public function responderPerguntas(Request $request)
     {
         $quiz = Quiz::find($request->idQuiz);
-        $usuario = Usuario::find($request->idUsuario);
+        $usuario = User::find($request->idUsuario);
         $pontosDoUsuario = PontosDoUsuario::where('usuario', '=', $request->idUsuario)->first();
         $pontos = 1;
         $usuarioAcertou = false;
@@ -123,7 +123,7 @@ class QuizController extends Controller
                     $usuarioAcertou = true;
                 }
                 break;
-            
+
             default:
                 return response()->json([
                     'message'   => 'Desculpe, ocorreu um problema ao validarmos sua resposta.',
@@ -154,7 +154,6 @@ class QuizController extends Controller
                 'message'   => 'Que pena! Infelizmente você não acertou.',
             ], 200);
         }
-
 
     }
 }

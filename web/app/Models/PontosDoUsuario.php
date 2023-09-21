@@ -21,6 +21,6 @@ class PontosDoUsuario extends Model
 
     public function usuario()
     {
-        return $this->hasOne(Usuario::class,'idUsuario','usuario');
+        return $this->hasOne(User::class,'id','usuario');
     }
 }

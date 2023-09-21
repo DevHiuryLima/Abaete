@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
+use App\Models\PontosDoUsuario;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Models\PontosDoUsuario;
-use App\Models\Usuario;
-use Exception;
-use App\Http\Controllers\Controller;
-use Illuminate\Database\QueryException;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class UsuarioController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +19,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios = Usuario::with('pontuacao')->get();
+        $usuarios = User::where('admin', '=', 0)->with('pontuacao')->get();
 
         if(!$usuarios->count()) {
             return response()->json([
@@ -54,25 +51,25 @@ class UsuarioController extends Controller
             return response()->json($validator->messages(), 422);
         }
 
-        $usuarios = DB::table('usuarios')->where([
+        $usuarios = DB::table('users')->where([
             ['email', '=', $request->email],
-            ['senha', '=', base64_encode($request->senha)],
+            ['password', '=', base64_encode($request->senha)],
         ])->get();
 
         if (!$usuarios->count()){
             try {
-                $usuario = new Usuario();
+                $usuario = new User();
 
-                $usuario->nome = $request->nome;
+                $usuario->name = $request->nome;
                 $usuario->imagem = $request->file('imagem')->store("imagens-usuarios");
                 $usuario->email = $request->email;
-                $usuario->senha = base64_encode($request->senha);
+                $usuario->password = base64_encode($request->senha);
                 $status = $usuario->save();
 
 
                 if($status == true){
                     $pontuacao = new PontosDoUsuario();
-                    $pontuacao->usuario = $usuario->idUsuario;
+                    $pontuacao->usuario = $usuario->id;
                     $pontuacao->pontos = 0;
                     $status = $pontuacao->save();
 
@@ -111,7 +108,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        $usuario = Usuario::where('idUsuario', '=', $id)->with('pontuacao')->first();
+        $usuario = User::where('id', '=', $id)->with('pontuacao')->first();
 
         $usuario['url'] = env('APP_URL') . '/storage/';
 
@@ -120,7 +117,7 @@ class UsuarioController extends Controller
                 'message'   => 'Usuário não encontrado!',
             ], 404);
         }
-        
+
         return response()->json($usuario, 200);
     }
 
@@ -134,14 +131,14 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         echo dd($request->all());
-        $usuario = Usuario::find($request->id);
+        $usuario = User::find($request->id);
 
         if ($usuario != null){
 
-            $usuarios = DB::table('usuarios')->where([
+            $usuarios = DB::table('users')->where([
                 ['email', '=', $request->email],
                 ['senha', '=', base64_encode($request->senha)],
-                ['idUsuario', '!=', $request->id],
+                ['id', '!=', $request->id],
             ])->get();
 
             if (!$usuarios->count()){
@@ -151,7 +148,7 @@ class UsuarioController extends Controller
                         $retirar = array(env('APP_URL'), "/storage/");
                         $path = str_replace($retirar, '', $usuario->imagem);
                         Storage::delete($path);
-                        
+
                         $usuario->imagem = $request->file('imagem')->store("imagens-usuarios");
                     }
                     $usuario->email = $request->email;
@@ -191,7 +188,7 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        $usuario = Usuario::find($id);
+        $usuario = User::find($id);
 
         if ($usuario != null){
 
@@ -217,20 +214,19 @@ class UsuarioController extends Controller
 
     public function login(Request $request)
     {
-        $usuario = DB::table('usuarios')->where([
+        $usuario = DB::table('users')->where([
             ['email', '=', $request->email],
-            ['senha', '=', base64_encode($request->senha)],
+            ['password', '=', base64_encode($request->senha)],
         ])->first();
-        
+
         if ($usuario == null){
             return response()->json([
                 'message'   => 'Login ou senha inválidos!',
             ], 400);
         } else {
-            // session()->put('idUsuario', $admin->idUsuario);
+            // session()->put('id', $admin->id);
             return response()->json($usuario, 200);
         }
-
     }
 
     public function usuariosPorPontos()

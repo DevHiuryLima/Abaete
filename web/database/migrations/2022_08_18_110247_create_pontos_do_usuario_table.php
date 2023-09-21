@@ -19,7 +19,7 @@ class CreatePontosDoUsuarioTable extends Migration
             $table->integer('pontos');
             $table->timestamps();
 
-            $table->foreign('usuario')->references('idUsuario')->on('usuarios')->onDelete('cascade');
+            $table->foreign('usuario')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
