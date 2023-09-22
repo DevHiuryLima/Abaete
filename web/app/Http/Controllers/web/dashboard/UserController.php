@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web\dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -43,7 +44,7 @@ class UserController extends Controller
 
                 $administrador->name = $request->name;
                 $administrador->email = $request->email;
-                $administrador->password = base64_encode($request->password);
+                $administrador->password = Hash::make($request->password);
                 $administrador->admin = true;
                 $status = $administrador->save();
 
@@ -86,13 +87,15 @@ class UserController extends Controller
             $administrador = User::find($request->id);
 
             if ($administrador != null) {
-                $administradores = User::where('email', '=', $request->email)->get();
+                $administradores = User::where([
+                    ['email', '=', $request->email],
+                    ['id', '!=', $request->id],
+                ])->get();
 
                 if (!$administradores->count()) {
 
                     $administrador->name = $request->name;
                     $administrador->email = $request->email;
-                    $administrador->password = base64_encode($request->password);
                     $status = $administrador->save();
 
                     if($status == true){

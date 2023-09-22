@@ -33,11 +33,6 @@
                                 <label for="email">E-mail</label>
                                 <input type="email" name="email" id="email" value="{{$administrador->email}}" required="">
                             </div>
-                            <div class="field">
-                                <label for="password">Senha</label>
-                                <input type="password" name="password" id="password" value="{{base64_decode($administrador->password)}}" minlength="6" required="">
-                                <small style="color: #8FA7B3;">As senhas devem ter pelo menos seis caracteres.</small>
-                            </div>
                         </div>
                     </fieldset>
                 </fieldset>
