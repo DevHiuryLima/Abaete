@@ -4,24 +4,27 @@ namespace App\Http\Controllers\web\dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
-    public function redirecionaLogin(Request $request)
+    public function redirecionaLogin()
     {
-        if(session()->exists('id')) {
+        // Primeiro tem que verificar se já existe uma sessão ativa. Se já existe um usuario dentro dessa sessão.
+        if (Auth::check()) { // retorna um booleano. True se tiver um login já efetuado e false caso não tenha.
+
+            // Se for true redireciona para a página de 'dashboard/terras' o mapa de terras.
             return redirect()->route('terras');
-        } else {
-            return view('dashboard.pages.login');
         }
+
+        // Caso não retorna para a rota que leva para a tela de login
+        return view('dashboard.pages.login');
     }
 
     public function login(Request $request)
     {
         try {
-
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email|exists:users,email',
                 'password' => 'min:6|required',
@@ -34,20 +37,17 @@ class LoginController extends Controller
                 ], 422);
             }
 
-            $admin = DB::table('users')->where([
-                ['email', '=', $request->email],
-                ['password', '=', base64_encode($request->password)],
-            ])->first();
+            $credentials = $request->only('email', 'password');
 
-            if (!$admin){
+            if (Auth::attempt($credentials)) {
+                $user = Auth::user();
+                // Se deu certo retorna o status code '200 Ok'. Indicando que a requisição foi bem-sucedida.
+                return response()->json(200);
+            } else {
                 return response()->json([
                     'message'   => 'E-mail ou senha inválidos!',
                 ], 400);
-            } else {
-                session()->put('id', $admin->id);
-                return response()->json(200);
             }
-
         } catch (\Throwable $th) {
             return response()->json([
                 'message'   => 'Desculpe! Ocorreu um erro no nosso servidor.',
@@ -58,7 +58,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        session()->remove('id');
+        Auth::logout();
         return redirect()->route('redireciona.login');
     }
 }
