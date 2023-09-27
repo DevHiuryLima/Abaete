@@ -38,6 +38,7 @@ class UserController extends Controller
             $administrador->email = $request->email;
             $administrador->password = Hash::make($request->password);
             $administrador->admin = true;
+            $administrador->admin_type = 'normal';
             $status = $administrador->save();
 
             if($status == true){

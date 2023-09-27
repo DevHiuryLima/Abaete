@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('imagem')->nullable();
             $table->string('ultima_tentativa')->nullable();
             $table->boolean('admin')->default(false);
+            $table->string('admin_type')->default('normal')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
